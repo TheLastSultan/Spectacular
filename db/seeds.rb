@@ -22,7 +22,6 @@ User.create!(
         material: possible_material,
         sex: possible_sex,
         staffpick: possible_staffpick
-
     )
 end
 
