@@ -27950,13 +27950,14 @@ var configureStore = function configureStore() {
 /*!*********************************************!*\
   !*** ./frontend/util/spectacle_api_util.js ***!
   \*********************************************/
-/*! exports provided: fetchSpectacles, fetchSpectacle */
+/*! exports provided: fetchSpectacles, fetchSpectacle, fetchSelectedSpectacles */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpectacles", function() { return fetchSpectacles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpectacle", function() { return fetchSpectacle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSelectedSpectacles", function() { return fetchSelectedSpectacles; });
 var fetchSpectacles = function fetchSpectacles() {
   return $.ajax({
     method: 'GET',
@@ -27969,6 +27970,29 @@ var fetchSpectacle = function fetchSpectacle(id) {
     url: "/api/spectacles/".concat(id)
   });
 };
+var fetchSelectedSpectacles = function fetchSelectedSpectacles() {
+  var obj = {
+    shape: "Oval",
+    material: "Polycarbonate"
+  };
+  var param = $.param(obj);
+  return $.ajax({
+    method: 'POST',
+    url: ""
+  });
+}; // possible_shapes = ["Round", "Oval", "Square"].sample
+//     possible_material = ["Polycarbonate", "Mixed", "Metal"].sample
+//     possible_sex = [true, false ].sample
+//     possible_staffpick = [true, false].sample
+//  create_table "spectacles", force: :cascade do |t|
+// t.string "color"
+// t.string "shape"
+// t.string "material"
+// t.boolean "sex"
+// t.string "title", null: false
+// t.text "description", null: false
+// t.boolean "staffpick", null: false
+// end
 
 /***/ }),
 
