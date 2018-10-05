@@ -10,7 +10,7 @@ User.create!(
                     Faker::DragonBall.character].sample
 
     possible_shapes = ["Round", "Oval", "Square"].sample
-    possible_material = ["Polycarbonate", "Mixed", "Metal"]
+    possible_material = ["Polycarbonate", "Mixed", "Metal"].sample
     possible_sex = [true, false ].sample
     possible_staffpick = [true, false].sample
 
