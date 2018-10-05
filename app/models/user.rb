@@ -6,9 +6,9 @@ class User < ApplicationRecord
     class_name: "Cartitem"
 
 
-    has_many :glasses,
+    has_many :cart,
     through: :cartitems,
-    source: :glass
+    source: :spectacle
     
 
 end

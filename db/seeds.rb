@@ -3,8 +3,9 @@ User.create!(
     password_digest: "hello"
 )
 
-Glass.create!(
-    img_url: "whatwhat",
-    title: "glasses"
+Spectacle.create!(
+    description: "The first seed",
+    title: "glasses",
+    staffpick: false 
 )
 
