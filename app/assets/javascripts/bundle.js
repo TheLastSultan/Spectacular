@@ -27866,14 +27866,13 @@ var spectacleReducer = function spectacleReducer() {
 
   switch (action.type) {
     case _actions_spectacle_action_js__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SPECTACLES"]:
-      debugger;
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.spectacle);
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.spectacles);
 
     case _actions_spectacle_action_js__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SPECTACLE"]:
-      action.spectacle;
+      debugger;
 
     default:
-      return state;
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.spectacle);
   }
 };
 
