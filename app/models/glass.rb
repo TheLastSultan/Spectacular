@@ -1,7 +1,7 @@
-class Glass < ApplicationRecord
+class Spectacle < ApplicationRecord
 
     has_many :cartitems,
-    foreign_key: :glasses_id,
+    foreign_key: :spectacle_id,
     class_name: "Cartitem"
 
     has_many :users,
