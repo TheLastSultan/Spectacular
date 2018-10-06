@@ -45016,7 +45016,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  user: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   spectacles: _spectacle_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
@@ -45039,7 +45039,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  sessions: _sessions_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  session: _sessions_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
 /***/ }),
