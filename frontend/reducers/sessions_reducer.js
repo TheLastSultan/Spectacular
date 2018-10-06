@@ -10,9 +10,9 @@ export default (state = {id: null}, action) => {
         //   return {id: null};
 
         case RECEIVE_CURRENT_USER:
-        return action.payload.sessions;
+            return merge({}, state, action.payload.user);
 
         default:
-        return state;
+            return state;
     }
 };

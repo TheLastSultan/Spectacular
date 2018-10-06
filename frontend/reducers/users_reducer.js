@@ -7,7 +7,8 @@ export default (state = {}, action) => {
   // debugger;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      return merge({}, state, action.payload.users);
+      debugger; 
+      return merge({}, state, action.payload.user);
     default:
       return state;
   }
