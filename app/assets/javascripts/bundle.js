@@ -45066,11 +45066,14 @@ __webpack_require__.r(__webpack_exports__);
   Object.freeze(state);
 
   switch (action.type) {
-    // case LOGOUT_CURRENT_USER:
-    //   return {id: null};
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       debugger;
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.user);
+      return {
+        id: null
+      };
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.users);
 
     default:
       return state;
@@ -45238,14 +45241,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUp", function() { return signUp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
-var signUp = function signUp(users) {
+var signUp = function signUp(user) {
   return $.ajax({
     url: '/api/users',
     method: 'POST',
     data: user
   });
 };
-var login = function login(users) {
+var login = function login(user) {
   return $.ajax({
     url: '/api/session',
     method: 'POST',
