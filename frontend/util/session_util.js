@@ -4,7 +4,7 @@ export const signUp = user => (
       method: 'POST',
       data: user,
     })
-  );
+);
   
 export const login = user => (
     $.ajax({

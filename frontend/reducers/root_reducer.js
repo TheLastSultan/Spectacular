@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
-import spectacleReducer from './spectacle_reducer';
+import entitiesReducer from './entities_reducer';
+import sessionsReducer from './sessions_reducer';
+
 
 export default combineReducers({
-    spectacles: spectacleReducer
+    entities: entitiesReducer,
+    sessions: sessionsReducer
 });
