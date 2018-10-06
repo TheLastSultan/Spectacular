@@ -29,8 +29,8 @@ const failure = errors => {
   dispatch(receiveErrors(errors));
 };
 
-export const createThunkAction = callback => user => dispatch => {
-  return callback(user).then(success, failure);
+export const createThunkAction = callback => users => dispatch => {
+  return callback(users).then(success, failure);
 };
 
 export const logout = createThunkAction(SessionUtil.logout);

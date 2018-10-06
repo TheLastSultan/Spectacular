@@ -171,9 +171,9 @@ var failure = function failure(errors) {
 };
 
 var createThunkAction = function createThunkAction(callback) {
-  return function (user) {
+  return function (users) {
     return function (dispatch) {
-      return callback(user).then(success, failure);
+      return callback(users).then(success, failure);
     };
   };
 };
@@ -45069,6 +45069,7 @@ __webpack_require__.r(__webpack_exports__);
     // case LOGOUT_CURRENT_USER:
     //   return {id: null};
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+      debugger;
       return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.user);
 
     default:
@@ -45132,17 +45133,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); // debugger;
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.user);
 
     default:
       return state;
   }
-}); // session_token: "gR0XohetKT3fGY7lxN_6rA",
+});
 
 /***/ }),
 
@@ -45238,14 +45238,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUp", function() { return signUp; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
-var signUp = function signUp(user) {
+var signUp = function signUp(users) {
   return $.ajax({
     url: '/api/users',
     method: 'POST',
     data: user
   });
 };
-var login = function login(user) {
+var login = function login(users) {
   return $.ajax({
     url: '/api/session',
     method: 'POST',

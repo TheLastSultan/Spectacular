@@ -10,6 +10,7 @@ export default (state = {id: null}, action) => {
         //   return {id: null};
 
         case RECEIVE_CURRENT_USER:
+            debugger; 
             return merge({}, state, action.payload.user);
 
         default:

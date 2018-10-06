@@ -1,6 +1,5 @@
-json.users do
+json.user do
     json.extract! @user, :id, :email, :username
-
 end
   
 json.sessions do
