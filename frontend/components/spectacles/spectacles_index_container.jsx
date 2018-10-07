@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import SpectacleIndex from './spectacles_index'
 
 const mapStateToProps = state => {
-    debugger; 
-    return {spectacles: Object.keys(state.entities.spectacles).map(key => state.entities.spectacles[key])}
+    return {
+        spectacles: Object.keys(state.entities.spectacles).map(key => state.entities.spectacles[key]),
+        loading: state.ui.loading.indexLoading
+        }
 };
 
 const mapDispatchToProps = dispatch => {

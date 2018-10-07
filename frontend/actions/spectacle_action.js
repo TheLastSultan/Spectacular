@@ -6,7 +6,7 @@ export const START_LOADING_ALL_SPECTACLES =  "START_LOADING_ALL_SPECTACLES";
 export const START_LOADING_SINGLE_SPECTACLE = "START_LOADING_SINGLE_SPECTACLE";
 
 
-export const loadingAllSpectacle = () => ({
+export const loadingAllSpectacles = () => ({
     type: START_LOADING_ALL_SPECTACLES
 })
 
@@ -26,10 +26,11 @@ export const receiveSpectacles = spectacles => ({
 
 // async actions
 export const fetchSpectacles = () => dispatch => {
-    SpectacleAPIUtil.fetchSpectacles().then(Spectacles => dispatch(receiveSpectacles(spectacles)))
+    dispatch(loadingAllSpectacles());
+    return SpectacleAPIUtil.fetchSpectacles().then(spectacles => {dispatch(receiveSpectacles(spectacles))});
 };
     
 export const fetchSpectacle = id => dispatch => (
-    SpectacleAPIUtil.fetchSpectacle(id).then(Spectacle => dispatch(receiveSpectacle(Spectacle)))
+    SpectacleAPIUtil.fetchSpectacle(id).then(spectacle => dispatch(receiveSpectacle(spectacle)))
 );
 

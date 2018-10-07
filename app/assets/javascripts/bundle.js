@@ -187,7 +187,7 @@ var signUp = createThunkAction(_util_session_util__WEBPACK_IMPORTED_MODULE_0__["
 /*!**********************************************!*\
   !*** ./frontend/actions/spectacle_action.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_SPECTACLES, RECEIVE_SPECTACLE, START_LOADING_ALL_SPECTACLES, START_LOADING_SINGLE_SPECTACLE, loadingAllSpectacle, loadingOneSpectacle, receiveSpectacle, receiveSpectacles, fetchSpectacles, fetchSpectacle */
+/*! exports provided: RECEIVE_SPECTACLES, RECEIVE_SPECTACLE, START_LOADING_ALL_SPECTACLES, START_LOADING_SINGLE_SPECTACLE, loadingAllSpectacles, loadingOneSpectacle, receiveSpectacle, receiveSpectacles, fetchSpectacles, fetchSpectacle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -196,7 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SPECTACLE", function() { return RECEIVE_SPECTACLE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "START_LOADING_ALL_SPECTACLES", function() { return START_LOADING_ALL_SPECTACLES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "START_LOADING_SINGLE_SPECTACLE", function() { return START_LOADING_SINGLE_SPECTACLE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadingAllSpectacle", function() { return loadingAllSpectacle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadingAllSpectacles", function() { return loadingAllSpectacles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadingOneSpectacle", function() { return loadingOneSpectacle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSpectacle", function() { return receiveSpectacle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSpectacles", function() { return receiveSpectacles; });
@@ -208,7 +208,7 @@ var RECEIVE_SPECTACLES = "RECEIVE_SPECTACLES";
 var RECEIVE_SPECTACLE = "RECEIVE_SPECTACLE";
 var START_LOADING_ALL_SPECTACLES = "START_LOADING_ALL_SPECTACLES";
 var START_LOADING_SINGLE_SPECTACLE = "START_LOADING_SINGLE_SPECTACLE";
-var loadingAllSpectacle = function loadingAllSpectacle() {
+var loadingAllSpectacles = function loadingAllSpectacles() {
   return {
     type: START_LOADING_ALL_SPECTACLES
   };
@@ -233,15 +233,16 @@ var receiveSpectacles = function receiveSpectacles(spectacles) {
 
 var fetchSpectacles = function fetchSpectacles() {
   return function (dispatch) {
-    _util_spectacle_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSpectacles"]().then(function (Spectacles) {
-      return dispatch(receiveSpectacles(spectacles));
+    dispatch(loadingAllSpectacles());
+    return _util_spectacle_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSpectacles"]().then(function (spectacles) {
+      dispatch(receiveSpectacles(spectacles));
     });
   };
 };
 var fetchSpectacle = function fetchSpectacle(id) {
   return function (dispatch) {
-    return _util_spectacle_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSpectacle"](id).then(function (Spectacle) {
-      return dispatch(receiveSpectacle(Spectacle));
+    return _util_spectacle_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSpectacle"](id).then(function (spectacle) {
+      return dispatch(receiveSpectacle(spectacle));
     });
   };
 };
@@ -343,13 +344,9 @@ function (_React$Component) {
   _inherits(SpectacleIndex, _React$Component);
 
   function SpectacleIndex(props) {
-    var _this;
-
     _classCallCheck(this, SpectacleIndex);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SpectacleIndex).call(this, props));
-    _this.state.loading = true;
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(SpectacleIndex).call(this, props));
   }
 
   _createClass(SpectacleIndex, [{
@@ -358,22 +355,28 @@ function (_React$Component) {
       this.props.fetchSpectacles();
     }
   }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(props) {
-      if (props.spectacles) {
-        this.setState({
-          "loading": false
-        });
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
-      if (this.state.loading) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " loading ");
-      }
+      var _this$props = this.props,
+          spectacles = _this$props.spectacles,
+          loading = _this$props.loading;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null);
+      if (loading) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " loading.. ");
+      } // let glasses = spectacles.map( spectacle => (
+      //     <SpectacleIndexItem
+      //         key={spectacle.id}
+      //         spectacle={spectacle}
+      //     /> 
+      // ))
+
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, spectacles.map(function (spectacle) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: spectacle.id,
+          spectacle: spectacle
+        });
+      })));
     }
   }]);
 
@@ -381,12 +384,7 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 ;
-/* harmony default export */ __webpack_exports__["default"] = (SpectacleIndex); // spectacle.map( spectacle => (
-//     <SpectacleIndexItem
-//         key={spectacle.id}
-//         spectacle={spectacle}
-//     /> 
-// ))
+/* harmony default export */ __webpack_exports__["default"] = (SpectacleIndex);
 
 /***/ }),
 
@@ -407,11 +405,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
   return {
     spectacles: Object.keys(state.entities.spectacles).map(function (key) {
       return state.entities.spectacles[key];
-    })
+    }),
+    loading: state.ui.loading.indexLoading
   };
 };
 
@@ -445,7 +443,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var SpectacleIndexItem = function SpectacleIndexItem(_ref) {
   var spectacle = _ref.spectacle;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, "HELLO WORLD", spectacle)));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "spectacle-index-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, spectacle.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, spectacle.title));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SpectacleIndexItem);
@@ -488,13 +488,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var state = {
+var initialState = {
   indexLoading: false,
   detailLoading: false
 };
 
 var loadingReducer = function loadingReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
@@ -512,41 +512,13 @@ var loadingReducer = function loadingReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, {
         detailLoading: true
       });
+
+    default:
+      return state;
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (loadingReducer); // import {
-//     RECEIVE_ALL_POKEMON,
-//     RECEIVE_SINGLE_POKEMON,
-//     RECEIVE_NEW_POKEMON,
-//     RECEIVE_POKEMON_ERRORS,
-//     CREATE_POKEMON,
-//     START_LOADING_ALL_POKEMON,
-//     START_LOADING_SINGLE_POKEMON
-//   } from '../actions/pokemon_actions';
-//   const initialState = {
-//     indexLoading: false,
-//     detailLoading: false
-//   };
-//   const loadingReducer = (state = initialState, action) => {
-//     Object.freeze(state);
-//     switch (action.type) {
-//       case RECEIVE_ALL_POKEMON:
-//         return Object.assign({}, state, { indexLoading: false });
-//       case RECEIVE_NEW_POKEMON:
-//       case RECEIVE_SINGLE_POKEMON:
-//       case RECEIVE_POKEMON_ERRORS:
-//         return Object.assign({}, state, { detailLoading: false });
-//       case START_LOADING_ALL_POKEMON:
-//         return Object.assign({}, state, { indexLoading: true });
-//       case CREATE_POKEMON:
-//       case START_LOADING_SINGLE_POKEMON:
-//         return Object.assign({}, state, { detailLoading: true });
-//       default:
-//         return state;
-//     }
-//   };
-//   export default loadingReducer;
+/* harmony default export */ __webpack_exports__["default"] = (loadingReducer);
 
 /***/ }),
 
