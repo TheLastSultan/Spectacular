@@ -6,7 +6,7 @@ export default (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      return merge({}, state, action.payload.user);
+      return merge({}, state, action.payload.users);
     default:
       return state;
   }

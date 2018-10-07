@@ -3,15 +3,14 @@ import merge from 'lodash/merge';
 
 const spectacleReducer = ( state = {}, action) => {
     Object.freeze(state);
-    let nextState = {};
-
+    
     switch(action.type){
-        case RECEIVE_SPECTACLES:
+        case RECEIVE_SPECTACLES: 
             return merge({}, state, action.spectacles)
         case RECEIVE_SPECTACLE:
             debugger; 
         default:
-            return merge({},state, action.spectacle)
+            return state; 
     }
 };
 
