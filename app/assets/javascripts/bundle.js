@@ -363,20 +363,20 @@ function (_React$Component) {
 
       if (loading) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " loading.. ");
-      } // let glasses = spectacles.map( spectacle => (
-      //     <SpectacleIndexItem
-      //         key={spectacle.id}
-      //         spectacle={spectacle}
-      //     /> 
-      // ))
+      }
 
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, spectacles.map(function (spectacle) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "col-md-12 spectacle-app"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "spectacle-list-group"
+      }, spectacles.map(function (spectacle) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: spectacle.id,
           spectacle: spectacle
         });
-      })));
+      }))));
     }
   }]);
 
@@ -444,11 +444,14 @@ __webpack_require__.r(__webpack_exports__);
 var SpectacleIndexItem = function SpectacleIndexItem(_ref) {
   var spectacle = _ref.spectacle;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "spectacle-index-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, spectacle.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "spectacle-thumbnail col-md-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: spectacle.image_url,
+    className: "spectacle-image",
     alt: spectacle.title
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, spectacle.title));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "spectacle-title"
+  }, spectacle.title));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SpectacleIndexItem);

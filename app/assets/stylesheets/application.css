@@ -1,15 +1,50 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.spectacle-app{
+    /* display: flex;  */
+}
+
+.row{
+    /* justify-content: center; */
+  
+}
+
+.row li{
+    margin: 10px; 
+    padding: 10px; 
+}
+
+.spectacle-list-group{
+    display: flex; 
+    flex-wrap: wrap;
+}
+
+.spectacle-thumbnail{
+    margin: 5px; 
+    flex-direction: column ;
+    position: relative; 
+    display: flex ; 
+
+}
+
+.spectacle-group-item{
+    justify-content: center; 
+    flex-wrap: wrap; 
+
+}
+
+.spectacle-image{
+    padding: 10px ;
+    padding-left: 15px; 
+    padding-right: 15px; 
+    max-width: 100%;
+    border: 0; 
+
+}
+
+.spectacle-title{
+    text-align: center; 
+    font-size: 22px;
+    margin-top: 10px; 
+    font-weight: 500;
+    font-family: utopia-std,times new roman,serif;
+    line-height: calc(1em+6px);
+}
