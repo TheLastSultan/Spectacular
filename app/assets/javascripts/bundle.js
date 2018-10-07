@@ -445,7 +445,10 @@ var SpectacleIndexItem = function SpectacleIndexItem(_ref) {
   var spectacle = _ref.spectacle;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "spectacle-index-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, spectacle.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, spectacle.title));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, spectacle.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: spectacle.image_url,
+    alt: spectacle.title
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, spectacle.title));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SpectacleIndexItem);
