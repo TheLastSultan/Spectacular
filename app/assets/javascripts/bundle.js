@@ -405,7 +405,7 @@ var Navbar = function Navbar() {
     icon: "shopping-cart",
     className: "faShoppingCart"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    class: "navbar-toggler",
+    className: "navbar-toggler",
     type: "button",
     "data-toggle": "collapse",
     "data-target": "#navbarToggleExternalContent",
@@ -413,7 +413,7 @@ var Navbar = function Navbar() {
     "aria-expanded": "false",
     "aria-label": "Toggle navigation"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    class: "navbar-toggler-icon"
+    className: "navbar-toggler-icon"
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "https://api.pcloud.com/getpubthumb?code=XZq68n7Zig1UpLV3HmzfXlUczwf3ARCrAt4V&linkpassword=undefined&size=1831x334&crop=0&type=auto",
     width: "1400",
