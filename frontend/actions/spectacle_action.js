@@ -30,7 +30,8 @@ export const fetchSpectacles = () => dispatch => {
     return SpectacleAPIUtil.fetchSpectacles().then(spectacles => {dispatch(receiveSpectacles(spectacles))});
 };
     
-export const fetchSpectacle = id => dispatch => (
-    SpectacleAPIUtil.fetchSpectacle(id).then(spectacle => dispatch(receiveSpectacle(spectacle)))
-);
+export const fetchSpectacle = id => dispatch => {
+    dispatch(loadingOneSpectacle());
+    return SpectacleAPIUtil.fetchSpectacle(id).then(spectacle => dispatch(receiveSpectacle(spectacle)))
+};
 

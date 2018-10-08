@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { fetchSpectacles, fetchSpectacle } from '../../actions/spectacle_action';
 import { connect } from 'react-redux';
 import SpectacleIndex from './spectacles_index'

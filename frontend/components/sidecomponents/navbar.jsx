@@ -51,7 +51,7 @@ const Navbar = () => (
             </button>
         </div> 
     </nav> 
-    <iframe src="https://drive.google.com/file/d/134rrSXSo_xSiLHMdbOXEfGMsTAfdpmxn/preview" width="640" height="480"></iframe>
+    <img src="https://api.pcloud.com/getpubthumb?code=XZq68n7Zig1UpLV3HmzfXlUczwf3ARCrAt4V&linkpassword=undefined&size=1831x334&crop=0&type=auto" width="1400" height="320"></img>
     </div> 
 );
 
