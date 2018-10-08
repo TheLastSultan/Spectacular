@@ -51,7 +51,8 @@ const Navbar = () => (
             </button>
         </div> 
     </nav> 
-    <img src="https://api.pcloud.com/getpubthumb?code=XZq68n7Zig1UpLV3HmzfXlUczwf3ARCrAt4V&linkpassword=undefined&size=1831x334&crop=0&type=auto" width="1400" height="320" className="img-responsive"></img>
+        <div className="jumbotron jumbotron-fluid" >
+        </div> 
     </div> 
 );
 

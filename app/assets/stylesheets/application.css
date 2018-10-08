@@ -75,6 +75,14 @@
     line-height: calc(1em + 10px);
 }
 
+.jumbotron{
+    background-image: url("https://api.pcloud.com/getpubthumb?code=XZq68n7Zig1UpLV3HmzfXlUczwf3ARCrAt4V&linkpassword=undefined&size=1831x334&crop=0&type=auto");
+    left: 50%;
+    width: auto;
+    min-height: 300px; 
+    max-width: none
+}
+
 /* CSS FOR IMAGE_CAROUSEL */
 .slider {
     position: relative;
@@ -125,7 +133,7 @@
     color: #fff;
   }
   
-  .fa-arrow-right:before, .fa-arrow-left:before {
+  .arrow:before, .arrow:before {
     color: #222
   }
   /* WORKS CITED: https://codepen.io/DZuz14/pen/XxKLVY?editors=0100 */

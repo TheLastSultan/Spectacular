@@ -1,21 +1,19 @@
 import React from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-const RightArrow = () => {
+
+export const RightArrow = ( props ) => {
   return (
-    <div className="nextArrow" onClick={props.goToNextSlide}>
-      <i className="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
+    <div className="nextArrow arrow" onClick={props.goToNextSlide}>
+      <FontAwesomeIcon icon="search" className="faSearch "  onClick={props.goToNexSlide}/>
     </div>
   );
 }
 
-export const RightArrow;
-
-const LeftArrow = () => {
+export const LeftArrow = ( props ) => {
   return (
-    <div className="backArrow" onClick={props.goToPrevSlide}>
-      <i className="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+    <div className="backArrow arrow" onClick={props.goToPrevSlide}>
+      <FontAwesomeIcon icon="search" className="faSearch arrow"  onClick={props.goToNexSlide}/>
     </div>
   );
 }
-
-export const LeftArrow;

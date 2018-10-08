@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import slide from './slide';
+import Slide from './slide';
 import {LeftArrow, RightArrow} from './arrows'
 
-export default class Slider extends Component {
+export default class Slider extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       images: [
@@ -12,13 +12,21 @@ export default class Slider extends Component {
         "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/canyon.jpg",
         "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/city.jpg",
         "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg",
-        ],
-        currentIndex: 0,
-        translateValue:0
-      }
+        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/mountains.jpg",
+        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/redsky.jpg",
+        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/sandy-shores.jpg",
+        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/tree-of-life.jpg"
+      ],
+      currentIndex: 0,
+      translateValue: 0
+    }
+
+    this.goToNextSlide = this.goToNextSlide.bind(this);
+    this.goToPrevSlide = this.goToPrevSlide.bind(this);
   }
 
   goToPrevSlide = () => {
+    debugger; 
     if(this.state.currentIndex === 0)
       return;
     
@@ -36,6 +44,10 @@ export default class Slider extends Component {
       })
     }
   }
+
+  slideWidth = () => {
+    return document.querySelector('.slide').clientWidth
+ }
 
   render() {
     return (
