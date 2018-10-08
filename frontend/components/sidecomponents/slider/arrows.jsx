@@ -8,13 +8,7 @@ const RightArrow = () => {
   );
 }
 
-export default RightArrow;
-
-/* 
-  Pretend these are in their own separate files 
-*/
-
-import React from 'react';
+export const RightArrow;
 
 const LeftArrow = () => {
   return (
@@ -24,4 +18,4 @@ const LeftArrow = () => {
   );
 }
 
-export default LeftArrow;
+export const LeftArrow;

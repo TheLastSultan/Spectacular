@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import slide from './slide';
-import {leftArrow, rightArrow} from './arrows'
+import {LeftArrow, RightArrow} from './arrows'
 
 export default class Slider extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ export default class Slider extends Component {
         <div className="slider-wrapper"
           style={{
             transform: `translateX(${this.state.translateValue}px)`,
-            transition: 'transform ease-out 0.45s'
+            transition: 'transform ease-out 0.35s'
           }}>
             {
               this.state.images.map((image, i) => (
