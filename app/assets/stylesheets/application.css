@@ -1,10 +1,10 @@
 .spectacle-app{
-    /* display: flex;  */
+    
 }
 
 .row{
     /* justify-content: center; */
-  
+    /* flex-1: 100% */
 }
 
 .row li{
@@ -42,9 +42,35 @@
 
 .spectacle-title{
     text-align: center; 
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 10px; 
-    font-weight: 500;
+    font-weight: 450;
     font-family: utopia-std,times new roman,serif;
     line-height: calc(1em+6px);
+}
+
+/* THIS IS THE NAVBAR SECITON */
+
+.navbar-brand{
+    font-family: proxima-nova,helvetica,verdana,sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 600
+
+}
+
+.nav-item{
+    margin-left: 5px; 
+    margin-right: 5px;
+    padding: 1px; 
+}
+
+.nav-item{
+    flex-direction: row; 
+    color: #414b56;
+    letter-spacing: 2.5px;
+    font-size: 10px; 
+    text-transform: uppercase;
+    font-family: proxima-nova,helvetica,verdana,sans-serif;
+    line-height: calc(1em + 10px);
 }
