@@ -4,31 +4,45 @@ import { connect } from 'react-redux';
 import SpectacleIndex from './spectacles_index'
 
 const mapStateToProps = (state, ownProps) => {
-    const ownId = ownProps.match.params.spectacleId
+    // debugger; 
+    const spectacle = state.entities.spectacles[ownProps.match.params.spectacleId]
+    
     return {
-        spectacle: Object.keys(state.entities.spectacles.ownId).map(key => state.entities.spectacles.ownId[key]),
+        spectacle: spectacle,
         loading: state.ui.loading.detailLoading
         }
-        debugger; 
 };
 
 const mapDispatchToProps = dispatch => {
-    return {fetchSpectacle: () => dispatch(fetchSpectacle())}
+    return {
+        fetchSpectacles: () => dispatch(fetchSpectacles()),
+        fetchSpectacle: (id) => dispatch(fetchSpectacle(id))
+    }
 };
 
 class SpectacleDetail extends React.Component{
 
     constructor(props){
         super(props);
+
+        this.props.fetchSpectacles();
+    }
+
+    componentWillReceiveProps(nextProps){
+        if (this.props.match.params.spectacleId !== nextProps.match.params.spectacleId){
+            this.props.fetchSpectalce(nextProps.match.params.spectacleId)
+        }
     }
 
     componentDidMount(){
-      this.props.fetchSpectacle();
+      this.props.fetchSpectacles();
+      this.props.fetchSpectacle(this.props.match.params.spectacleId);
     }
 
 
     render(){
         const { spectacles , loading } = this.props;
+        // debugger; 
 
         if (loading) { return <h4> loading.. </h4>; }
              

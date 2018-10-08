@@ -418,7 +418,7 @@ var Navbar = function Navbar() {
     src: "https://api.pcloud.com/getpubthumb?code=XZq68n7Zig1UpLV3HmzfXlUczwf3ARCrAt4V&linkpassword=undefined&size=1831x334&crop=0&type=auto",
     width: "1400",
     height: "320",
-    class: "img-responsive"
+    className: "img-responsive"
   }));
 };
 
@@ -464,20 +464,21 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var ownId = ownProps.match.params.spectacleId;
+  // debugger; 
+  var spectacle = state.entities.spectacles[ownProps.match.params.spectacleId];
   return {
-    spectacle: Object.keys(state.entities.spectacles.ownId).map(function (key) {
-      return state.entities.spectacles.ownId[key];
-    }),
+    spectacle: spectacle,
     loading: state.ui.loading.detailLoading
   };
-  debugger;
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchSpectacle: function fetchSpectacle() {
-      return dispatch(Object(_actions_spectacle_action__WEBPACK_IMPORTED_MODULE_1__["fetchSpectacle"])());
+    fetchSpectacles: function fetchSpectacles() {
+      return dispatch(Object(_actions_spectacle_action__WEBPACK_IMPORTED_MODULE_1__["fetchSpectacles"])());
+    },
+    fetchSpectacle: function fetchSpectacle(id) {
+      return dispatch(Object(_actions_spectacle_action__WEBPACK_IMPORTED_MODULE_1__["fetchSpectacle"])(id));
     }
   };
 };
@@ -488,22 +489,36 @@ function (_React$Component) {
   _inherits(SpectacleDetail, _React$Component);
 
   function SpectacleDetail(props) {
+    var _this;
+
     _classCallCheck(this, SpectacleDetail);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
+
+    _this.props.fetchSpectacles();
+
+    return _this;
   }
 
   _createClass(SpectacleDetail, [{
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      if (this.props.match.params.spectacleId !== nextProps.match.params.spectacleId) {
+        this.props.fetchSpectalce(nextProps.match.params.spectacleId);
+      }
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchSpectacle();
+      this.props.fetchSpectacles();
+      this.props.fetchSpectacle(this.props.match.params.spectacleId);
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           spectacles = _this$props.spectacles,
-          loading = _this$props.loading;
+          loading = _this$props.loading; // debugger; 
 
       if (loading) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " loading.. ");
@@ -749,6 +764,11 @@ var loadingReducer = function loadingReducer() {
     case _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_0__["START_LOADING_SINGLE_SPECTACLE"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, {
         detailLoading: true
+      });
+
+    case _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SPECTACLE"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, {
+        detailLoading: false
       });
 
     default:
