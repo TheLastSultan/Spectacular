@@ -11,9 +11,10 @@ export default class Slider extends Component {
         "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/aurora.jpg",
         "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/canyon.jpg",
         "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/city.jpg",
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg"\
+        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg",
         ],
-        currentIndex: 0
+        currentIndex: 0,
+        translateValue:0
       }
   }
 
@@ -34,20 +35,25 @@ export default class Slider extends Component {
         translateValue: 0
       })
     }
+  }
 
   render() {
     return (
       <div className="slider">
 
-        {
-          this.state.images.map((image, i) => (
-            <Slide key={i} image={image} />
-          ))
-        }
-
-				<Slide/>
-        <LeftArrow goToPrevSlide={this.goToPrevSlide}/>
-        <RightArrow goToNextSlide={this.goToNextSlide}/>
+        <div className="slider-wrapper"
+          style={{
+            transform: `translateX(${this.state.translateValue}px)`,
+            transition: 'transform ease-out 0.45s'
+          }}>
+            {
+              this.state.images.map((image, i) => (
+                <Slide key={i} image={image} />
+              ))
+            }
+        </div>
+        <LeftArrow goToPrevSlide={this.goToPrevSlide} />
+        <RightArrow goToNextSlide={this.goToNextSlide} />
       </div>
     );
   }
