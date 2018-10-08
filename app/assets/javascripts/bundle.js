@@ -267,10 +267,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _spectacles_spectacle_detail_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./spectacles/spectacle_detail_container */ "./frontend/components/spectacles/spectacle_detail_container.jsx");
 
 
 
  // Font Awesome
+
 
 
 
@@ -283,11 +285,14 @@ var App = function App() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/",
     component: _sidecomponents_navbar__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
     component: _spectacles_spectacles_index_container__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }))));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/spectacles/:spectacleId",
+    component: _spectacles_spectacle_detail_container__WEBPACK_IMPORTED_MODULE_7__["default"]
+  })))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -412,7 +417,8 @@ var Navbar = function Navbar() {
   })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "https://api.pcloud.com/getpubthumb?code=XZq68n7Zig1UpLV3HmzfXlUczwf3ARCrAt4V&linkpassword=undefined&size=1831x334&crop=0&type=auto",
     width: "1400",
-    height: "320"
+    height: "320",
+    class: "img-responsive"
   }));
 };
 
@@ -458,13 +464,14 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
+  var ownId = ownProps.match.params.spectacleId;
   return {
-    spectacle: Object.keys(state.entities.spectacles).map(function (key) {
-      return state.entities.spectacles[key];
+    spectacle: Object.keys(state.entities.spectacles.ownId).map(function (key) {
+      return state.entities.spectacles.ownId[key];
     }),
     loading: state.ui.loading.detailLoading
   };
+  debugger;
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -587,10 +594,7 @@ function (_React$Component) {
         className: "col-md-12 spectacle-app"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/spectacles/:spectacleId",
-        component: _spectacle_detail_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "spectacle-list-group"
       }, spectacles.map(function (spectacle) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {

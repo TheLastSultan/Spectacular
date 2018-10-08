@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import SpectacleIndex from './spectacles_index'
 
 const mapStateToProps = (state, ownProps) => {
-    debugger; 
+    const ownId = ownProps.match.params.spectacleId
     return {
-        spectacle: Object.keys(state.entities.spectacles).map(key => state.entities.spectacles[key]),
+        spectacle: Object.keys(state.entities.spectacles.ownId).map(key => state.entities.spectacles.ownId[key]),
         loading: state.ui.loading.detailLoading
         }
+        debugger; 
 };
 
 const mapDispatchToProps = dispatch => {
