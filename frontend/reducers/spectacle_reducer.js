@@ -8,7 +8,7 @@ const spectacleReducer = ( state = {}, action) => {
         case RECEIVE_SPECTACLES: 
             return merge({}, state, action.spectacles)
         case RECEIVE_SPECTACLE:
-            debugger; 
+            return merge({}, state, action.spectacle)
         default:
             return state; 
     }

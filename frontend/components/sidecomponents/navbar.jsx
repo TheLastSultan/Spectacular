@@ -17,8 +17,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
 const Navbar = () => (
+    <div> 
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">Spectacular</a>
+        <a className="navbar-brand" href="#"> <span className="navbar-brand"> Spectacular </span></a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav mr-auto">
                 <Link className="link-navbar" to={`#`}>
@@ -35,10 +36,10 @@ const Navbar = () => (
             <ul className="navbar-nav mr-auto">
                 <Link className="link-navbar" to={`#`}>
                     <FontAwesomeIcon icon="search" className="faSearch" />
-                    <span className="nav-item">search</span>
+                    <span className="nav-item">search  | </span>
                 </Link>
                 <Link className="link-navbar" to={`#`}>
-                    <span className="nav-item">sign-in | </span>
+                    <span className="nav-item">sign-in</span>
                 </Link>  
                 <Link className="link-navbar" to={`#`}>
                     <span className="nav-item">cart</span>
@@ -50,6 +51,8 @@ const Navbar = () => (
             </button>
         </div> 
     </nav> 
+    <iframe src="https://drive.google.com/file/d/134rrSXSo_xSiLHMdbOXEfGMsTAfdpmxn/preview" width="640" height="480"></iframe>
+    </div> 
 );
 
 export default Navbar; 

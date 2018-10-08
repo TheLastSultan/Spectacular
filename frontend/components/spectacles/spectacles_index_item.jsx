@@ -7,8 +7,7 @@ const SpectacleIndexItem = ({spectacle }) => (
             <img src={spectacle.image_url} className="spectacle-image" alt={spectacle.title} /> 
             <span className="spectacle-title">{spectacle.title}</span>  
         </li> 
-     
-
+    
 ); 
 
 export default SpectacleIndexItem;

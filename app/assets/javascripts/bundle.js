@@ -348,12 +348,14 @@ __webpack_require__.r(__webpack_exports__);
 // CART /cart
 
 var Navbar = function Navbar() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
     className: "navbar navbar-expand-lg navbar-light bg-light"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "navbar-brand",
     href: "#"
-  }, "Spectacular"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "navbar-brand"
+  }, " Spectacular ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     class: "collapse navbar-collapse",
     id: "navbarNavDropdown"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -383,12 +385,12 @@ var Navbar = function Navbar() {
     className: "faSearch"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "nav-item"
-  }, "search")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "search  | ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "link-navbar",
     to: "#"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "nav-item"
-  }, "sign-in | ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "sign-in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "link-navbar",
     to: "#"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -406,7 +408,11 @@ var Navbar = function Navbar() {
     "aria-label": "Toggle navigation"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     class: "navbar-toggler-icon"
-  }))));
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
+    src: "https://drive.google.com/file/d/134rrSXSo_xSiLHMdbOXEfGMsTAfdpmxn/preview",
+    width: "640",
+    height: "480"
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
@@ -447,7 +453,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 // Component
 
 
-
+ // import SpectaceDetailContainer from './spectacle_detail_container';
 
 var SpectacleIndex =
 /*#__PURE__*/
@@ -726,7 +732,7 @@ var spectacleReducer = function spectacleReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.spectacles);
 
     case _actions_spectacle_action_js__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SPECTACLE"]:
-      debugger;
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.spectacle);
 
     default:
       return state;

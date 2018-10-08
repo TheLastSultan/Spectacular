@@ -2,6 +2,7 @@
 import React from 'react';
 import SpectacleIndexItem from './spectacles_index_item';
 import { Route } from 'react-router-dom';
+// import SpectaceDetailContainer from './spectacle_detail_container';
 
 
 class SpectacleIndex extends React.Component{
@@ -23,6 +24,7 @@ class SpectacleIndex extends React.Component{
         return(
             <section className="col-md-12 spectacle-app">
                 <div className="row" >
+                    {/* <Route path="/spectacles/:spectacleId" component={spectacle_detail_container}/>  */}
                     <ul className="spectacle-list-group"> 
                         {spectacles.map(spectacle => <SpectacleIndexItem key={spectacle.id} spectacle={spectacle} /> )}
                     </ul> 
