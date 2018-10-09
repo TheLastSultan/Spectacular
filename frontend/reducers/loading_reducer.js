@@ -15,13 +15,12 @@ const loadingReducer = ( state = initialState, action) => {
 
     switch(action.type){
         case RECEIVE_SPECTACLES:  
-            return merge({},state, {indexLoading: false})
+            return merge({},state, {indexLoading: false, detailLoading: false})
         case START_LOADING_ALL_SPECTACLES:
-            return merge({}, state, { indexLoading: true , detailLoading: true});
+            return merge({}, state, { indexLoading: true});
         case START_LOADING_SINGLE_SPECTACLE:
             return merge({},state, {detailLoading: true});
         case RECEIVE_SPECTACLE:
-
         default:
             return state; 
     }

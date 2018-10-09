@@ -7,11 +7,10 @@ import SlideShow from '../sidecomponents/slider/slide_root';
 const mapStateToProps = (state, ownProps) => {
     
     const spectacle = state.entities.spectacles[ownProps.match.params.spectacleId]
-    debugger; 
 
     return {
         spectacle: spectacle,
-        loading: state.ui.loading.detailLoading
+        loading: state.ui.loading.indexLoading
         }
 };
 
@@ -42,7 +41,6 @@ class SpectacleDetail extends React.Component{
 
 
     render(){
-        debugger; 
 
         if (this.props.loading) { return <h4> loading.. </h4>; }
     
