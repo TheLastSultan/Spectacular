@@ -15,7 +15,6 @@ class SpectacleIndex extends React.Component{
       this.props.fetchSpectacles();
     }
 
-
     render(){
         const { spectacles , loading } = this.props;
 

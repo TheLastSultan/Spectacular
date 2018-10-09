@@ -649,8 +649,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // debugger; 
   var spectacle = state.entities.spectacles[ownProps.match.params.spectacleId];
+  debugger;
   return {
     spectacle: spectacle,
     loading: state.ui.loading.detailLoading
@@ -689,13 +689,15 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      //   this.props.fetchSpectacles();
+      this.props.fetchSpectacles();
       this.props.fetchSpectacle(this.props.match.params.spectacleId);
     }
   }, {
     key: "render",
     value: function render() {
-      if (loading) {
+      debugger;
+
+      if (this.props.loading) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " loading.. ");
       }
 
@@ -931,7 +933,8 @@ var loadingReducer = function loadingReducer() {
 
     case _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_0__["START_LOADING_ALL_SPECTACLES"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, {
-        indexLoading: true
+        indexLoading: true,
+        detailLoading: true
       });
 
     case _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_0__["START_LOADING_SINGLE_SPECTACLE"]:
@@ -940,10 +943,6 @@ var loadingReducer = function loadingReducer() {
       });
 
     case _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SPECTACLE"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, {
-        detailLoading: false
-      });
-
     default:
       return state;
   }

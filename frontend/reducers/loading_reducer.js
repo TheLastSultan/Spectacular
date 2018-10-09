@@ -17,11 +17,11 @@ const loadingReducer = ( state = initialState, action) => {
         case RECEIVE_SPECTACLES:  
             return merge({},state, {indexLoading: false})
         case START_LOADING_ALL_SPECTACLES:
-            return merge({}, state, { indexLoading: true });
+            return merge({}, state, { indexLoading: true , detailLoading: true});
         case START_LOADING_SINGLE_SPECTACLE:
             return merge({},state, {detailLoading: true});
         case RECEIVE_SPECTACLE:
-            return merge({},state,{detailLoading: false} );
+
         default:
             return state; 
     }

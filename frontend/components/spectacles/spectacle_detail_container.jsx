@@ -5,9 +5,10 @@ import SpectacleIndex from './spectacles_index'
 import SlideShow from '../sidecomponents/slider/slide_root'; 
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger; 
-    const spectacle = state.entities.spectacles[ownProps.match.params.spectacleId]
     
+    const spectacle = state.entities.spectacles[ownProps.match.params.spectacleId]
+    debugger; 
+
     return {
         spectacle: spectacle,
         loading: state.ui.loading.detailLoading
@@ -35,14 +36,15 @@ class SpectacleDetail extends React.Component{
     }
 
     componentDidMount(){
-    //   this.props.fetchSpectacles();
+      this.props.fetchSpectacles();
       this.props.fetchSpectacle(this.props.match.params.spectacleId);
     }
 
 
     render(){
+        debugger; 
 
-        if (loading) { return <h4> loading.. </h4>; }
+        if (this.props.loading) { return <h4> loading.. </h4>; }
     
              
         return(
