@@ -7,8 +7,8 @@ import {RECEIVE_SPECTACLES,
 import merge from 'lodash/merge';
 
 const initialState = {
-    indexLoading: false,
-    detailLoading: false, 
+    indexLoading: true,
+    detailLoading: true, 
 }
 
 const loadingReducer = ( state = initialState, action) => {

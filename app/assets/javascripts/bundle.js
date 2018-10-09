@@ -649,7 +649,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var spectacle = state.entities.spectacles[ownProps.match.params.spectacleId];
+  var spectacle = state.entities.spectacles[ownProps.match.params.spectacleId]; // debugger; 
+
   return {
     spectacle: spectacle,
     loading: state.ui.loading.indexLoading
@@ -673,16 +674,24 @@ function (_React$Component) {
   _inherits(SpectacleDetail, _React$Component);
 
   function SpectacleDetail(props) {
+    var _this;
+
     _classCallCheck(this, SpectacleDetail);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
+
+    _this.props.fetchSpectacles();
+
+    _this.props.fetchSpectacle(_this.props.match.params.spectacleId);
+
+    return _this;
   }
 
   _createClass(SpectacleDetail, [{
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
       if (this.props.match.params.spectacleId !== nextProps.match.params.spectacleId) {
-        this.props.fetchSpectalce(nextProps.match.params.spectacleId);
+        this.props.fetchSpectacle(nextProps.match.params.spectacleId);
       }
     }
   }, {
@@ -690,17 +699,28 @@ function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchSpectacles();
       this.props.fetchSpectacle(this.props.match.params.spectacleId);
-    }
+    } // color "green"
+    // description"Facere lomo pork belly. Bicycle rights id suscipit. Iure pbr&b amet nisi minus. 8-bit a organic accusamus natus exercitationem you probably haven't heard of them. Et tattooed quia butcher voluptatem mustache."
+    // fit"Wide"
+    // id3
+    // image_url "/assets/3-5f1131d3b452e2a597cf3533925b18c609398948dff7ef0498a89d6856bff943.jpg"
+    // material "Polycarbonate"
+    // sex false
+    // shape"Oval"
+    // staffpick:true
+    // title:string
+
   }, {
     key: "render",
     value: function render() {
       if (this.props.loading) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " loading.. ");
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " loading..  ");
       }
 
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "col-md-12 spectacle-detail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", this.props.spectacle.title), "s");
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", this.props.spectacle.color));
     }
   }]);
 
@@ -914,8 +934,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var initialState = {
-  indexLoading: false,
-  detailLoading: false
+  indexLoading: true,
+  detailLoading: true
 };
 
 var loadingReducer = function loadingReducer() {
