@@ -700,7 +700,7 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "col-md-12 spectacle-detail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", this.props.spectacle.title));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", this.props.spectacle.title), "s");
     }
   }]);
 

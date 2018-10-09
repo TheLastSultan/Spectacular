@@ -47,7 +47,7 @@ class SpectacleDetail extends React.Component{
              
         return(
             <section className="col-md-12 spectacle-detail">
-                <span> {this.props.spectacle.title}</span>
+                <span> {this.props.spectacle.title}</span>s
             </section>
         ); 
     }
