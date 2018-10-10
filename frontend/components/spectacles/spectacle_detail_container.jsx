@@ -26,8 +26,7 @@ class SpectacleDetail extends React.Component{
     constructor(props){
         super(props);
         
-        this.props.fetchSpectacles();
-      this.props.fetchSpectacle(this.props.match.params.spectacleId);
+        
     }
 
     componentWillReceiveProps(nextProps){
@@ -55,12 +54,27 @@ class SpectacleDetail extends React.Component{
     
     render(){
         
-        if (this.props.loading) { return <h4> loading..  </h4>; }
-        debugger; 
-        
+        if (this.props.loading) { return <h4></h4>; }
+        const { color , description, fit , material , shape , staffpick, title , price } = this.props.spectacle
+        let {sex} = this.props.spectacle
+
+        if (title != false){
+            sex = "UNISEX"
+        } else {
+            sex = "Women"
+        }
+
+
+
         return(
             <section className="col-md-12 spectacle-detail">
-                <span> {this.props.spectacle.color}</span> 
+                <span> {color}</span> 
+
+                <span className="tagline"> eyeglasses / {sex} / {title} </span>  
+                <span className="price"> Starting at ${price}, including prescription lenses </span> 
+                <button> Try at Home for Free</button>
+                <button> Buy From ${price}</button> 
+
             </section>
         ); 
     }

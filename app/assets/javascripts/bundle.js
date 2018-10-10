@@ -674,17 +674,9 @@ function (_React$Component) {
   _inherits(SpectacleDetail, _React$Component);
 
   function SpectacleDetail(props) {
-    var _this;
-
     _classCallCheck(this, SpectacleDetail);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
-
-    _this.props.fetchSpectacles();
-
-    _this.props.fetchSpectacle(_this.props.match.params.spectacleId);
-
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
   }
 
   _createClass(SpectacleDetail, [{
@@ -714,13 +706,33 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       if (this.props.loading) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " loading..  ");
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null);
       }
 
-      debugger;
+      var _this$props$spectacle = this.props.spectacle,
+          color = _this$props$spectacle.color,
+          description = _this$props$spectacle.description,
+          fit = _this$props$spectacle.fit,
+          material = _this$props$spectacle.material,
+          shape = _this$props$spectacle.shape,
+          staffpick = _this$props$spectacle.staffpick,
+          title = _this$props$spectacle.title,
+          price = _this$props$spectacle.price;
+      var sex = this.props.spectacle.sex;
+
+      if (title != false) {
+        sex = "UNISEX";
+      } else {
+        sex = "Women";
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "col-md-12 spectacle-detail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", this.props.spectacle.color));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", color), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "tagline"
+      }, " eyeglasses / ", sex, " / ", title, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "price"
+      }, " Starting at $", price, ", including prescription lenses "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, " Try at Home for Free"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, " Buy From $", price));
     }
   }]);
 
@@ -955,11 +967,11 @@ var loadingReducer = function loadingReducer() {
       });
 
     case _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_0__["START_LOADING_SINGLE_SPECTACLE"]:
+    case _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SPECTACLE"]:
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, {
         detailLoading: true
       });
 
-    case _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SPECTACLE"]:
     default:
       return state;
   }
