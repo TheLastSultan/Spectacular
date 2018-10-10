@@ -3,6 +3,7 @@ import { fetchSpectacles, fetchSpectacle } from '../../actions/spectacle_action'
 import { connect } from 'react-redux';
 import SpectacleIndex from './spectacles_index'
 import SlideShow from '../sidecomponents/slider/slide_root'; 
+import ReactSlick from '../sidecomponents/slick-slider/component'
 
 const mapStateToProps = (state, ownProps) => {
     
@@ -68,12 +69,7 @@ class SpectacleDetail extends React.Component{
 
         return(
             <section className="col-md-12 spectacle-detail">
-                <span> {color}</span> 
-
-                <span className="tagline"> eyeglasses / {sex} / {title} </span>  
-                <span className="price"> Starting at ${price}, including prescription lenses </span> 
-                <button> Try at Home for Free</button>
-                <button> Buy From ${price}</button> 
+                <ReactSlick/>
 
             </section>
         ); 
