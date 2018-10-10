@@ -18,6 +18,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const Navbar = () => (
     <div> 
+    <div className="navbar-container">
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#"> <span className="navbar-brand"> Spectacular </span></a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -51,9 +52,8 @@ const Navbar = () => (
             </button>
         </div> 
     </nav> 
-        <div className="jumbotron jumbotron-fluid" >
-        </div> 
     </div> 
+    </div>
 );
 
 export default Navbar; 

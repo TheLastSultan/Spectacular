@@ -55,9 +55,21 @@
     font-family: proxima-nova,helvetica,verdana,sans-serif;
     font-size: 30px;
     text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 3.5px; 
+    font-weight: 500;
+    letter-spacing: 2.5px; 
+}
 
+.navbar-container{
+    display: flex;
+    color: #414b56;  
+}
+
+.navbar{
+    flex-grow: 2;
+}
+
+nav.navbar{
+    padding-left: 4%;
 }
 
 .nav-item{
@@ -85,9 +97,44 @@
 }
 
   /* TiTLE PAGE */
+  .spectacle-detail{
+    position: relative; 
+    /* display: flex;  */
+    display: flex;
+    flex-direction: column; 
+  }
+
+  .detail-title{
+    /* text-align: center;  */
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .detail-btn{
+    color:#00a2f5;
+    margin-left: 10px;  
+  }
+
+  .detail-elements span{
+      margin-bottom: 10px;
+  }
+
+
+
+  .detail-elements{
+    /* position: absolute; */
+    /* background-color: red; */
+    flex-direction: column;
+    justify-content: center;
+    display: flex; 
+    align-items: center; 
+  }
+  
   .tagline{
       font-family: proxima-nova,helvetica,verdana,sans-serif;
-      text-transform: uppercase
+      text-transform: uppercase;
+      position: absolute; 
+      font-size: 16px; 
   }
 
   /* Carousel */

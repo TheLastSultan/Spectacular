@@ -69,8 +69,16 @@ class SpectacleDetail extends React.Component{
 
         return(
             <section className="col-md-12 spectacle-detail">
-                <ReactSlick/>
-
+                <h3 className="tagline"> Glasses / {sex} / {title}  </h3> 
+                    <ReactSlick/>
+                <div className="detail-elements">
+                    <h2 className="detail-title"> {title} </h2>
+                    <span> Starting at ${price}, including prescription lenses </span> 
+                    <div className="button-holders">
+                        <button className="btn btn-primary btn-lg detail-btn"> Try at home for free </button>
+                        <button className="btn btn-primary btn-lg detail-btn"> Buy from 95$ </button>
+                    </div> 
+                </div> 
             </section>
         ); 
     }

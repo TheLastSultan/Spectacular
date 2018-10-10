@@ -22,6 +22,7 @@ class SpectacleIndex extends React.Component{
              
         return(
             <section className="col-md-12 spectacle-app">
+                <div className="jumbotron jumbotron-fluid" ></div> 
                 <div className="row" >
                     <ul className="spectacle-list-group"> 
                         {spectacles.map(spectacle => <SpectacleIndexItem key={spectacle.id} spectacle={spectacle} /> )}

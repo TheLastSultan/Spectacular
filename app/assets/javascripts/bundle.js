@@ -354,7 +354,9 @@ __webpack_require__.r(__webpack_exports__);
 // CART /cart
 
 var Navbar = function Navbar() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
     className: "navbar navbar-expand-lg navbar-light bg-light"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "navbar-brand",
@@ -414,9 +416,7 @@ var Navbar = function Navbar() {
     "aria-label": "Toggle navigation"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "navbar-toggler-icon"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "jumbotron jumbotron-fluid"
-  }));
+  }))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
@@ -806,7 +806,19 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "col-md-12 spectacle-detail"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidecomponents_slick_slider_component__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "tagline"
+      }, " Glasses / ", sex, " / ", title, "  "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidecomponents_slick_slider_component__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "detail-elements"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "detail-title"
+      }, " ", title, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Starting at $", price, ", including prescription lenses "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-holders"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary btn-lg detail-btn"
+      }, " Try at home for free "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary btn-lg detail-btn"
+      }, " Buy from 95$ "))));
     }
   }]);
 
@@ -886,6 +898,8 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "col-md-12 spectacle-app"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "jumbotron jumbotron-fluid"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "spectacle-list-group"
