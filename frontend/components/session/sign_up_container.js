@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {signUp} from '../../actions/session';
+import {signUp} from '../../actions/session_actions';
 import React from 'react';
 
 class Signup extends React.Component {
@@ -19,6 +19,12 @@ class Signup extends React.Component {
         e.preventDefault();
         this.props.createNewUser(this.state)
             .then( () => this.poprs.history.push('/'))
+    }
+
+    handleInput(type){
+        return (e) => {
+            this.setState({[type] : e.target.value});
+        };
     }
 
     render(){
