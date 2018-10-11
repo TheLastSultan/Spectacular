@@ -405,7 +405,11 @@ function (_React$Component) {
 
       // debugger; 
       e.preventDefault();
-      this.props.createNewUser(this.state).then(function () {
+      var user = Object.assign({}, {
+        user: this.state
+      });
+      debugger;
+      this.props.createNewUser(user).then(function () {
         return _this2.props.history.push('/');
       });
     }
