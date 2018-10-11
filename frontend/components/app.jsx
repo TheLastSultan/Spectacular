@@ -1,6 +1,7 @@
 import React from 'react';
 import SpectacleIndexContainer from './spectacles/spectacles_index_container';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import SignupContainer from './session/sign_up_container';
 import Navbar from './sidecomponents/navbar';
 
 // Font Awesome
@@ -15,6 +16,7 @@ const App = () => (
   <div className="app">
     <HashRouter> 
       <div> 
+        <Route path="/" component={SignupContainer} />
         <Route  path="/" component={Navbar}/> 
         <Switch>
           <Route exact path="/" component={SpectacleIndexContainer}/>
