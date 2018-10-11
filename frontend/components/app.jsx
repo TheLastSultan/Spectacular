@@ -16,7 +16,7 @@ const App = () => (
   <div className="app">
     <HashRouter> 
       <div> 
-        <Route path="/" component={SignupContainer} />
+        <Route exact path="/signup" component={SignupContainer} />
         <Route  path="/" component={Navbar}/> 
         <Switch>
           <Route exact path="/" component={SpectacleIndexContainer}/>

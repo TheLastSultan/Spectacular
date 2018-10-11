@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.signUp = signUp;
     window.login = login;
     window.logout = logout;
-    window.meezo = {user: {email: 'meezo', password: 'password', username:'meezo' }};
+    window.meezo = {user: {email: 'meezomeezo', password: 'password', username:'meezomeezo' }};
 
     ReactDOM.render(<Root store={store} />, root);
 });

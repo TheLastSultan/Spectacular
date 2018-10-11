@@ -2,23 +2,27 @@ import {connect} from 'react-redux';
 import {signUp} from '../../actions/session_actions';
 import React from 'react';
 
+const mapDispatchToProps = dispatch => ({
+    createNewUser: formUser => dispatch(signUp(formUser)) 
+ });
+ 
 class Signup extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             username: '',
             password: '',
-            confirm_password: '',
             email: ''
         }
 
-        this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(e){
-        e.preventDefault();
+        // debugger; 
+        e.preventDefault()
         this.props.createNewUser(this.state)
-            .then( () => this.poprs.history.push('/'))
+            .then( () => this.props.history.push('/'))
     }
 
     handleInput(type){
@@ -40,18 +44,18 @@ class Signup extends React.Component {
                         /> 
                     </label>
 
-                    <label>Username:
+                    <label>Email:
                         <input
                             type="text"
                             value={this.state.email}
-                            onChange={this.handleInput('username')}
+                            onChange={this.handleInput('email')}
                         /> 
                     </label>
 
                     <label>Password:
                         <input
-                             type="text"
-                             value={this.state.email}
+                             type="password"
+                             value={this.state.password}
                              onChange={this.handleInput('password')}
                         />
                     </label>
@@ -62,10 +66,6 @@ class Signup extends React.Component {
         );
     }
 };
-
-const mapDispatchToProps = dispatch => ({
-   createNewUser: formUser => dispatch(signUp(formUser)) 
-});
 
 
 export default connect(null, mapDispatchToProps)(Signup)

@@ -285,7 +285,8 @@ var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "app"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: "/",
+    exact: true,
+    path: "/signup",
     component: _session_sign_up_container__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/",
@@ -369,6 +370,14 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createNewUser: function createNewUser(formUser) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["signUp"])(formUser));
+    }
+  };
+};
+
 var Signup =
 /*#__PURE__*/
 function (_React$Component) {
@@ -383,12 +392,9 @@ function (_React$Component) {
     _this.state = {
       username: '',
       password: '',
-      confirm_password: '',
       email: ''
     };
-
-    _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -397,9 +403,10 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       var _this2 = this;
 
+      // debugger; 
       e.preventDefault();
       this.props.createNewUser(this.state).then(function () {
-        return _this2.poprs.history.push('/');
+        return _this2.props.history.push('/');
       });
     }
   }, {
@@ -420,13 +427,13 @@ function (_React$Component) {
         type: "text",
         value: this.state.username,
         onChange: this.handleInput('username')
-      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Username:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Email:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
         type: "text",
         value: this.state.email,
-        onChange: this.handleInput('username')
+        onChange: this.handleInput('email')
       })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Password:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
-        type: "text",
-        value: this.state.email,
+        type: "password",
+        value: this.state.password,
         onChange: this.handleInput('password')
       })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
         onClick: this.handleSubmit
@@ -438,15 +445,6 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_2___default.a.Component);
 
 ;
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    createNewUser: function createNewUser(formUser) {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["signUp"])(formUser));
-    }
-  };
-};
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(Signup));
 
 /***/ }),
@@ -1205,7 +1203,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducers/entities_reducer.js");
 /* harmony import */ var _sessions_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sessions_reducer */ "./frontend/reducers/sessions_reducer.js");
-/* harmony import */ var _ui_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ui_reducer */ "./frontend/reducers/ui_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _ui_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ui_reducer */ "./frontend/reducers/ui_reducer.js");
+
 
 
 
@@ -1213,7 +1213,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   session: _sessions_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  user: _users_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),
@@ -1383,9 +1384,9 @@ document.addEventListener('DOMContentLoaded', function () {
   window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["logout"];
   window.meezo = {
     user: {
-      email: 'meezo',
+      email: 'meezomeezo',
       password: 'password',
-      username: 'meezo'
+      username: 'meezomeezo'
     }
   };
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
