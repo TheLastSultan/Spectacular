@@ -27,7 +27,7 @@ class Api::UsersController < ApplicationController
 
   def update_user
     @user = current_user
-    @user.update(user_pparams)
+    @user.update(user_params)
     if @user.save
       login(@user)
       render :show
