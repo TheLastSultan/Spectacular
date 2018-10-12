@@ -122,7 +122,7 @@ thunk.withExtraArgument = createThunkMiddleware;
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, SESSION_ERRORS, CREATE_USER, receiveCurrentUser, receiveErrors, logoutCurrentUser, createThunkAction, logout, login, signUp */
+/*! exports provided: RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, SESSION_ERRORS, CREATE_USER, receiveCurrentUser, receiveErrors, logoutCurrentUser, createThunkAction, login, signUp, logout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -135,9 +135,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutCurrentUser", function() { return logoutCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createThunkAction", function() { return createThunkAction; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUp", function() { return signUp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony import */ var _util_session_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_util */ "./frontend/util/session_util.js");
 
 var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
@@ -177,9 +177,15 @@ var createThunkAction = function createThunkAction(callback) {
     };
   };
 };
-var logout = createThunkAction(_util_session_util__WEBPACK_IMPORTED_MODULE_0__["logout"]);
 var login = createThunkAction(_util_session_util__WEBPACK_IMPORTED_MODULE_0__["login"]);
 var signUp = createThunkAction(_util_session_util__WEBPACK_IMPORTED_MODULE_0__["signUp"]);
+var logout = function logout() {
+  return function (dispatch) {
+    return _util_session_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
+      return dispatch(logoutCurrentUser());
+    });
+  };
+};
 
 /***/ }),
 
@@ -1391,12 +1397,12 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
+      debugger;
       return {
         currentUser: null
       };
-
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object.assign({}, state, action.payload.user);
+    // case RECEIVE_CURRENT_USER: 
+    //     return Object.assign({}, state, action.payload.user);
 
     default:
       return state;
@@ -1421,7 +1427,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  // sessions: sessionsReducer,
+  sessions: _sessions_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   currentUser: _users_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
@@ -1506,8 +1512,13 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.user);
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
+      debugger;
+      return {
+        currentUser: null
+      };
 
     default:
       return state;

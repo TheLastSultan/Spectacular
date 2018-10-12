@@ -33,6 +33,9 @@ export const createThunkAction = callback => users => dispatch => {
   return callback(users).then(success, failure);
 };
 
-export const logout = createThunkAction(SessionUtil.logout);
+
 export const login = createThunkAction(SessionUtil.login);
 export const signUp = createThunkAction(SessionUtil.signUp);
+
+export const logout = () => dispatch => SessionUtil.logout()
+  .then(() => dispatch(logoutCurrentUser()));

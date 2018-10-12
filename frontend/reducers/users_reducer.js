@@ -1,4 +1,4 @@
-import {RECEIVE_CURRENT_USER} from '../actions/session_actions';
+import {RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER} from '../actions/session_actions';
 import {merge} from 'lodash';
 
 export default (state = {}, action) => {
@@ -6,8 +6,10 @@ export default (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      debugger; 
       return merge({}, state, action.payload.user);
+    case LOGOUT_CURRENT_USER:
+      debugger; 
+      return {currentUser: null};
     default:
       return state;
   }
