@@ -403,12 +403,10 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       var _this2 = this;
 
-      // debugger; 
       e.preventDefault();
       var user = Object.assign({}, {
         user: this.state
       });
-      debugger;
       this.props.createNewUser(user).then(function () {
         return _this2.props.history.push('/');
       });
@@ -472,13 +470,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // const mapStateToProps = (state, ownProps) => ({
-//     currentUser: state.session.currentUser
-// });
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    currentUser: state.session.currentUser
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    logout: function logout() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
+    }
+  };
+}; // {currentUser, logout}
+// const signedIn = 
+//     <Link className="link-navbar" to={`#`}>
+//         <span className="nav-item">Logout</span>
+//     </Link>
+// const guestUser = 
+//     <section className="guest-user" >
+//         <Link className="link-navbar" to={`#`}>
+//             <span className="nav-item">Register</span>
+//         </Link>
+//         <Link className="link-navbar" to={`#`}>
+//             <span className="nav-item">Sign-in</span>
+//         </Link>
+//     </section>
+// const display = currentUser ? signedIn : guestUser
 // const mapDispatchToProps = dispatch => ({
 //     logout: () => dispatch(logout())
 // });
 // {currentUser, logout}
+
 
 var Navbar = function Navbar() {
   // const signedIn = 
@@ -1264,11 +1289,12 @@ __webpack_require__.r(__webpack_exports__);
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return {
-        id: null
+        currentUser: null
       };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.users);
+      // debugger; 
+      return Object.assign({}, state, action.payload.user);
 
     default:
       return state;
@@ -1378,7 +1404,8 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.users);
+      debugger;
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.user);
 
     default:
       return state;
@@ -1413,14 +1440,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(); // TESTING
+  var root = document.getElementById('root');
+  var preloadedState = undefined;
+
+  if (window.currentUser) {
+    preloadedState = {
+      session: {
+        currentUser: window.currentUser
+      }
+    };
+  }
+
+  var store = createStore(preloadedState); // TESTING
 
   window.fetchSpectacles = _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_4__["fetchSpectacles"];
   window.fetchSpectacle = _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_4__["fetchSpectacle"];
   window.dispatch = store.dispatch;
   window.getState = store.getState;
-  var root = document.getElementById('root'); // TESTING
-
   window.store = store;
   window.signUp = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["signUp"];
   window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["login"];

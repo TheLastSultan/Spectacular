@@ -5,9 +5,32 @@ import { logout } from '../../actions/session_actions'
 import { connect } from 'react-redux'
 
 
-// const mapStateToProps = (state, ownProps) => ({
-//     currentUser: state.session.currentUser
-// });
+const mapStateToProps = (state, ownProps) => ({
+    currentUser: state.session.currentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout())
+});
+
+// {currentUser, logout}
+
+    // const signedIn = 
+    //     <Link className="link-navbar" to={`#`}>
+    //         <span className="nav-item">Logout</span>
+    //     </Link>
+    
+    // const guestUser = 
+    //     <section className="guest-user" >
+    //         <Link className="link-navbar" to={`#`}>
+    //             <span className="nav-item">Register</span>
+    //         </Link>
+    //         <Link className="link-navbar" to={`#`}>
+    //             <span className="nav-item">Sign-in</span>
+    //         </Link>
+    //     </section>
+
+    // const display = currentUser ? signedIn : guestUser
 
 // const mapDispatchToProps = dispatch => ({
 //     logout: () => dispatch(logout())

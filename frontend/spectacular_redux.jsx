@@ -9,16 +9,24 @@ import {recieveSpectacle, recieveSpectacles} from './actions/spectacle_action';
 import {login, logout, signUp} from './actions/session_actions'; 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const store = configureStore();
-    // TESTING
+    const root = document.getElementById('root');
+    
+    let preloadedState = undefined; 
+    if (window.currentUser) {
+        preloadedState = {
+          session: {
+            currentUser: window.currentUser
+          }
+        };
+      }
+      const store = createStore(preloadedState);
+    
+    
+      // TESTING
     window.fetchSpectacles = fetchSpectacles
     window.fetchSpectacle = fetchSpectacle
     window.dispatch = store.dispatch;
     window.getState = store.getState;
-
-    const root = document.getElementById('root');
-
-    // TESTING
     window.store = store 
     window.signUp = signUp;
     window.login = login;
