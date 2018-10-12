@@ -19,8 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         };
       }
-      const store = createStore(preloadedState);
     
+    const store = configureStore(preloadedState);
+    
+
+
     
       // TESTING
     window.fetchSpectacles = fetchSpectacles

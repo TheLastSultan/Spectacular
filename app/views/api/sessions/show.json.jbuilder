@@ -1,5 +1,5 @@
 json.user do
-    json.extract! @user, :id, :email, :username
+    json.extract! @user, :id, :email, :username , :session_token 
 end
   
 json.sessions do

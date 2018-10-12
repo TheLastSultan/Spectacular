@@ -455,7 +455,7 @@ function (_React$Component) {
 /*!*******************************************************!*\
   !*** ./frontend/components/sidecomponents/navbar.jsx ***!
   \*******************************************************/
-/*! no exports provided */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -485,24 +485,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     }
   };
 }; // {currentUser, logout}
-// const signedIn = 
-//     <Link className="link-navbar" to={`#`}>
-//         <span className="nav-item">Logout</span>
-//     </Link>
-// const guestUser = 
-//     <section className="guest-user" >
-//         <Link className="link-navbar" to={`#`}>
-//             <span className="nav-item">Register</span>
-//         </Link>
-//         <Link className="link-navbar" to={`#`}>
-//             <span className="nav-item">Sign-in</span>
-//         </Link>
-//     </section>
-// const display = currentUser ? signedIn : guestUser
-// const mapDispatchToProps = dispatch => ({
-//     logout: () => dispatch(logout())
-// });
-// {currentUser, logout}
 
 
 var Navbar = function Navbar() {
@@ -584,7 +566,9 @@ var Navbar = function Navbar() {
     className: "navbar-toggler-icon"
   }))))));
 }; // export default connect(mapStateToProps, mapDispatchToProps)(component)
-// EYEGLASSES /browse_mens_glasses
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Navbar); // EYEGLASSES /browse_mens_glasses
 // SUNGLASSES /browse_womens_glasses
 // HOME TRY-ON /about_home_try_on
 // LOCATIONS /locations
@@ -1293,7 +1277,6 @@ __webpack_require__.r(__webpack_exports__);
       };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      // debugger; 
       return Object.assign({}, state, action.payload.user);
 
     default:
@@ -1319,7 +1302,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  sessions: _sessions_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  // sessions: sessionsReducer,
   currentUser: _users_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
 
@@ -1451,7 +1434,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
 
-  var store = createStore(preloadedState); // TESTING
+  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState); // TESTING
 
   window.fetchSpectacles = _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_4__["fetchSpectacles"];
   window.fetchSpectacle = _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_4__["fetchSpectacle"];

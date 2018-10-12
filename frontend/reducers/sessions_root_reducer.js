@@ -3,7 +3,7 @@ import sessionsReducer from './sessions_reducer';
 import usersReducer from './users_reducer';
 
 export default combineReducers({
-    sessions: sessionsReducer,
+    // sessions: sessionsReducer,
     currentUser: usersReducer  
 });
   

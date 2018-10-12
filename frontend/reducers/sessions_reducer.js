@@ -8,8 +8,7 @@ export default (state = {id: null}, action) => {
     switch (action.type) {
         case LOGOUT_CURRENT_USER:
           return {currentUser: null};
-        case RECEIVE_CURRENT_USER:
-            // debugger; 
+        case RECEIVE_CURRENT_USER: 
             return Object.assign({}, state, action.payload.user);
         default:
             return state;
