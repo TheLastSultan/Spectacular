@@ -457,7 +457,7 @@ function (_React$Component) {
 /*!*******************************************************!*\
   !*** ./frontend/components/sidecomponents/navbar.jsx ***!
   \*******************************************************/
-/*! exports provided: default */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -472,45 +472,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // const mapStateToProps = (state, ownProps) => ({
+//     currentUser: state.session.currentUser
+// });
+// const mapDispatchToProps = dispatch => ({
+//     logout: () => dispatch(logout())
+// });
+// {currentUser, logout}
 
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    currentUser: state.session.currentUser
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    logout: function logout() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
-    }
-  };
-};
-
-var Navbar = function Navbar(_ref) {
-  var currentUser = _ref.currentUser,
-      logout = _ref.logout;
-  var signedIn = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "Logout"));
-  var guestUser = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-    className: "guest-user"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "Register")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "Sign-in")));
-  var display = currentUser ? signedIn : guestUser;
+var Navbar = function Navbar() {
+  // const signedIn = 
+  //     <Link className="link-navbar" to={`#`}>
+  //         <span className="nav-item">Logout</span>
+  //     </Link>
+  // const guestUser = 
+  //     <section className="guest-user" >
+  //         <Link className="link-navbar" to={`#`}>
+  //             <span className="nav-item">Register</span>
+  //         </Link>
+  //         <Link className="link-navbar" to={`#`}>
+  //             <span className="nav-item">Sign-in</span>
+  //         </Link>
+  //     </section>
+  // const display = currentUser ? signedIn : guestUser
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -574,9 +558,8 @@ var Navbar = function Navbar(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "navbar-toggler-icon"
   }))))));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(component)); // EYEGLASSES /browse_mens_glasses
+}; // export default connect(mapStateToProps, mapDispatchToProps)(component)
+// EYEGLASSES /browse_mens_glasses
 // SUNGLASSES /browse_womens_glasses
 // HOME TRY-ON /about_home_try_on
 // LOCATIONS /locations
@@ -1173,14 +1156,11 @@ var SpectacleIndexItem = function SpectacleIndexItem(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
-/* harmony import */ var _spectacle_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./spectacle_reducer */ "./frontend/reducers/spectacle_reducer.js");
-
+/* harmony import */ var _spectacle_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spectacle_reducer */ "./frontend/reducers/spectacle_reducer.js");
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  user: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  spectacles: _spectacle_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  spectacles: _spectacle_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 }));
 
 /***/ }),
@@ -1246,19 +1226,16 @@ var loadingReducer = function loadingReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducers/entities_reducer.js");
-/* harmony import */ var _sessions_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sessions_reducer */ "./frontend/reducers/sessions_reducer.js");
-/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
-/* harmony import */ var _ui_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ui_reducer */ "./frontend/reducers/ui_reducer.js");
-
+/* harmony import */ var _sessions_root_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sessions_root_reducer */ "./frontend/reducers/sessions_root_reducer.js");
+/* harmony import */ var _ui_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ui_reducer */ "./frontend/reducers/ui_reducer.js");
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  session: _sessions_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
-  user: _users_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  session: _sessions_root_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),
@@ -1297,6 +1274,28 @@ __webpack_require__.r(__webpack_exports__);
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/sessions_root_reducer.js":
+/*!****************************************************!*\
+  !*** ./frontend/reducers/sessions_root_reducer.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _sessions_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sessions_reducer */ "./frontend/reducers/sessions_reducer.js");
+/* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  sessions: _sessions_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  currentUser: _users_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+}));
 
 /***/ }),
 
