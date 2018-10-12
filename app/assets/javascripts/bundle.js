@@ -629,17 +629,16 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
-
-var customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-}; // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
+ // const customStyles = {
+//   content : {
+//     top                   : '50%',
+//     left                  : '50%',
+//     right                 : 'auto',
+//     bottom                : 'auto',
+//     marginRight           : '-50%',
+//     transform             : 'translate(-50%, -50%)'
+//   }
+// };
 
 react_modal__WEBPACK_IMPORTED_MODULE_2___default.a.setAppElement(document.getElementById('root'));
 
@@ -695,14 +694,16 @@ function (_React$Component) {
         onAfterOpen: this.afterOpenModal,
         onRequestClose: this.closeModal,
         style: customStyles,
-        contentLabel: "Example Modal"
+        contentLabel: "Example Modal",
+        className: "Modal",
+        overlayClassName: "Overlay"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         ref: function ref(subtitle) {
           return _this2.subtitle = subtitle;
         }
-      }, "Hello"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Quiz Modal"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.closeModal
-      }, "close"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "I am a modal"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "tab navigation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "stays"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "inside"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "the modal"))));
+      }, "close"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "This is a quiz Modal"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "tab navigation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "stays"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "inside"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "the modal"))));
     }
   }]);
 

@@ -2,18 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
+// const customStyles = {
+//   content : {
+//     top                   : '50%',
+//     left                  : '50%',
+//     right                 : 'auto',
+//     bottom                : 'auto',
+//     marginRight           : '-50%',
+//     transform             : 'translate(-50%, -50%)'
+//   }
+// };
 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement(document.getElementById('root'));
 
 class BasicModal extends React.Component {
@@ -52,11 +51,13 @@ class BasicModal extends React.Component {
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
+          className="Modal"
+          overlayClassName="Overlay"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+          <h2 ref={subtitle => this.subtitle = subtitle}>Quiz Modal</h2>
           <button onClick={this.closeModal}>close</button>
-          <div>I am a modal</div>
+          <div>This is a quiz Modal</div>
           <form>
             <input />
             <button>tab navigation</button>
