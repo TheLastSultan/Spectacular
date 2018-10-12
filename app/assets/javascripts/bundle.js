@@ -466,20 +466,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
- // EYEGLASSES /browse_mens_glasses
-// SUNGLASSES /browse_womens_glasses
-// HOME TRY-ON /about_home_try_on
-// LOCATIONS /locations
-// SEARCH /search
-// HELP /help 
-// SIGN IN /signIn
-// Register /register 
-// Sign OUt /signOut
-// CART /cart
 
-var Navbar = function Navbar() {
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    currentUser: state.session.currentUser
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    logout: function logout() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
+    }
+  };
+};
+
+var Navbar = function Navbar(_ref) {
+  var currentUser = _ref.currentUser,
+      logout = _ref.logout;
+  var signedIn = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "link-navbar",
+    to: "#"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "nav-item"
+  }, "Logout"));
+  var guestUser = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "guest-user"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "link-navbar",
+    to: "#"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "nav-item"
+  }, "Register")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "link-navbar",
+    to: "#"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "nav-item"
+  }, "Sign-in")));
+  var display = currentUser ? signedIn : guestUser;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -545,7 +576,16 @@ var Navbar = function Navbar() {
   }))))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Navbar);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(component)); // EYEGLASSES /browse_mens_glasses
+// SUNGLASSES /browse_womens_glasses
+// HOME TRY-ON /about_home_try_on
+// LOCATIONS /locations
+// SEARCH /search
+// HELP /help 
+// SIGN IN /signIn
+// Register /register 
+// Sign OUt /signOut
+// CART /cart
 
 /***/ }),
 

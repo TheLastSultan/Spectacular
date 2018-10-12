@@ -1,22 +1,38 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-
-// EYEGLASSES /browse_mens_glasses
-// SUNGLASSES /browse_womens_glasses
-// HOME TRY-ON /about_home_try_on
-// LOCATIONS /locations
-// SEARCH /search
-// HELP /help 
-// SIGN IN /signIn
-// Register /register 
-// Sign OUt /signOut
-
-// CART /cart
+import { logout } from '../../actions/session_actions'
+import { connect } from 'react-redux'
 
 
+const mapStateToProps = (state, ownProps) => ({
+    currentUser: state.session.currentUser
+});
 
-const Navbar = () => (
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout())
+});
+
+
+const Navbar = ({currentUser, logout}) => {
+    const signedIn = 
+        <Link className="link-navbar" to={`#`}>
+            <span className="nav-item">Logout</span>
+        </Link>
+    
+    const guestUser = 
+        <section className="guest-user" >
+            <Link className="link-navbar" to={`#`}>
+                <span className="nav-item">Register</span>
+            </Link>
+            <Link className="link-navbar" to={`#`}>
+                <span className="nav-item">Sign-in</span>
+            </Link>
+        </section>
+
+    const display = currentUser ? signedIn : guestUser
+
+    return (
     <div> 
     <div className="navbar-container">
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -53,7 +69,23 @@ const Navbar = () => (
         </div> 
     </nav> 
     </div> 
-    </div>
-);
+    </div>)
+};
 
-export default Navbar; 
+export default connect(mapStateToProps, mapDispatchToProps)(component)
+
+
+
+
+
+// EYEGLASSES /browse_mens_glasses
+// SUNGLASSES /browse_womens_glasses
+// HOME TRY-ON /about_home_try_on
+// LOCATIONS /locations
+// SEARCH /search
+// HELP /help 
+// SIGN IN /signIn
+// Register /register 
+// Sign OUt /signOut
+
+// CART /cart
