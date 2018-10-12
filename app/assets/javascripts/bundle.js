@@ -418,7 +418,10 @@ function (_React$Component) {
       var _this3 = this;
 
       e.preventDefault();
-      this.props.login(this.state).then(function () {
+      var user = Object.assign({}, {
+        user: this.state
+      });
+      this.props.login(user).then(function () {
         return _this3.props.history.push('/spectacles');
       });
     }

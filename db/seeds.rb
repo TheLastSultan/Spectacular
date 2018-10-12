@@ -1,7 +1,7 @@
 User.create!(
     username: "hello",
     email: "hello",
-    password_digest: "password"
+    password: "password"
 )
 
 50.times do |i|

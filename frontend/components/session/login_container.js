@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/session_actions';
 
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => {
+    return({
   login: formUser => dispatch(login(formUser)),
-});
+    })
+};
 
 class Login extends React.Component {
   constructor(props) {
@@ -19,14 +21,15 @@ class Login extends React.Component {
   }
 
   handleInput(type) {
-    return (e) => {
+    return (e) => {  
       this.setState({ [type]: e.target.value });
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.login(this.state)
+    const user = Object.assign({}, {user:this.state})
+    this.props.login(user)
       .then(() => this.props.history.push('/spectacles'));
   }
 
