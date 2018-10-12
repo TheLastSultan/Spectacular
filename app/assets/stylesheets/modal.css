@@ -2,11 +2,8 @@
     position: absolute;
     width: 80%;
     height: 80%;
-    background-color:white;
+    background-color: white;
     z-index: 1; 
-    display: flex;
-    justify-content: center;
-    flex-direction: column;  
 }
 
 .Overlay {
@@ -15,5 +12,20 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color:#9ca5ae
+    background-color:#9ca5ae;
+}
+
+.subtitle{
+    display: flex;
+    justify-content: center;
+}
+
+.close-icon{
+    display: flex;
+    justify-content: flex-end;
+}
+.quiz-content{
+    width: 60%;
+    margin: auto;
+    height: 100%;
 }

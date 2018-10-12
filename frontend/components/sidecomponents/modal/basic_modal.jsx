@@ -1,6 +1,7 @@
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+
 
 const customStyles = {
   content : {
@@ -15,16 +16,19 @@ const customStyles = {
 
 Modal.setAppElement(document.getElementById('root'));
 
-class BasicModal extends React.Component {
+class QuizModal extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: true,
+      slide: 1,
+      faceShape: '',
+      materialType: '',
+      activityLevel: ''
     };
 
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
@@ -32,22 +36,21 @@ class BasicModal extends React.Component {
     this.setState({modalIsOpen: true});
   }
 
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
-
   closeModal() {
     this.setState({modalIsOpen: false});
   }
 
   render() {
+
+    const question1 = undefined 
+    
+
+
+
     return (
-      <div>
-        <button onClick={this.openModal}>Open Modal</button>
+      <div className="modal-container">
         <Modal
           isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
@@ -55,20 +58,47 @@ class BasicModal extends React.Component {
           overlayClassName="Overlay"
         >
 
-          <h2 ref={subtitle => this.subtitle = subtitle}>Quiz Modal</h2>
-          <button onClick={this.closeModal}>close</button>
-          <div>This is a quiz Modal</div>
-          <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
+        <div className= "close-icon">
+            <FontAwesomeIcon icon="window-close" className="faWindowClose"  size="1x" onClick={this.closeModal}/>
+        </div>
+
+        <form className="quiz-content"> 
+            <div className= "subtitle">
+                <span> This is question {this.state.slide} out of 3  AA</span>
+            </div> 
+            
+
+            <div className="content">
+                <div className="form-group" > 
+                    <span className="quiz-question"> How would you describe your headshape? </span>
+                </div>
+
+                <div className= "form-answer-contatiner">
+                    <div className="form-answer">
+                        <img src="https://storage.googleapis.com/spec-tacular/hat_guy.png" alt="Smiley face"/>
+                        <button className="quiz-button"> round </button> 
+                        <span className="answer-description"> I would describe it as round </span>
+                    </div> 
+                    <div className="form-answer">
+                        <img src="https://storage.googleapis.com/spec-tacular/hat_guy.png" alt="Smiley face"/>
+                        <button className="quiz-button"> round </button> 
+                        <span className="answer-description"> I would describe it as round </span>
+                    </div> 
+                    <div className="form-answer">
+                        <img src="https://storage.googleapis.com/spec-tacular/hat_guy.png" alt="Smiley face"/>
+                        <button className="quiz-button"> round </button> 
+                        <span className="answer-description"> I would describe it as round </span>
+                    </div>  
+                </div> 
+
+            </div> 
+        </form>
+
+
         </Modal>
       </div>
     );
   }
 }
 
-export default BasicModal; 
+export default QuizModal; 

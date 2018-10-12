@@ -289,7 +289,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_6__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faSearch"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faShoppingCart"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_6__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faSearch"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faShoppingCart"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faWindowClose"]);
 
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -565,18 +565,18 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-        className: ""
+        className: "sign-up"
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h2", null, " Sign UP! "), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("form", {
-        className: ""
-      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Username:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+        className: "form-input"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Username:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
         type: "text",
         value: this.state.username,
         onChange: this.handleInput('username')
-      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Email:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Email:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
         type: "text",
         value: this.state.email,
         onChange: this.handleInput('email')
-      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Password:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", null, "Password:", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("input", {
         type: "password",
         value: this.state.password,
         onChange: this.handleInput('password')
@@ -603,10 +603,9 @@ function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -642,38 +641,35 @@ var customStyles = {
 };
 react_modal__WEBPACK_IMPORTED_MODULE_2___default.a.setAppElement(document.getElementById('root'));
 
-var BasicModal =
+var QuizModal =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(BasicModal, _React$Component);
+  _inherits(QuizModal, _React$Component);
 
-  function BasicModal() {
+  function QuizModal() {
     var _this;
 
-    _classCallCheck(this, BasicModal);
+    _classCallCheck(this, QuizModal);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BasicModal).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(QuizModal).call(this));
     _this.state = {
-      modalIsOpen: false
+      modalIsOpen: true,
+      slide: 1,
+      faceShape: '',
+      materialType: '',
+      activityLevel: ''
     };
     _this.openModal = _this.openModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
-    _this.afterOpenModal = _this.afterOpenModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(BasicModal, [{
+  _createClass(QuizModal, [{
     key: "openModal",
     value: function openModal() {
       this.setState({
         modalIsOpen: true
       });
-    }
-  }, {
-    key: "afterOpenModal",
-    value: function afterOpenModal() {
-      // references are now sync'd and can be accessed.
-      this.subtitle.style.color = '#f00';
     }
   }, {
     key: "closeModal",
@@ -685,32 +681,70 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.openModal
-      }, "Open Modal"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      var question1 = undefined;
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "modal-container"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_2___default.a, {
         isOpen: this.state.modalIsOpen,
-        onAfterOpen: this.afterOpenModal,
         onRequestClose: this.closeModal,
         style: customStyles,
         contentLabel: "Example Modal",
         className: "Modal",
         overlayClassName: "Overlay"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        ref: function ref(subtitle) {
-          return _this2.subtitle = subtitle;
-        }
-      }, "Quiz Modal"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "close-icon"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_0__["FontAwesomeIcon"], {
+        icon: "window-close",
+        className: "faWindowClose",
+        size: "1x",
         onClick: this.closeModal
-      }, "close"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "This is a quiz Modal"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "tab navigation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "stays"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "inside"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "the modal"))));
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+        className: "quiz-content"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "subtitle"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " This is question ", this.state.slide, " out of 3  AA")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "content"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "quiz-question"
+      }, " How would you describe your headshape? ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer-contatiner"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "quiz-button"
+      }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "answer-description"
+      }, " I would describe it as round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "quiz-button"
+      }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "answer-description"
+      }, " I would describe it as round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "quiz-button"
+      }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "answer-description"
+      }, " I would describe it as round ")))))));
     }
   }]);
 
-  return BasicModal;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+  return QuizModal;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (BasicModal);
+/* harmony default export */ __webpack_exports__["default"] = (QuizModal);
 
 /***/ }),
 

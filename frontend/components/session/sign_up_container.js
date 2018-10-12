@@ -35,10 +35,11 @@ class Signup extends React.Component {
 
     render(){
         return(
-            <div className="" >
+            <div className="sign-up" >
                 <h2> Sign UP! </h2>
-                <form className="">
+                <form className="form-input">
                     <label>Username:
+                        <br/>
                         <input
                             type="text"
                             value={this.state.username}
@@ -47,6 +48,7 @@ class Signup extends React.Component {
                     </label>
 
                     <label>Email:
+                        <br/>
                         <input
                             type="text"
                             value={this.state.email}
@@ -55,6 +57,7 @@ class Signup extends React.Component {
                     </label>
 
                     <label>Password:
+                        <br/>
                         <input
                              type="password"
                              value={this.state.password}
@@ -70,4 +73,4 @@ class Signup extends React.Component {
 };
 
 
-export default connect(null, mapDispatchToProps)(Signup)
+export default connect(null, mapDispatchToProps)(Signup);

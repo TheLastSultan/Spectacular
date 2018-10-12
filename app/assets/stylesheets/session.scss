@@ -1,0 +1,61 @@
+// .session-form-container{
+//     display: flex; 
+//     justify-content: center;
+//     height: 100%;
+// };
+
+// .session-form {
+//     display: flex;
+//     flex-direction: column; 
+//     justify-content: center; 
+// };
+
+// .actual-form{
+//     display: flex;
+//     flex-direction: column;  
+//     margin: auto;
+//     height: 500px;
+// };
+
+// .actual-form p {
+//     text-align: center;
+//     justify-content: center;
+// };
+
+// .form-group p {
+//     margin-left: 50%;
+// } */
+
+// .form-title{
+//     min-width: 30%
+// }
+
+.sign-up{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+
+    .form-input{
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+
+        label{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    h2{
+        display:block; 
+    }
+
+
+
+}
+
+
