@@ -629,17 +629,17 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
- // const customStyles = {
-//   content : {
-//     top                   : '50%',
-//     left                  : '50%',
-//     right                 : 'auto',
-//     bottom                : 'auto',
-//     marginRight           : '-50%',
-//     transform             : 'translate(-50%, -50%)'
-//   }
-// };
 
+var customStyles = {
+  content: {
+    top: '10%',
+    left: '10%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-100%' // transform             : 'translate(10%, 10%)'
+
+  }
+};
 react_modal__WEBPACK_IMPORTED_MODULE_2___default.a.setAppElement(document.getElementById('root'));
 
 var BasicModal =

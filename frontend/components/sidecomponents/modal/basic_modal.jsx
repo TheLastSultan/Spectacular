@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
-// const customStyles = {
-//   content : {
-//     top                   : '50%',
-//     left                  : '50%',
-//     right                 : 'auto',
-//     bottom                : 'auto',
-//     marginRight           : '-50%',
-//     transform             : 'translate(-50%, -50%)'
-//   }
-// };
+const customStyles = {
+  content : {
+    top                   : '10%',
+    left                  : '10%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-100%',
+    // transform             : 'translate(10%, 10%)'
+  }
+};
 
 Modal.setAppElement(document.getElementById('root'));
 
