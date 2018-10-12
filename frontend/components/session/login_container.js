@@ -36,13 +36,13 @@ class Login extends React.Component {
   render() {
     // console.log(this.props);
     return (
-      <div className="session-form-container">
-        <div className="session-form">
-          <form className="form-group">
-            <div className="form-group" >
+      <div className="session-form-container col-md-12">
+        <div className="session-form col-md-10 ">
+          <form className="form-group col-md-6 offset-md-4">
+            <div className="form-group form-title offset-md-4" >
               <h2>Log In!</h2>
             </div>
-              <div className="form-group form-title" >
+              <div className="form-group form-title offset-md-2" >
               <label>Username:
               <input
                 type="text"
@@ -62,8 +62,8 @@ class Login extends React.Component {
               </label>
               <br/>
               
-            <div className="form-group " >
-            <button onClick={this.handleSubmit} className="btn btn-primary">Log In!</button>
+            <div className="form-group form-title offset-md-4" >
+              
             </div>
             
             </div> 

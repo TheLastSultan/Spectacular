@@ -10,6 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import SpectacleDetailContainer from './spectacles/spectacle_detail_container';
+import BasicModal from './sidecomponents/modal/basic_modal'; 
 
 library.add(faSearch, faShoppingCart)
 
@@ -18,6 +19,7 @@ const App = () => (
     <HashRouter> 
       <div> 
         <Route  path="/" component={Navbar}/> 
+        <Route exact path="/quiztime" component={BasicModal} /> 
         <Route exact path="/login" component={LogInContainer} />
         <Route exact path="/signup" component={SignupContainer} />
         <Switch>
