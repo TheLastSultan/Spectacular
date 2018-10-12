@@ -80,12 +80,12 @@ class QuizModal extends React.Component {
                         <span className="answer-description"> I would describe it as round </span>
                     </div> 
                     <div className="form-answer">
-                        <img src="https://storage.googleapis.com/spec-tacular/hat_guy.png" alt="Smiley face"/>
+                        <img src="https://storage.googleapis.com/spec-tacular/hat-guy-narrow" alt="Smiley face"/>
                         <button className="quiz-button"> round </button> 
                         <span className="answer-description"> I would describe it as round </span>
                     </div> 
                     <div className="form-answer">
-                        <img src="https://storage.googleapis.com/spec-tacular/hat_guy.png" alt="Smiley face"/>
+                        <img src="https://storage.googleapis.com/spec-tacular/hat-guy-wide" alt="Smiley face"/>
                         <button className="quiz-button"> round </button> 
                         <span className="answer-description"> I would describe it as round </span>
                     </div>  
