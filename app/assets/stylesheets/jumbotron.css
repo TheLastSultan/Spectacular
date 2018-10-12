@@ -1,0 +1,8 @@
+
+.jumbotron{
+    background-image: url("https://api.pcloud.com/getpubthumb?code=XZq68n7Zig1UpLV3HmzfXlUczwf3ARCrAt4V&linkpassword=undefined&size=1831x334&crop=0&type=auto");
+    left: 50%;
+    width: auto;
+    min-height: 300px; 
+    max-width: none; 
+}

@@ -1,0 +1,38 @@
+/* THIS IS THE NAVBAR SECITON */
+
+.navbar-brand{
+    font-family: proxima-nova,helvetica,verdana,sans-serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2.5px; 
+}
+
+.navbar-container{
+    display: flex;
+    color: #414b56;  
+}
+
+.navbar{
+    flex-grow: 2;
+}
+
+nav.navbar{
+    padding-left: 4%;
+}
+
+.nav-item{
+    margin-left: 5px; 
+    margin-right: 5px;
+    padding: 1px; 
+}
+
+.nav-item{
+    flex-direction: row; 
+    color: #414b56;
+    letter-spacing: 2.5px;
+    font-size: 10px; 
+    text-transform: uppercase;
+    font-family: proxima-nova,helvetica,verdana,sans-serif;
+    line-height: calc(1em + 10px);
+}

@@ -36,26 +36,39 @@ class Login extends React.Component {
   render() {
     // console.log(this.props);
     return (
-      <div className="session-form">
-        <h2>Log In!</h2>
-        <form>
-          <label>Username:
-          <input
-            type="text"
-            value={this.state.username}
-            onChange={this.handleInput('username')}
-          />
-          </label>
+      <div className="session-form-container">
+        <div className="session-form">
+          <form className="form-group">
+            <div className="form-group" >
+              <h2>Log In!</h2>
+            </div>
+              <div className="form-group form-title" >
+              <label>Username:
+              <input
+                type="text"
+                value={this.state.username}
+                onChange={this.handleInput('username')}
+                className="form-control"
+              />
+              </label>
 
-          <label>Password:
-          <input
-            type="password"
-            value={this.state.password}
-            onChange={this.handleInput('password')}
-          />
-            <button onClick={this.handleSubmit}>Log In!</button>
-          </label>
-        </form>
+              <label>Password:
+              <input
+                type="password"
+                value={this.state.password}
+                onChange={this.handleInput('password')}
+                className="form-control"
+              />
+              </label>
+              <br/>
+              
+            <div className="form-group " >
+            <button onClick={this.handleSubmit} className="btn btn-primary">Log In!</button>
+            </div>
+            
+            </div> 
+          </form>
+        </div> 
       </div>
     );
   }

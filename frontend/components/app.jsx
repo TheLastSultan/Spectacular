@@ -17,9 +17,9 @@ const App = () => (
   <div className="app">
     <HashRouter> 
       <div> 
+        <Route  path="/" component={Navbar}/> 
         <Route exact path="/login" component={LogInContainer} />
         <Route exact path="/signup" component={SignupContainer} />
-        <Route  path="/" component={Navbar}/> 
         <Switch>
           <Route exact path="/" component={SpectacleIndexContainer}/>
           <Route path="/spectacles/:spectacleId" component={SpectacleDetailContainer}/>
