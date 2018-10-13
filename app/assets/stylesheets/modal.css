@@ -25,7 +25,50 @@
     justify-content: flex-end;
 }
 .quiz-content{
-    width: 60%;
-    margin: auto;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.quiz-form-content{
+    display: flex; 
+    flex-direction: column; 
+}
+
+.form-answer-container{
+    display: flex;
+}
+
+.form-group{
+    flex-direction: row; 
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.form-answer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 10%;
+}
+
+.quiz-btn{
+    border-radius: 55px;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 8%;
+    margin-bottom: 10%;
+}
+
+.quiz-question{
+    font-family: -webkit-pictograph;
+    font-size: 25px;
+    font-weight: 300px;
+}
+
+.subtitle span {
+    font-family: -webkit-pictograph;
+    font-size: 18px;
 }

@@ -64,33 +64,34 @@ class QuizModal extends React.Component {
 
         <form className="quiz-content"> 
             <div className= "subtitle">
-                <span> This is question {this.state.slide} out of 3  AA</span>
+                <span> This is question {this.state.slide} out of 3</span>
             </div> 
             
 
-            <div className="content">
+            <div className="quiz-form-content">
+
                 <div className="form-group" > 
                     <span className="quiz-question"> How would you describe your headshape? </span>
                 </div>
 
-                <div className= "form-answer-contatiner">
+                <div className= "form-answer-container">
                     <div className="form-answer">
                         <img src="https://storage.googleapis.com/spec-tacular/hat_guy.png" alt="Smiley face"/>
-                        <button className="quiz-button"> round </button> 
-                        <span className="answer-description"> I would describe it as round </span>
-                    </div> 
-                    <div className="form-answer">
-                        <img src="https://storage.googleapis.com/spec-tacular/hat-guy-narrow" alt="Smiley face"/>
-                        <button className="quiz-button"> round </button> 
+                        <button className="quiz-btn btn btn-outline-secondary btn-sm"> round </button> 
                         <span className="answer-description"> I would describe it as round </span>
                     </div> 
                     <div className="form-answer">
                         <img src="https://storage.googleapis.com/spec-tacular/hat-guy-wide" alt="Smiley face"/>
-                        <button className="quiz-button"> round </button> 
+                        <button className="quiz-btn btn btn-outline-secondary btn-sm"> round </button> 
+                        <span className="answer-description"> I would describe it as round </span>
+                    </div> 
+                    <div className="form-answer">
+                        <img src="https://storage.googleapis.com/spec-tacular/hat-guy-narrow" alt="Smiley face"/>
+                        <button className="quiz-btn btn btn-outline-secondary btn-sm"> round </button> 
                         <span className="answer-description"> I would describe it as round </span>
                     </div>  
                 </div> 
-
+               
             </div> 
         </form>
 

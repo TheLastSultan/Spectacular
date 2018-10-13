@@ -702,30 +702,21 @@ function (_React$Component) {
         className: "quiz-content"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "subtitle"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " This is question ", this.state.slide, " out of 3  AA")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "content"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " This is question ", this.state.slide, " out of 3")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "quiz-form-content"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "quiz-question"
       }, " How would you describe your headshape? ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "form-answer-contatiner"
+        className: "form-answer-container"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-answer"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
         src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
         alt: "Smiley face"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        className: "quiz-button"
-      }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "answer-description"
-      }, " I would describe it as round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "form-answer"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/hat-guy-narrow",
-        alt: "Smiley face"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        className: "quiz-button"
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
       }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "answer-description"
       }, " I would describe it as round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -734,7 +725,16 @@ function (_React$Component) {
         src: "https://storage.googleapis.com/spec-tacular/hat-guy-wide",
         alt: "Smiley face"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        className: "quiz-button"
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "answer-description"
+      }, " I would describe it as round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat-guy-narrow",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
       }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "answer-description"
       }, " I would describe it as round ")))))));
