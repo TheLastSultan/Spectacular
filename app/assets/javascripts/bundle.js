@@ -610,6 +610,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -628,6 +630,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+ // import SLIDE1 from  './slide1'
 
 var customStyles = {
   content: {
@@ -635,8 +638,7 @@ var customStyles = {
     left: '10%',
     right: 'auto',
     bottom: 'auto',
-    marginRight: '-100%' // transform             : 'translate(10%, 10%)'
-
+    marginRight: '-100%'
   }
 };
 react_modal__WEBPACK_IMPORTED_MODULE_2___default.a.setAppElement(document.getElementById('root'));
@@ -657,10 +659,11 @@ function (_React$Component) {
       slide: 1,
       faceShape: '',
       materialType: '',
-      activityLevel: ''
+      frameShape: ''
     };
     _this.openModal = _this.openModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -679,9 +682,127 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "nextSlide",
+    value: function nextSlide() {
+      this.setState({});
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(property, value) {
+      debugger;
+      this.setState(_defineProperty({}, property, value));
+      this.setState({
+        slide: this.state.slide + 1
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var question1 = undefined;
+      var question1 = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "quiz-form-content"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "quiz-question"
+      }, " How would you describe your headshape? ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("faceShape", "Narrow"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " narrow "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "answer-description"
+      }, " Id say hats fit small. ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat-guy-narrow",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("faceShape", "Average"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " medium "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "answer-description"
+      }, " Pretty average ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat-guy-wide",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("faceShape", "Wide"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " average "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "answer-description"
+      }, " I have a full round face! "))));
+      var question2 = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "quiz-form-content"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "quiz-question"
+      }, " What shape do your prefer your glasses in  ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("frameShape", "round"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat-guy-narrow",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("frameShape", "square"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " square ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat-guy-wide",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("frameShape", "oval"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " oval "))));
+      var question3 = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "quiz-form-content"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "quiz-question"
+      }, " What is your preference for frame material ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("materialType", "plastic"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " plastic ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat-guy-narrow",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("materialType", "acetate"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " acetate ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat-guy-wide",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: this.handleInput("materialType", "metal"),
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " metal "))));
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "modal-container"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -696,48 +817,13 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_0__["FontAwesomeIcon"], {
         icon: "window-close",
         className: "faWindowClose",
-        size: "1x",
+        size: "3x",
         onClick: this.closeModal
       })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         className: "quiz-content"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "subtitle"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " This is question ", this.state.slide, " out of 3")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "quiz-form-content"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "quiz-question"
-      }, " How would you describe your headshape? ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "form-answer-container"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "form-answer"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
-        alt: "Smiley face"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " narrow "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "answer-description"
-      }, " Id say hats fit small. ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "form-answer"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/hat-guy-narrow",
-        alt: "Smiley face"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " medium "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "answer-description"
-      }, " Pretty average ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "form-answer"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/hat-guy-wide",
-        alt: "Smiley face"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " average "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "answer-description"
-      }, " I have a full round face! ")))))));
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " This is question ", this.state.slide, " out of 3")), question1)));
     }
   }]);
 
