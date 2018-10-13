@@ -717,27 +717,27 @@ function (_React$Component) {
         alt: "Smiley face"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }, " narrow "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "answer-description"
-      }, " I would describe it as round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "form-answer"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/hat-guy-wide",
-        alt: "Smiley face"
-      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "answer-description"
-      }, " I would describe it as round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, " Id say hats fit small. ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-answer"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
         src: "https://storage.googleapis.com/spec-tacular/hat-guy-narrow",
         alt: "Smiley face"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " round "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      }, " medium "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "answer-description"
-      }, " I would describe it as round ")))))));
+      }, " Pretty average ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/hat-guy-wide",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " average "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "answer-description"
+      }, " I have a full round face! ")))))));
     }
   }]);
 

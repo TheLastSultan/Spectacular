@@ -2,7 +2,7 @@
     position: absolute;
     width: 80%;
     height: 80%;
-    background-color: white;
+    background-color:#ecf3f5;
     z-index: 1; 
 }
 
@@ -12,7 +12,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color:#9ca5ae;
+    background-color:#ecf3f5;
 }
 
 .subtitle{
@@ -37,6 +37,7 @@
 
 .form-answer-container{
     display: flex;
+    padding-left: 8%;
 }
 
 .form-group{
@@ -63,12 +64,17 @@
 }
 
 .quiz-question{
-    font-family: -webkit-pictograph;
-    font-size: 25px;
-    font-weight: 300px;
+    /* font-family: -webkit-pictograph; */
+    font-size: 33px;
+    font-weight: 900;
+    font-family: 'Krub', sans-serif;
+    margin-bottom: 10%;
+    margin-top: 10%;
 }
 
 .subtitle span {
-    font-family: -webkit-pictograph;
+    font-family: 'Krub', sans-serif;
     font-size: 18px;
+    font-weight: 400;
+    text-align: center; 
 }
