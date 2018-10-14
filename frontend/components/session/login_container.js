@@ -62,10 +62,8 @@ class Login extends React.Component {
               </label>
               <br/>
               
-            <div className="form-group form-title offset-md-4" >
-              
-            </div>
-            
+          
+              <button onClick={this.handleSubmit}> Sign Up </button>
             </div> 
           </form>
         </div> 
