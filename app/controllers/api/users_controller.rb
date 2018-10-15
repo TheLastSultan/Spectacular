@@ -32,9 +32,10 @@ class Api::UsersController < ApplicationController
       login(@user)
       render :show
     else
-      render json: @user.errors.full_messages, status: 406
+      render json: @user.errors.full_messages, status: 422
     end
   end 
   
 end
   
+render json: @user.errors.full_messages, status: 422

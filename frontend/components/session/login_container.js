@@ -9,6 +9,11 @@ const mapDispatchToProps = dispatch => {
     })
 };
 
+const mapStateToProps = state => ({
+  errors: state.sessionErrors
+});
+
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -26,11 +31,23 @@ class Login extends React.Component {
     };
   }
 
+  renderErrors() {
+    return(
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, {user:this.state})
     this.props.login(user)
-      .then(() => this.props.history.push('/spectacles'));
+      // .then(() => this.props.history.push('/spectacles'));
   }
 
   render() {
@@ -72,4 +89,4 @@ class Login extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
