@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     resource :cart, only: [:create, :destroy, :index], controller: 'cart'  
     resources :spectacles, only: [:index, :show]
-    resource :harambe, only: [:index]
+    get 'cart', action: :index, controller: 'cart'
     post 'pick', action: :pick, controller: 'spectacles'
   
   end

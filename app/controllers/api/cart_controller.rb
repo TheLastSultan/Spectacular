@@ -2,11 +2,17 @@ class Api::CartController < ApplicationController
    
     def index
         @cartitems = current_user.cart
+        @spectacles = @cartitems
         render "api/spectacles/index"
     end
 
     def create
       @cartitem = Cartitem.create(cart_params)
+
+      if current_user.cart.map{|item| item.id}.include?(params[:cartitem][:spectacle_id])
+        render json: ["already in cart"]
+      end 
+      
       if @cartitem.save
         render json: @cartitem
       else
