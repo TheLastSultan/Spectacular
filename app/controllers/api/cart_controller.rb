@@ -1,10 +1,12 @@
 class Api:CartController < ApplicationController
     def create
       @cartitem = current_user.cart.new(cart_params)
+      render json: @cartitem
     end
 
     def index
       @cartitems = Cartitem.all.where(user_id: current_user.id)
+      render json: @cartitems
     end
 
     def destroy
