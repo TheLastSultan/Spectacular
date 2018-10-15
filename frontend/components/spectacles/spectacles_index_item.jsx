@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const SpectacleIndexItem = ({spectacle }) => (
         <li className="spectacle-thumbnail col-md-3">
-            <Link to={`/spectacles/${spectacle.id}`}>
+            <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
                 <img src={spectacle.image_url} className="spectacle-image" alt={spectacle.title} /> 
                 <span className="spectacle-title">{spectacle.title}</span>  
             </Link> 

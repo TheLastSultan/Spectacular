@@ -965,12 +965,11 @@ function (_React$Component) {
         className: "guest-user"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link-navbar",
-        to: "#"
+        to: "/login"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "nav-item"
       }, "Sign in")));
       var display = undefined;
-      debugger;
 
       if (Object(lodash__WEBPACK_IMPORTED_MODULE_5__["isEmpty"])(this.props.currentUser)) {
         this.props.signUp();
@@ -996,17 +995,17 @@ function (_React$Component) {
         className: "navbar-nav mr-auto"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link-navbar",
-        to: "#"
+        to: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "nav-item"
       }, "Eyeglasses")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link-navbar",
-        to: "#"
+        to: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "nav-item"
       }, "Sunglasses")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link-navbar",
-        to: "#"
+        to: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "nav-item"
       }, "Home Try-On"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1027,7 +1026,7 @@ function (_React$Component) {
       }, "cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
         icon: "shopping-cart",
         className: "faShoppingCart"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "navbar-toggler",
         type: "button",
         "data-toggle": "collapse",
@@ -1037,7 +1036,7 @@ function (_React$Component) {
         "aria-label": "Toggle navigation"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "navbar-toggler-icon"
-      }))))));
+      })))))));
     }
   }]);
 
@@ -1617,7 +1616,8 @@ var SpectacleIndexItem = function SpectacleIndexItem(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "spectacle-thumbnail col-md-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/spectacles/".concat(spectacle.id)
+    to: "/spectacles/".concat(spectacle.id),
+    className: "spectacle-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: spectacle.image_url,
     className: "spectacle-image",

@@ -44,6 +44,11 @@
 
 }
 
+.spectacle-image{
+    width: 100%
+    
+}
+
 .spectacle-group-item{
     justify-content: center; 
     flex-wrap: wrap; 
@@ -59,13 +64,20 @@
 
 }
 
-.spectacle-title{
+.spectacle-link{
     text-align: center; 
-    font-size: 18px;
+}
+
+
+.spectacle-title{
+    font-size: 22px; 
+    width: 100%; 
+    font-family: 'Neuton', serif;
     margin-top: 10px; 
     font-weight: 450;
-    font-family: utopia-std,times new roman,serif;
     line-height: calc(1em+6px);
+    color: #414b56; 
+    font-weight: bold;
 }
 
 

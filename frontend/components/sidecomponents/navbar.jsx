@@ -42,14 +42,12 @@ class Navbar extends React.Component{
     
     const guestUser= 
         <section className="guest-user" >
-            <Link className="link-navbar" to={`#`}>
+            <Link className="link-navbar" to='/login'>
                 <span className="nav-item">Sign in</span>
             </Link>
         </section>
 
     let display = undefined 
-
-    debugger; 
     if(isEmpty(this.props.currentUser)){
         this.props.signUp();
     }else if(this.props.currentUser.session_token == undefined){
@@ -65,17 +63,18 @@ class Navbar extends React.Component{
         <a className="navbar-brand" href="#"> <span className="navbar-brand"> Spectacular </span></a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav mr-auto">
-                <Link className="link-navbar" to={`#`}>
+                <Link className="link-navbar" to='/'>
                     <span className="nav-item">Eyeglasses</span>
                 </Link>
-                <Link className="link-navbar" to={`#`}>
+                <Link className="link-navbar" to='/'>
                     <span className="nav-item">Sunglasses</span>
                 </Link>  
-                <Link className="link-navbar" to={`#`}>
+                <Link className="link-navbar" to='/'>
                     <span className="nav-item">Home Try-On</span>
                 </Link>            
             </ul>
 
+        
             <ul className="navbar-nav mr-auto">
                 <Link className="link-navbar" to={`#`}>
                     <FontAwesomeIcon icon="search" className="faSearch" />
@@ -85,11 +84,11 @@ class Navbar extends React.Component{
                 <Link className="link-navbar" to={`#`}>
                     <span className="nav-item">cart</span>
                     <FontAwesomeIcon icon="shopping-cart" className="faShoppingCart" />
-                </Link>               
+                </Link>   
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                     <span className="navbar-toggler-icon"></span>
+                 </button>            
             </ul>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
         </div> 
     </nav> 
     </div> 
