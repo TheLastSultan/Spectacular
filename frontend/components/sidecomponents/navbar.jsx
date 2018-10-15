@@ -1,37 +1,62 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { logout } from '../../actions/session_actions'
-import { connect } from 'react-redux'
+import { currentUser, logout, signUp } from '../../actions/session_actions';
+import { connect } from 'react-redux';
+import {isEmpty} from 'lodash';
 
 
 const mapStateToProps = (state, ownProps) => ({
     currentUser: state.session.currentUser
 });
 
-const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(logout())
-});
+const mapDispatchToProps = dispatch => {
+   return{ 
+        logout: () => dispatch(logout()),
+        signUp: () => dispatch(signUp())
+    }
+};
 
 
-// {currentUser, logout}
-const Navbar = () => {
-    // const signedIn = 
-    //     <Link className="link-navbar" to={`#`}>
-    //         <span className="nav-item">Logout</span>
-    //     </Link>
+class Navbar extends React.Component{
+    constructor(props){
+        super(props);  
     
-    // const guestUser = 
-    //     <section className="guest-user" >
-    //         <Link className="link-navbar" to={`#`}>
-    //             <span className="nav-item">Register</span>
-    //         </Link>
-    //         <Link className="link-navbar" to={`#`}>
-    //             <span className="nav-item">Sign-in</span>
-    //         </Link>
-    //     </section>
+        this.handleLogOut = this.handleLogOut.bind(this);
+    }
 
-    // const display = currentUser ? signedIn : guestUser
+
+    handleLogOut(){
+        this.props.logout()
+
+    }
+
+    render(){
+        
+    const logOut = 
+        <div className="link-navbar">
+            <Link className="link-navbar" to={`#`}>
+                <span className="nav-item" onClick={this.handleLogOut}>Logout</span>
+            </Link>
+        </div>
+    
+    const guestUser= 
+        <section className="guest-user" >
+            <Link className="link-navbar" to={`#`}>
+                <span className="nav-item">Sign in</span>
+            </Link>
+        </section>
+
+    let display = undefined 
+
+    debugger; 
+    if(isEmpty(this.props.currentUser)){
+        this.props.signUp();
+    }else if(this.props.currentUser.session_token == undefined){
+        display = guestUser;
+    }else{
+        display = logOut; 
+    }
 
     return (
     <div> 
@@ -56,9 +81,7 @@ const Navbar = () => {
                     <FontAwesomeIcon icon="search" className="faSearch" />
                     <span className="nav-item">search  | </span>
                 </Link>
-                <Link className="link-navbar" to={`#`}>
-                    <span className="nav-item">sign-in</span>
-                </Link>  
+                {display}  
                 <Link className="link-navbar" to={`#`}>
                     <span className="nav-item">cart</span>
                     <FontAwesomeIcon icon="shopping-cart" className="faShoppingCart" />
@@ -71,10 +94,11 @@ const Navbar = () => {
     </nav> 
     </div> 
     </div>)
-};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(component)
-export default Navbar; 
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
 
 
 

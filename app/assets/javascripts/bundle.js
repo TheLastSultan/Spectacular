@@ -885,6 +885,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
 
 
 
@@ -901,93 +922,129 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
+    },
+    signUp: function signUp() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["signUp"])());
     }
   };
-}; // {currentUser, logout}
+};
 
+var Navbar =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Navbar, _React$Component);
 
-var Navbar = function Navbar() {
-  // const signedIn = 
-  //     <Link className="link-navbar" to={`#`}>
-  //         <span className="nav-item">Logout</span>
-  //     </Link>
-  // const guestUser = 
-  //     <section className="guest-user" >
-  //         <Link className="link-navbar" to={`#`}>
-  //             <span className="nav-item">Register</span>
-  //         </Link>
-  //         <Link className="link-navbar" to={`#`}>
-  //             <span className="nav-item">Sign-in</span>
-  //         </Link>
-  //     </section>
-  // const display = currentUser ? signedIn : guestUser
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navbar-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-    className: "navbar navbar-expand-lg navbar-light bg-light"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "navbar-brand",
-    href: "#"
-  }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "navbar-brand"
-  }, " Spectacular ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    class: "collapse navbar-collapse",
-    id: "navbarNavDropdown"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "navbar-nav mr-auto"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "Eyeglasses")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "Sunglasses")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "Home Try-On"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "navbar-nav mr-auto"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
-    icon: "search",
-    className: "faSearch"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "search  | ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "sign-in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "link-navbar",
-    to: "#"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "nav-item"
-  }, "cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
-    icon: "shopping-cart",
-    className: "faShoppingCart"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "navbar-toggler",
-    type: "button",
-    "data-toggle": "collapse",
-    "data-target": "#navbarToggleExternalContent",
-    "aria-controls": "navbarToggleExternalContent",
-    "aria-expanded": "false",
-    "aria-label": "Toggle navigation"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "navbar-toggler-icon"
-  }))))));
-}; // export default connect(mapStateToProps, mapDispatchToProps)(component)
+  function Navbar(props) {
+    var _this;
 
+    _classCallCheck(this, Navbar);
 
-/* harmony default export */ __webpack_exports__["default"] = (Navbar); // EYEGLASSES /browse_mens_glasses
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Navbar).call(this, props));
+    _this.handleLogOut = _this.handleLogOut.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(Navbar, [{
+    key: "handleLogOut",
+    value: function handleLogOut() {
+      this.props.logout();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var logOut = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "link-navbar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link-navbar",
+        to: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "nav-item",
+        onClick: this.handleLogOut
+      }, "Logout")));
+      var guestUser = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "guest-user"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link-navbar",
+        to: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "nav-item"
+      }, "Sign in")));
+      var display = undefined;
+      debugger;
+
+      if (Object(lodash__WEBPACK_IMPORTED_MODULE_5__["isEmpty"])(this.props.currentUser)) {
+        this.props.signUp();
+      } else if (this.props.currentUser.session_token == undefined) {
+        display = guestUser;
+      } else {
+        display = logOut;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "navbar-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        className: "navbar navbar-expand-lg navbar-light bg-light"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "navbar-brand",
+        href: "#"
+      }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "navbar-brand"
+      }, " Spectacular ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        class: "collapse navbar-collapse",
+        id: "navbarNavDropdown"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "navbar-nav mr-auto"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link-navbar",
+        to: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "nav-item"
+      }, "Eyeglasses")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link-navbar",
+        to: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "nav-item"
+      }, "Sunglasses")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link-navbar",
+        to: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "nav-item"
+      }, "Home Try-On"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "navbar-nav mr-auto"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link-navbar",
+        to: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
+        icon: "search",
+        className: "faSearch"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "nav-item"
+      }, "search  | ")), display, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "link-navbar",
+        to: "#"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "nav-item"
+      }, "cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
+        icon: "shopping-cart",
+        className: "faShoppingCart"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "navbar-toggler",
+        type: "button",
+        "data-toggle": "collapse",
+        "data-target": "#navbarToggleExternalContent",
+        "aria-controls": "navbarToggleExternalContent",
+        "aria-expanded": "false",
+        "aria-label": "Toggle navigation"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "navbar-toggler-icon"
+      }))))));
+    }
+  }]);
+
+  return Navbar;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(Navbar)); // EYEGLASSES /browse_mens_glasses
 // SUNGLASSES /browse_womens_glasses
 // HOME TRY-ON /about_home_try_on
 // LOCATIONS /locations
