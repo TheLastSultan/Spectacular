@@ -73,7 +73,7 @@ class Signup extends React.Component {
                             value={this.state.username}
                             onChange={this.handleInput('username')}
                             className="form-control"
-                            placeHolder="Enter Username"
+                            placeholder="Enter Username"
                         />
                     </div> 
                    
@@ -83,7 +83,7 @@ class Signup extends React.Component {
                             value={this.state.email}
                             onChange={this.handleInput('email')}
                             className="form-control"
-                            placeHolder="Enter Email"
+                            placeholder="Enter Email"
                         /> 
                 </div> 
 
@@ -94,7 +94,7 @@ class Signup extends React.Component {
                         value={this.state.password}
                         onChange={this.handleInput('password')}
                         className="form-control"
-                        placeHolder="Enter Password"
+                        placeholder="Enter Password"
                     />
                 </div> 
                     

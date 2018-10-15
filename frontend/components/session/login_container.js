@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../actions/session_actions';
+import {Link} from 'react-router-dom';
 
 
 const mapDispatchToProps = dispatch => {
@@ -35,9 +36,11 @@ class Login extends React.Component {
     return(
       <ul>
         {this.props.errors.map((error, i) => (
+        <div className="alert alert-info" role="alert">
           <li key={`error-${i}`}>
             {error}
           </li>
+        </div> 
         ))}
       </ul>
     );
@@ -53,38 +56,48 @@ class Login extends React.Component {
   render() {
     // console.log(this.props);
     return (
-      <div className="session-form-container col-md-12">
-        <div className="session-form col-md-10 ">
-          <form className="form-group col-md-6 offset-md-4">
-            <div className="form-group form-title offset-md-4" >
-              <h2>Log In!</h2>
-            </div>
-              <div className="form-group form-title offset-md-2" >
-              <label>Username:
-              <input
-                type="text"
-                value={this.state.username}
-                onChange={this.handleInput('username')}
-                className="form-control"
-              />
-              </label>
+      <div className="session-form-container">
+      <form className="form-group col-md-2">
+          <div className="form-group form-title" >
+              <h2>Sign in </h2>
+          </div>
 
-              <label>Password:
+          <div className="form-group form-errors-container">
+              {this.renderErrors()}
+          </div> 
+          
+          <div className="form-group" >
+              <div className="form-group">
+                  <input
+                      type="text"
+                      value={this.state.username}
+                      onChange={this.handleInput('username')}
+                      className="form-control"
+                      placeholder="Enter Username"
+                  />
+              </div> 
+
+          <div className="form-group"> 
               <input
-                type="password"
-                value={this.state.password}
-                onChange={this.handleInput('password')}
-                className="form-control"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.handleInput('password')}
+                  className="form-control"
+                  placeholder="Enter Password"
               />
-              </label>
-              <br/>
+          </div> 
               
           
-              <button onClick={this.handleSubmit}> Sign Up </button>
-            </div> 
-          </form>
-        </div> 
-      </div>
+              <button className="session-button" onClick={this.handleSubmit}> Sign in </button>
+          </div> 
+          
+          
+          <div className="form-title border-top">
+              <h2> I'm new here</h2> 
+              <Link className="center-link" to="/signup">Register</Link>
+          </div>
+      </form>
+  </div> 
     );
   }
 }
