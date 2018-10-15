@@ -34,6 +34,11 @@
     flex-wrap: wrap;
     align-content: space-evenly; 
     justify-content: space-around;
+    padding-left: 0px;
+    margin-left: 10%;
+    margin-right: 10%; 
+
+
 }
 
 .spectacle-thumbnail{
@@ -111,8 +116,8 @@
     /* position: absolute; */
     /* background-color: red; */
     flex-direction: column;
-    justify-content: center;
-    display: flex; 
+    // justify-content: center;
+    // display: flex; 
     align-items: center; 
   }
   
