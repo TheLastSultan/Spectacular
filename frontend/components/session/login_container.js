@@ -46,16 +46,27 @@ class Login extends React.Component {
     );
   }
 
+  conditionalRender(){
+    debugger; 
+    if (this.props.errors.length > 0 ){
+      return this.props.history.push('/login')
+    } else {
+      this.props.history.push('/')
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
+    
     const user = Object.assign({}, {user:this.state})
-    this.props.login(user)
-      // .then(() => this.props.history.push('/spectacles'));
+    this.props.login(user).then(this.conditionalRender())
   }
 
   render() {
     // console.log(this.props);
+    
     return (
+      
       <div className="session-form-container">
       <form className="form-group col-md-2">
           <div className="form-group form-title" >

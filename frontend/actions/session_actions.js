@@ -34,9 +34,25 @@ export const createThunkAction = callback => users => dispatch => {
   return callback(users).then(success, failure);
 };
 
-
 export const login = createThunkAction(SessionUtil.login);
 export const signUp = createThunkAction(SessionUtil.signUp);
 
 export const logout = () => dispatch => SessionUtil.logout()
   .then(() => dispatch(logoutCurrentUser()));
+
+
+// export const login = user => dispatch => (
+//   SessionUtil.login(user).then(user => (
+//     dispatch(receiveCurrentUser(user))
+//   ), errors => (
+//     dispatch(receiveErrors(errors))
+//   ))
+// );
+
+// export const signUp = user => dispatch => (
+//   SessionUtil.signUp(user).then(user => (
+//     dispatch(receiveCurrentUser(user))
+//   ), errors => (
+//     dispatch(receiveErrors(errors))
+//   ))
+// );

@@ -118,6 +118,38 @@ thunk.withExtraArgument = createThunkMiddleware;
 
 /***/ }),
 
+/***/ "./frontend/actions/cart_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/cart_actions.js ***!
+  \******************************************/
+/*! exports provided: REMOVE_CART_ITEM, RECEIVE_CART_ITEMS, fetchCartItems, deleteCartItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_CART_ITEM", function() { return REMOVE_CART_ITEM; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CART_ITEMS", function() { return RECEIVE_CART_ITEMS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCartItems", function() { return fetchCartItems; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCartItem", function() { return deleteCartItem; });
+/* harmony import */ var _util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/cart_api_util */ "./frontend/util/cart_api_util.jsx");
+/* harmony import */ var _spectacle_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spectacle_action */ "./frontend/actions/spectacle_action.js");
+
+
+var REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
+var RECEIVE_CART_ITEMS = 'RECEIVE_CART_ITEMS';
+var fetchCartItems = function fetchCartItems() {
+  return dispatch(_util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCart"]().then(function (spectacles) {
+    return dispatch(receiveCartItems(spectacles));
+  }));
+};
+var deleteCartItem = function deleteCartItem(UserIdAndCartId) {
+  return dispatch(_util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteCartItem"](UserIdAndCartId).then(function (item) {
+    return dispatch(removeCartItem(item));
+  }));
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -187,7 +219,20 @@ var logout = function logout() {
       return dispatch(logoutCurrentUser());
     });
   };
-};
+}; // export const login = user => dispatch => (
+//   SessionUtil.login(user).then(user => (
+//     dispatch(receiveCurrentUser(user))
+//   ), errors => (
+//     dispatch(receiveErrors(errors))
+//   ))
+// );
+// export const signUp = user => dispatch => (
+//   SessionUtil.signUp(user).then(user => (
+//     dispatch(receiveCurrentUser(user))
+//   ), errors => (
+//     dispatch(receiveErrors(errors))
+//   ))
+// );
 
 /***/ }),
 
@@ -447,13 +492,24 @@ function (_React$Component) {
       }));
     }
   }, {
+    key: "conditionalRender",
+    value: function conditionalRender() {
+      debugger;
+
+      if (this.props.errors.length > 0) {
+        return this.props.history.push('/login');
+      } else {
+        this.props.history.push('/');
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, {
         user: this.state
       });
-      this.props.login(user); // .then(() => this.props.history.push('/spectacles'));
+      this.props.login(user).then(this.conditionalRender());
     }
   }, {
     key: "render",
@@ -1631,6 +1687,45 @@ var SpectacleIndexItem = function SpectacleIndexItem(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/reducers/cart_reducer.js":
+/*!*******************************************!*\
+  !*** ./frontend/reducers/cart_reducer.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/cart_actions */ "./frontend/actions/cart_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var cartReducer = function cartReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CART_ITEM"]:
+      debugger;
+    // nextState = merge({},state);
+    // delete nextstate[action.cartitem.id]
+    // return nextState 
+
+    case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CART_ITEMS"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.spectacles);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (cartReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/entities_reducer.js ***!
@@ -1714,6 +1809,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sessions_root_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sessions_root_reducer */ "./frontend/reducers/sessions_root_reducer.js");
 /* harmony import */ var _ui_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ui_reducer */ "./frontend/reducers/ui_reducer.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
+/* harmony import */ var _cart_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cart_reducer */ "./frontend/reducers/cart_reducer.js");
+
 
 
 
@@ -1723,7 +1820,8 @@ __webpack_require__.r(__webpack_exports__);
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   session: _sessions_root_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
-  sessionErrors: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  sessionErrors: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  cart: _cart_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 }));
 
 /***/ }),
@@ -1928,10 +2026,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/spectacle_action */ "./frontend/actions/spectacle_action.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/cart_actions */ "./frontend/actions/cart_actions.js");
+/* harmony import */ var _util_cart_api_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/cart_api_util */ "./frontend/util/cart_api_util.jsx");
 
 
 
  // TESTING IMPORTS
+
+
 
 
 
@@ -1965,6 +2067,17 @@ document.addEventListener('DOMContentLoaded', function () {
       username: 'meezomeezo'
     }
   };
+  window.cartitem = {
+    cartitem: {
+      spectacle_id: 4,
+      user_id: 1
+    } // @cartitem = Cartitem.where(spectacle_id: params[:cartitem][:spectacle_id]).find_by(user_id: params[:cartitem][:user_id])
+    // Cart Testing
+
+  };
+  window.fetchCartItems = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__["fetchCartItems"];
+  window.deleteCartItem = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__["deleteCartItem"];
+  window.fetchCart = _util_cart_api_util__WEBPACK_IMPORTED_MODULE_7__["fetchCart"];
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
@@ -2000,6 +2113,35 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/cart_api_util.jsx":
+/*!*****************************************!*\
+  !*** ./frontend/util/cart_api_util.jsx ***!
+  \*****************************************/
+/*! exports provided: fetchCart, deleteCartItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCart", function() { return fetchCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCartItem", function() { return deleteCartItem; });
+var fetchCart = function fetchCart() {
+  $.ajax({
+    method: 'GET',
+    url: 'api/cart'
+  });
+};
+var deleteCartItem = function deleteCartItem(UserIdAndCartId) {
+  $.ajax({
+    method: 'DELETE',
+    url: 'api/cart',
+    data: {
+      UserIdAndCartId: UserIdAndCartId
+    }
+  });
+};
 
 /***/ }),
 

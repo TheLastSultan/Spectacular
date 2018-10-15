@@ -7,6 +7,8 @@ import Root from './components/root';
 import {fetchSpectacle, fetchSpectacles} from './actions/spectacle_action';
 import {recieveSpectacle, recieveSpectacles} from './actions/spectacle_action';
 import {login, logout, signUp} from './actions/session_actions'; 
+import {fetchCartItems, deleteCartItem} from './actions/cart_actions';
+import {fetchCart} from './util/cart_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root');
@@ -35,6 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.login = login;
     window.logout = logout;
     window.meezo = {user: {email: 'meezomeezo', password: 'password', username:'meezomeezo' }};
+    window.cartitem = {cartitem: {spectacle_id: 4 , user_id: 1}}
+    // @cartitem = Cartitem.where(spectacle_id: params[:cartitem][:spectacle_id]).find_by(user_id: params[:cartitem][:user_id])
+
+    // Cart Testing
+    window.fetchCartItems = fetchCartItems
+    window.deleteCartItem = deleteCartItem
+    window.fetchCart = fetchCart
 
     ReactDOM.render(<Root store={store} />, root);
 });
