@@ -31,7 +31,7 @@ class Signup extends React.Component {
         const user = Object.assign({}, {user:this.state})
     
         this.props.createNewUser(user)
-            .then( () => this.props.history.push('/'))
+            // .then( () => this.props.history.push('/'))
     }
 
     handleInput(type){
@@ -43,14 +43,13 @@ class Signup extends React.Component {
     renderErrors() { 
         return(
           <ul>
-            <div className="alert alert-info" role="alert">
-
                 {this.props.errors.map((error, i) => (
-                <li key={`error-${i}`}>
-                    {error}
-                </li>
+                <div className="alert alert-info" role="alert">
+                    <li key={`error-${i}`}>
+                        {error}
+                    </li>
+                </div> 
                 ))}
-            </div> 
           </ul>
         );
       }
@@ -62,6 +61,10 @@ class Signup extends React.Component {
                 <div className="form-group form-title" >
                     <h2>Create an account</h2>
                 </div>
+
+                <div className="form-group form-errors-container">
+                    {this.renderErrors()}
+                </div> 
                 
                 <div className="form-group" >
                     <div className="form-group">

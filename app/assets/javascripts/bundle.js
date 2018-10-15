@@ -563,36 +563,32 @@ function (_React$Component) {
   _createClass(Signup, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this2 = this;
-
       e.preventDefault();
       var user = Object.assign({}, {
         user: this.state
       });
-      this.props.createNewUser(user).then(function () {
-        return _this2.props.history.push('/');
-      });
+      this.props.createNewUser(user); // .then( () => this.props.history.push('/'))
     }
   }, {
     key: "handleInput",
     value: function handleInput(type) {
-      var _this3 = this;
+      var _this2 = this;
 
       return function (e) {
-        _this3.setState(_defineProperty({}, type, e.target.value));
+        _this2.setState(_defineProperty({}, type, e.target.value));
       };
     }
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-        className: "alert alert-info",
-        role: "alert"
-      }, this.props.errors.map(function (error, i) {
-        return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("li", {
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+          className: "alert alert-info",
+          role: "alert"
+        }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("li", {
           key: "error-".concat(i)
-        }, error);
-      })));
+        }, error));
+      }));
     }
   }, {
     key: "render",
@@ -604,6 +600,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
         className: "form-group form-title"
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("h2", null, "Create an account")), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "form-group form-errors-container"
+      }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
         className: "form-group"
