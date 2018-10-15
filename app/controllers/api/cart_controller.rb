@@ -12,7 +12,6 @@ class Api::CartController < ApplicationController
       else
         render json: ["already in cart"]
       end 
-
     end
     # Cartitem.all.where(user_id: current_user.id)
     #   render "api/spectacles/show"
@@ -20,9 +19,10 @@ class Api::CartController < ApplicationController
 
 
     def destroy
-        @cartitem = current_user.cart.find(params[:id])
-        @cartitem.destroy
-        render json: @cartitem 
+        @cartitem = Cartitem.where(spectacle_id: params[:cartitem][:spectacle_id]).find_by(user_id: params[:cartitem][:user_id])
+        if @cartitem.destroy
+            render json: @cartitem
+        end
     end
 
     private
