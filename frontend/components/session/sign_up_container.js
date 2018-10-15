@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import {signUp} from '../../actions/session_actions';
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const mapDispatchToProps = dispatch => ({
     createNewUser: formUser => dispatch(signUp(formUser)) 
@@ -39,63 +40,72 @@ class Signup extends React.Component {
         };
     }
 
-    renderErrors() {
-        debugger; 
+    renderErrors() { 
         return(
           <ul>
-            {this.props.errors.map((error, i) => (
-              <li key={`error-${i}`}>
-                {error}
-              </li>
-            ))}
+            <div className="alert alert-info" role="alert">
+
+                {this.props.errors.map((error, i) => (
+                <li key={`error-${i}`}>
+                    {error}
+                </li>
+                ))}
+            </div> 
           </ul>
         );
       }
 
     render(){
         return(
-        <div className="session-form-container col-md-12">
-            <div className="session-form col-md-10 ">
-                <form className="form-group col-md-6 offset-md-4">
-                    <div className="form-group form-title offset-md-4" >
-                        {this.renderErrors()}
-                        <h2>Log In!</h2>
-                    </div>
-                <div className="form-group form-title offset-md-2" >
-                    <label>Username:
-                    <input
-                        type="text"
-                        value={this.state.username}
-                        onChange={this.handleInput('username')}
-                        className="form-control"
-                    />
-                    </label>
-
-                    <label>Email:
-                        <br/>
+        <div className="session-form-container">
+            <form className="form-group col-md-2">
+                <div className="form-group form-title" >
+                    <h2>Create an account</h2>
+                </div>
+                
+                <div className="form-group" >
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            value={this.state.username}
+                            onChange={this.handleInput('username')}
+                            className="form-control"
+                            placeHolder="Enter Username"
+                        />
+                    </div> 
+                   
+                <div className="form-group" >
                         <input
                             type="text"
                             value={this.state.email}
                             onChange={this.handleInput('email')}
+                            className="form-control"
+                            placeHolder="Enter Email"
                         /> 
-                    </label>
+                </div> 
 
-                    <label>Password:
+
+                <div className="form-group"> 
                     <input
                         type="password"
                         value={this.state.password}
                         onChange={this.handleInput('password')}
                         className="form-control"
+                        placeHolder="Enter Password"
                     />
-                    </label>
-                    <br/>
+                </div> 
                     
                 
-                    <button onClick={this.handleSubmit}> Sign Up </button>
-                    </div> 
-                </form>
-            </div> 
-        </div>
+                    <button className="session-button" onClick={this.handleSubmit}> Sign Up </button>
+                </div> 
+                
+                
+                <div className="form-title border-top">
+                    <h2> I have an account</h2> 
+                    <Link className="center-link" to="/login">Login</Link>
+                </div>
+            </form>
+        </div> 
         );
     }
 };

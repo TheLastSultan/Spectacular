@@ -38,4 +38,3 @@ class Api::UsersController < ApplicationController
   
 end
   
-render json: @user.errors.full_messages, status: 422
