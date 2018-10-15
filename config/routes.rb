@@ -6,9 +6,10 @@ Rails.application.routes.draw do
       
     resources :users, only: [:create , :update]
     resource :session, only: [:create, :destroy ]  
-    resource :cartitem, only: [:create, :destroy, :index]
-      
+
+    resource :cart, only: [:create, :destroy, :index], controller: 'cart'  
     resources :spectacles, only: [:index, :show]
+    resource :harambe, only: [:index]
     post 'pick', action: :pick, controller: 'spectacles'
   
   end

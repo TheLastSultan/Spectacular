@@ -1,15 +1,23 @@
-class Api:CartController < ApplicationController
-    def create
-      spectacle = Spectacle.find(params[:spectacle_id]).attributes
-      @cartitem = current_user.cart.new(spectacle)
-      render json: @cartitem
+class Api::CartController < ApplicationController
+   
+    def index
+        @cartitems = current_user.cart
+        render "api/spectacles/index"
     end
 
-    def index
-      @cartitems = current_user.cart
-      render json: @cartitems
+    def create
+      @cartitem = Cartitem.create(cart_params)
+      if @cartitem.save
+        render json: @cartitem
+      else
+        render json: ["already in cart"]
+      end 
+
     end
     # Cartitem.all.where(user_id: current_user.id)
+    #   render "api/spectacles/show"
+    #   spectacle_item = Spectacle.find(params[:spectacle_id]).attributes
+
 
     def destroy
         @cartitem = current_user.cart.find(params[:id])
