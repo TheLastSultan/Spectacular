@@ -2,8 +2,7 @@ class Api::CartController < ApplicationController
    
     def index
         @cartitems = current_user.cart
-        @spectacles = @cartitems
-        render "api/spectacles/index"
+        render json: @cartitems
     end
 
     def create

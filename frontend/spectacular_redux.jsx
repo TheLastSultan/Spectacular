@@ -5,10 +5,10 @@ import Root from './components/root';
 
 // TESTING IMPORTS
 import {fetchSpectacle, fetchSpectacles} from './actions/spectacle_action';
+import {fetchCart} from './util/cart_api_util'
 import {recieveSpectacle, recieveSpectacles} from './actions/spectacle_action';
 import {login, logout, signUp} from './actions/session_actions'; 
-import {fetchCartItems, deleteCartItem} from './actions/cart_actions';
-import {fetchCart} from './util/cart_api_util';
+import {fetchCartItems, deleteCartItem, removeCartItem, receiveCartItems} from './actions/cart_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root');
@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.fetchCartItems = fetchCartItems
     window.deleteCartItem = deleteCartItem
     window.fetchCart = fetchCart
+    window.removeCartItem = removeCartItem
+    window.receiveCartItems = receiveCartItems
+
 
     ReactDOM.render(<Root store={store} />, root);
 });

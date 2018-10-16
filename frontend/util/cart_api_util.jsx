@@ -1,14 +1,14 @@
 export const fetchCart = () => {
-    $.ajax({
+    return $.ajax({
         method: 'GET',
-        url: 'api/cart'
+        url: '/api/cart'
     })
 };
 
 export const deleteCartItem = (UserIdAndCartId) => {
-    $.ajax({
+    return $.ajax({
         method: 'DELETE',
-        url: 'api/cart',
+        url: '/api/cart',
         data: {UserIdAndCartId}
     })
 };

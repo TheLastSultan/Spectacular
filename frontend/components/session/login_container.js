@@ -59,7 +59,7 @@ class Login extends React.Component {
     e.preventDefault();
     
     const user = Object.assign({}, {user:this.state})
-    this.props.login(user).then(this.conditionalRender())
+    this.props.login(user).then(() => this.conditionalRender())
   }
 
   render() {

@@ -122,21 +122,33 @@ thunk.withExtraArgument = createThunkMiddleware;
 /*!******************************************!*\
   !*** ./frontend/actions/cart_actions.js ***!
   \******************************************/
-/*! exports provided: REMOVE_CART_ITEM, RECEIVE_CART_ITEMS, fetchCartItems, deleteCartItem */
+/*! exports provided: REMOVE_CART_ITEM, RECEIVE_CART_ITEMS, receiveCartItems, removeCartItem, fetchCartItems, deleteCartItem */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_CART_ITEM", function() { return REMOVE_CART_ITEM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CART_ITEMS", function() { return RECEIVE_CART_ITEMS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCartItems", function() { return receiveCartItems; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCartItem", function() { return removeCartItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCartItems", function() { return fetchCartItems; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCartItem", function() { return deleteCartItem; });
 /* harmony import */ var _util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/cart_api_util */ "./frontend/util/cart_api_util.jsx");
-/* harmony import */ var _spectacle_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./spectacle_action */ "./frontend/actions/spectacle_action.js");
-
 
 var REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 var RECEIVE_CART_ITEMS = 'RECEIVE_CART_ITEMS';
+var receiveCartItems = function receiveCartItems(spectacles) {
+  return {
+    type: RECEIVE_CART_ITEMS,
+    spectacles: spectacles
+  };
+};
+var removeCartItem = function removeCartItem(item) {
+  return {
+    type: REMOVE_CART_ITEM,
+    item: item
+  };
+};
 var fetchCartItems = function fetchCartItems() {
   return dispatch(_util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCart"]().then(function (spectacles) {
     return dispatch(receiveCartItems(spectacles));
@@ -505,11 +517,15 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var user = Object.assign({}, {
         user: this.state
       });
-      this.props.login(user).then(this.conditionalRender());
+      this.props.login(user).then(function () {
+        return _this3.conditionalRender();
+      });
     }
   }, {
     key: "render",
@@ -2025,9 +2041,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _actions_spectacle_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/spectacle_action */ "./frontend/actions/spectacle_action.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/cart_actions */ "./frontend/actions/cart_actions.js");
-/* harmony import */ var _util_cart_api_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/cart_api_util */ "./frontend/util/cart_api_util.jsx");
+/* harmony import */ var _util_cart_api_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/cart_api_util */ "./frontend/util/cart_api_util.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_cart_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./actions/cart_actions */ "./frontend/actions/cart_actions.js");
 
 
 
@@ -2057,9 +2073,9 @@ document.addEventListener('DOMContentLoaded', function () {
   window.dispatch = store.dispatch;
   window.getState = store.getState;
   window.store = store;
-  window.signUp = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["signUp"];
-  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["login"];
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__["logout"];
+  window.signUp = _actions_session_actions__WEBPACK_IMPORTED_MODULE_6__["signUp"];
+  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_6__["login"];
+  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_6__["logout"];
   window.meezo = {
     user: {
       email: 'meezomeezo',
@@ -2075,9 +2091,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Cart Testing
 
   };
-  window.fetchCartItems = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__["fetchCartItems"];
-  window.deleteCartItem = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__["deleteCartItem"];
-  window.fetchCart = _util_cart_api_util__WEBPACK_IMPORTED_MODULE_7__["fetchCart"];
+  window.fetchCartItems = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_7__["fetchCartItems"];
+  window.deleteCartItem = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_7__["deleteCartItem"];
+  window.fetchCart = _util_cart_api_util__WEBPACK_IMPORTED_MODULE_5__["fetchCart"];
+  window.removeCartItem = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_7__["removeCartItem"];
+  window.receiveCartItems = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_7__["receiveCartItems"];
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
@@ -2128,15 +2146,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCart", function() { return fetchCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCartItem", function() { return deleteCartItem; });
 var fetchCart = function fetchCart() {
-  $.ajax({
+  return $.ajax({
     method: 'GET',
-    url: 'api/cart'
+    url: '/api/cart'
   });
 };
 var deleteCartItem = function deleteCartItem(UserIdAndCartId) {
-  $.ajax({
+  return $.ajax({
     method: 'DELETE',
-    url: 'api/cart',
+    url: '/api/cart',
     data: {
       UserIdAndCartId: UserIdAndCartId
     }
