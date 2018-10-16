@@ -122,30 +122,40 @@ thunk.withExtraArgument = createThunkMiddleware;
 /*!******************************************!*\
   !*** ./frontend/actions/cart_actions.js ***!
   \******************************************/
-/*! exports provided: REMOVE_CART_ITEM, RECEIVE_CART_ITEMS, receiveCartItems, removeCartItem, fetchCartItems, deleteCartItem */
+/*! exports provided: REMOVE_CART_ITEM, RECEIVE_CART_ITEMS, RECEIVE_CART_ITEM, receiveCartItems, removeCartItem, receiveCartItem, fetchCartItems, deleteCartItem, sendCartItem */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_CART_ITEM", function() { return REMOVE_CART_ITEM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CART_ITEMS", function() { return RECEIVE_CART_ITEMS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CART_ITEM", function() { return RECEIVE_CART_ITEM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCartItems", function() { return receiveCartItems; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCartItem", function() { return removeCartItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCartItem", function() { return receiveCartItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCartItems", function() { return fetchCartItems; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCartItem", function() { return deleteCartItem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendCartItem", function() { return sendCartItem; });
 /* harmony import */ var _util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/cart_api_util */ "./frontend/util/cart_api_util.jsx");
 
 var REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 var RECEIVE_CART_ITEMS = 'RECEIVE_CART_ITEMS';
-var receiveCartItems = function receiveCartItems(spectacles) {
+var RECEIVE_CART_ITEM = 'RECEIVE_CART_ITEM';
+var receiveCartItems = function receiveCartItems(items) {
   return {
     type: RECEIVE_CART_ITEMS,
-    spectacles: spectacles
+    items: items
   };
 };
 var removeCartItem = function removeCartItem(item) {
   return {
     type: REMOVE_CART_ITEM,
+    item: item
+  };
+};
+var receiveCartItem = function receiveCartItem(item) {
+  return {
+    type: RECEIVE_CART_ITEM,
     item: item
   };
 };
@@ -158,6 +168,12 @@ var deleteCartItem = function deleteCartItem(UserIdAndCartId) {
   return dispatch(_util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteCartItem"](UserIdAndCartId).then(function (item) {
     return dispatch(removeCartItem(item));
   }));
+};
+var sendCartItem = function sendCartItem(item) {
+  return dispatch(_util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__["sendItem"](item).then(function (item) {
+    return dispatch(receiveCartItem(item));
+  }) // [cart][:spectacle_id]
+  );
 };
 
 /***/ }),
@@ -1722,16 +1738,20 @@ var cartReducer = function cartReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var nextState = lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state);
 
   switch (action.type) {
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CART_ITEM"]:
       debugger;
-    // nextState = merge({},state);
-    // delete nextstate[action.cartitem.id]
-    // return nextState 
+      delete nextState[action.item.cartitem.id];
+      return nextState;
 
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CART_ITEMS"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.spectacles);
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.items);
+
+    case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CART_ITEM"]:
+      debugger;
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.item);
 
     default:
       return state;
@@ -2096,6 +2116,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.fetchCart = _util_cart_api_util__WEBPACK_IMPORTED_MODULE_5__["fetchCart"];
   window.removeCartItem = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_7__["removeCartItem"];
   window.receiveCartItems = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_7__["receiveCartItems"];
+  window.sendCartItem = _actions_cart_actions__WEBPACK_IMPORTED_MODULE_7__["sendCartItem"];
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
@@ -2138,17 +2159,27 @@ var configureStore = function configureStore() {
 /*!*****************************************!*\
   !*** ./frontend/util/cart_api_util.jsx ***!
   \*****************************************/
-/*! exports provided: fetchCart, deleteCartItem */
+/*! exports provided: fetchCart, sendItem, deleteCartItem */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCart", function() { return fetchCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendItem", function() { return sendItem; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCartItem", function() { return deleteCartItem; });
 var fetchCart = function fetchCart() {
   return $.ajax({
     method: 'GET',
     url: '/api/cart'
+  });
+};
+var sendItem = function sendItem(item) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/cart',
+    data: {
+      item: item
+    }
   });
 };
 var deleteCartItem = function deleteCartItem(UserIdAndCartId) {
