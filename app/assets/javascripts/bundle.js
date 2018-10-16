@@ -1742,7 +1742,6 @@ var cartReducer = function cartReducer() {
 
   switch (action.type) {
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CART_ITEM"]:
-      debugger;
       delete nextState[action.item.cartitem.id];
       return nextState;
 
@@ -1750,7 +1749,6 @@ var cartReducer = function cartReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.items);
 
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CART_ITEM"]:
-      debugger;
       return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.item);
 
     default:

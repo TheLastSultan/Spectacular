@@ -7,19 +7,16 @@ class Api::CartController < ApplicationController
     end
 
     def create
-        debugger; 
-      @cartitem = Cartitem.create(user_id: current_user.id, spectacle_id: params[:item][:spectacle_id])
-      @spectacle_cart_item = Spectacle.find_by(spectacle_id: @cartitem.spectacle_id)
+      debugger
+      @cartitem = Cartitem.create!(user_id: current_user.id, spectacle_id: params[:item][:spectacle_id].to_i )
+    
+      @spectacle_cart_item = current_user.cart.last
+      render :show
 
-      if @cartitem.save
-        render :create
-      else
-        render json: ["already in cart"]
-      end 
     end
   
     def destroy
-        debugger; 
+        debugger
         @cartitem = current_user.cart.find(params[:item][:spectacle_id])
         if @cartitem.destroy
             render json: @cartitem

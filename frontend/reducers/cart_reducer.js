@@ -5,14 +5,12 @@ const cartReducer = (state = {} , action) => {
     Object.freeze(state)
     let nextState = merge({}, state);
     switch (action.type) {
-        case REMOVE_CART_ITEM: 
-            debugger; 
+        case REMOVE_CART_ITEM:  
             delete nextState[action.item.cartitem.id]
             return nextState 
         case RECEIVE_CART_ITEMS:
             return merge({}, state, action.items)
         case RECEIVE_CART_ITEM:
-            debugger; 
             return merge({},state, action.item)
         default:
             return state
