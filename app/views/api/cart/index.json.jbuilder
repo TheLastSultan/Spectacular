@@ -6,4 +6,5 @@
 end 
 
 json.cart_count @cartitems.length
+json.price_total @cartitems.map{|item| item.price}.sum
 

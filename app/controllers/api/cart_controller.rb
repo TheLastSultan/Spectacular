@@ -7,8 +7,7 @@ class Api::CartController < ApplicationController
     end
 
     def create
-      debugger
-      @cartitem = Cartitem.create!(user_id: current_user.id, spectacle_id: params[:item][:spectacle_id].to_i )
+      @cartitem = Cartitem.create!(user_id: current_user.id, spectacle_id: params[:spectacleId].to_i )
     
       @spectacle_cart_item = current_user.cart.last
       render :show
@@ -16,8 +15,7 @@ class Api::CartController < ApplicationController
     end
   
     def destroy
-        debugger
-        @cartitem = current_user.cart.find(params[:item][:spectacle_id])
+        @cartitem = current_user.cart.find(params[:item][:spectacleId])
         if @cartitem.destroy
             render json: @cartitem
         end

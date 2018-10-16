@@ -8,11 +8,12 @@ import Navbar from './sidecomponents/navbar';
 // Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faShoppingCart, faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faShoppingCart, faWindowClose, faHeart } from '@fortawesome/free-solid-svg-icons'
 import SpectacleDetailContainer from './spectacles/spectacle_detail_container';
-import BasicModal from './sidecomponents/modal/basic_modal'; 
+import BasicModal from './sidecomponents/modal/basic_modal';
+import Cart from './cart/cart_Index_container'; 
 
-library.add(faSearch, faShoppingCart, faWindowClose)
+library.add(faSearch, faShoppingCart, faWindowClose, faHeart)
 
 const App = () => (
   <div className="app">
@@ -20,6 +21,7 @@ const App = () => (
       <div> 
         <Route  path="/" component={Navbar}/> 
         <Route exact path="/quiztime" component={BasicModal} /> 
+        <Route exact path="/cart" component={Cart} /> 
         <Route exact path="/login" component={LogInContainer} />
         <Route exact path="/signup" component={SignupContainer} />
         <Switch>

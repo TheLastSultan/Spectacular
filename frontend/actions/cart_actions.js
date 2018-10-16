@@ -20,19 +20,18 @@ export const receiveCartItem = item => ({
   });
 
 
-export const fetchCartItems = () => dispatch (
-    CartItemUtil.fetchCart().then(spectacles => dispatch(receiveCartItems(spectacles)))
+
+export const fetchCartItems = () => dispatch=> (
+    CartItemUtil.fetchCart().then(items => (dispatch (receiveCartItems(items))))
 ); 
 
-export const deleteCartItem = (UserIdAndCartId) => dispatch (
-    CartItemUtil.deleteCartItem(UserIdAndCartId).then(item => dispatch(removeCartItem(item)))
+export const deleteCartItem = (UserIdAndCartId) => dispatch => (
+    CartItemUtil.deleteCartItem(UserIdAndCartId).then(item => (dispatch(removeCartItem(item))))
 );
 
-export const sendCartItem = (item) => dispatch (
-    CartItemUtil.sendItem(item).then( item => dispatch(receiveCartItem(item)))
-    // [cart][:spectacle_id]
-)
-
+export const sendCartItem = (item) => dispatch => (
+    CartItemUtil.sendItem(item).then( item => (dispatch(receiveCartItem(item))))
+);
 
 
 

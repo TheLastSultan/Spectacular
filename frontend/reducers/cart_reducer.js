@@ -10,7 +10,7 @@ const cartReducer = (state = {} , action) => {
             return nextState 
         case RECEIVE_CART_ITEMS:
             return merge({}, state, action.items)
-        case RECEIVE_CART_ITEM:
+        case RECEIVE_CART_ITEM:            
             return merge({},state, action.item)
         default:
             return state

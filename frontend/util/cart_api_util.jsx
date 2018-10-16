@@ -9,7 +9,7 @@ export const sendItem = (item) => {
     return $.ajax({
         method: 'POST',
         url: '/api/cart',
-        data: {item}
+        data: item
     })
 } 
 
@@ -20,3 +20,6 @@ export const deleteCartItem = (UserIdAndCartId) => {
         data: {UserIdAndCartId}
     })
 };
+
+
+

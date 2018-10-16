@@ -61,7 +61,7 @@ class Navbar extends React.Component{
     <div className="navbar-container">
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#"> <span className="navbar-brand"> Spectacular </span></a>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav mr-auto">
                 <Link className="link-navbar" to='/'>
                     <span className="nav-item">Eyeglasses</span>
@@ -81,7 +81,7 @@ class Navbar extends React.Component{
                     <span className="nav-item">search  | </span>
                 </Link>
                 {display}  
-                <Link className="link-navbar" to={`#`}>
+                <Link className="link-navbar" to='/cart'>
                     <span className="nav-item">cart</span>
                     <FontAwesomeIcon icon="shopping-cart" className="faShoppingCart" />
                 </Link>   

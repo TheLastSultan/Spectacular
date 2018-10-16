@@ -1,12 +1,11 @@
 import React from 'react';
-import spectacleIndexItem from './spectacles_index_item';
 import { Link } from 'react-router-dom'; 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import merge from 'lodash/merge';
 
 
 
-class SpectacleIndexItem extends React.Component{
+class CartIndexItem extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -17,23 +16,11 @@ class SpectacleIndexItem extends React.Component{
     }
 
     handleClick(){
-        const spectacleId = this.props.spectacle.id
-        const item = {spectacleId: `${spectacleId}` }
-        this.props.sendCartItem(item);
-        const id = `spectacle-heart-${spectacle.id}`
-
-
-        if(this.state.addedToCart == true){
-            document.getElementById(id).setAttribute("color", "red")
-            this.setState({addedToCart: true})
-        } else{
-            document.getElementById(id).setAttribute("color", "white")
-            this.setState({addedToCart: false})
-        }
-             
+    
     }
 
     render(){
+        // debugger; 
         const {spectacle} = this.props
         return(
         <li className="spectacle-thumbnail col-md-3">
@@ -42,11 +29,12 @@ class SpectacleIndexItem extends React.Component{
                 <span className="spectacle-title">{spectacle.title}</span> 
             </Link>
             <div className="heart-icon">
-                <FontAwesomeIcon icon="heart" id={`spectacle-heart-${spectacle.id}`} onClick={this.handleClick }className="faHeart" />
+                <FontAwesomeIcon icon="heart" id={`spectacle-heart-${spectacle.id}`} className="faHeart" />
             </div>   
-        </li>) 
+        </li>
+        ) 
     }
     
 }; 
 
-export default SpectacleIndexItem;
+export default CartIndexItem;

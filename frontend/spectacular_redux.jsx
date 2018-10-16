@@ -28,25 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
       // TESTING
-    window.fetchSpectacles = fetchSpectacles
-    window.fetchSpectacle = fetchSpectacle
-    window.dispatch = store.dispatch;
-    window.getState = store.getState;
-    window.store = store 
-    window.signUp = signUp;
-    window.login = login;
-    window.logout = logout;
-    window.meezo = {user: {email: 'meezomeezo', password: 'password', username:'meezomeezo' }};
-    window.cartitem = {cartitem: {spectacle_id: 4 , user_id: 1}}
+    // window.fetchSpectacles = fetchSpectacles
+    // window.fetchSpectacle = fetchSpectacle
+    // window.dispatch = store.dispatch;
+    // window.getState = store.getState;
+    // window.store = store 
+    // window.signUp = signUp;
+    // window.login = login;
+    // window.logout = logout;
+    // window.meezo = {user: {email: 'meezomeezo', password: 'password', username:'meezomeezo' }};
+    // window.cartitem = {cartitem: {spectacle_id: 4 , user_id: 1}}
     // @cartitem = Cartitem.where(spectacle_id: params[:cartitem][:spectacle_id]).find_by(user_id: params[:cartitem][:user_id])
 
     // Cart Testing
-    window.fetchCartItems = fetchCartItems
-    window.deleteCartItem = deleteCartItem
-    window.fetchCart = fetchCart
-    window.removeCartItem = removeCartItem
-    window.receiveCartItems = receiveCartItems
-    window.sendCartItem = sendCartItem
+    // window.fetchCartItems = fetchCartItems
+    // window.deleteCartItem = deleteCartItem
+    // window.fetchCart = fetchCart
+    // window.removeCartItem = removeCartItem
+    // window.receiveCartItems = receiveCartItems
+    // window.sendCartItem = sendCartItem
 
 
     ReactDOM.render(<Root store={store} />, root);
