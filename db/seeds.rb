@@ -28,7 +28,7 @@ p "created 10 users"
 
     if felix.any?{|id| id == i }
         description = "felix"
-        material = "acetate"
+        material = ["acetate", "mixed"].sample
         shape = "square"
     elsif hardey.any?{|id| id == i}
         description = "hardey"
@@ -36,7 +36,7 @@ p "created 10 users"
         shape= "rectangle"
     else
         description = "hawkins"
-        material= "metal"
+        material= ["metal","mixed"].sample
         shape= "oval"
     end
 
