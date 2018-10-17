@@ -10,27 +10,13 @@ class SpectacleIndexItem extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            addedToCart: false 
+            addedToCart: this.props.spectacle.cart_status
         }
-
-        this.handleClick = this.handleClick.bind(this)
     }
 
-    handleClick(){
-        const spectacleId = this.props.spectacle.id
-        const item = {spectacleId: `${spectacleId}` }
-        this.props.sendCartItem(item);
-        const id = `spectacle-heart-${spectacleId}`
 
+    componentDidMount(){
 
-        if(this.state.addedToCart == true){
-            document.getElementById(id).setAttribute("color", "red")
-            this.setState({addedToCart: true})
-        } else{
-            document.getElementById(id).setAttribute("color", "white")
-            
-        }
-             
     }
 
     addItemToCart(){
@@ -74,7 +60,6 @@ class SpectacleIndexItem extends React.Component{
             </Link>
             <div className="heart-icon">
                 {this.handleCartButton()}
-                {/* <FontAwesomeIcon icon="heart" id={`spectacle-heart-${spectacle.id}`} onClick={this.handleClick }className="faHeart" /> */}
             </div>   
         </li>) 
     }
