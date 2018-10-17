@@ -13,10 +13,9 @@ p "created 10 users"
 (1..49).each do |i|
     possible_title= [Faker::Book.genre,
                     Faker::Book.publisher, 
-                    Faker::Ancient.hero,
                     Faker::Ancient.god, 
                     Faker::Address.state,
-                    Faker::Coffee.blend_name].sample.split(" ")[0]
+                    Faker::Coffee.blend_name].sample
 
 
     felix = (1..8).to_a + [12,13] + (22..27).to_a + [31,32,34,35,42,46,47,48 ,50]
