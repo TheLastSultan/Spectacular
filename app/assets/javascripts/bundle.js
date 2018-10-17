@@ -2078,7 +2078,6 @@ var cartReducer = function cartReducer() {
 
   switch (action.type) {
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CART_ITEM"]:
-      debugger;
       delete nextState[action.item.id];
       return nextState;
 

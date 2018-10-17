@@ -6,7 +6,6 @@ const cartReducer = (state = {} , action) => {
     let nextState = merge({}, state);
     switch (action.type) {
         case REMOVE_CART_ITEM: 
-            debugger;  
             delete nextState[action.item.id]
             return nextState 
         case RECEIVE_CART_ITEMS:
