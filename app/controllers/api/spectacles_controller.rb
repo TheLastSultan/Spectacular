@@ -1,9 +1,7 @@
 class Api::SpectaclesController < ApplicationController
 
     def index
-
         @spectacles = Spectacle.all
-        @carted_ids= current_user.cart.map{|item| item.id}
     end
 
     def show
