@@ -187,7 +187,7 @@ var sendCartItem = function sendCartItem(item) {
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, SESSION_ERRORS, CREATE_USER, receiveCurrentUser, receiveErrors, logoutCurrentUser, createThunkAction, login, signUp, logout */
+/*! exports provided: RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, SESSION_ERRORS, CREATE_USER, receiveCurrentUser, receiveErrors, logoutCurrentUser, logout, login, signUp */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -200,10 +200,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentUser", function() { return receiveCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutCurrentUser", function() { return logoutCurrentUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createThunkAction", function() { return createThunkAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUp", function() { return signUp; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony import */ var _util_session_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_util */ "./frontend/util/session_util.js");
 
 var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
@@ -237,35 +236,31 @@ var failure = function failure(errors) {
   dispatch(receiveErrors(errors));
 };
 
-var createThunkAction = function createThunkAction(callback) {
-  return function (users) {
-    return function (dispatch) {
-      return callback(users).then(success, failure);
-    };
-  };
-};
-var login = createThunkAction(_util_session_util__WEBPACK_IMPORTED_MODULE_0__["login"]);
-var signUp = createThunkAction(_util_session_util__WEBPACK_IMPORTED_MODULE_0__["signUp"]);
 var logout = function logout() {
   return function (dispatch) {
     return _util_session_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
       return dispatch(logoutCurrentUser());
     });
   };
-}; // export const login = user => dispatch => (
-//   SessionUtil.login(user).then(user => (
-//     dispatch(receiveCurrentUser(user))
-//   ), errors => (
-//     dispatch(receiveErrors(errors))
-//   ))
-// );
-// export const signUp = user => dispatch => (
-//   SessionUtil.signUp(user).then(user => (
-//     dispatch(receiveCurrentUser(user))
-//   ), errors => (
-//     dispatch(receiveErrors(errors))
-//   ))
-// );
+};
+var login = function login(user) {
+  return function (dispatch) {
+    return _util_session_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
+      return dispatch(receiveCurrentUser(user));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors));
+    });
+  };
+};
+var signUp = function signUp(user) {
+  return function (dispatch) {
+    return _util_session_util__WEBPACK_IMPORTED_MODULE_0__["signUp"](user).then(function (user) {
+      return dispatch(receiveCurrentUser(user));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors));
+    });
+  };
+};
 
 /***/ }),
 
@@ -451,7 +446,7 @@ var mapStateToProps = function mapStateToProps(state) {
     spectacles: Object.values(state.cart),
     loading: state.ui.loading.indexLoading,
     price: state.cart.price_total,
-    total_items: state.cart.cart_count
+    totalItems: state.cart.cart_count
   };
 };
 
@@ -497,6 +492,10 @@ function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      var _this$props = this.props,
+          price = _this$props.price,
+          totalItems = _this$props.totalItems;
+
       if (this.props.loading) {
         return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("h4", null, " loading.. ");
       }
@@ -508,7 +507,35 @@ function (_React$Component) {
           spectacle: spectacle
         });
       });
-      return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("ul", null, cartIndexItems));
+      return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "col-md-12 cart-container"
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "jumbotron-blank"
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", {
+        className: "total-items"
+      }, " You have ", totalItems, " items in your cart: "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", {
+        className: "price"
+      }, "  $", price, ".00 ")), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", null, " Checkout "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", {
+        className: "small-text"
+      }, " Free standard shipping and free returns on all your orders ")), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("ul", {
+        className: "cart-item-list-group"
+      }, cartIndexItems), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "hrBorder"
+      }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "cart-advertisement-container"
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", null, " Also worth checking out "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "cart-case"
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
+        className: "BlankAddToCart"
+      }, " Add To Cart ")), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "clean-my-lenses-kit"
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", null, " Add To Cart "))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "hrBorder"
+      }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+        className: "back-to-shopping"
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", null, " Still want to continue shopping? "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", null, " Shop Frames ")));
     }
   }]);
 
@@ -737,8 +764,6 @@ function (_React$Component) {
   }, {
     key: "conditionalRender",
     value: function conditionalRender() {
-      debugger;
-
       if (this.props.errors.length > 0) {
         return this.props.history.push('/login');
       } else {

@@ -47,7 +47,6 @@ class Login extends React.Component {
   }
 
   conditionalRender(){
-    debugger; 
     if (this.props.errors.length > 0 ){
       return this.props.history.push('/login')
     } else {

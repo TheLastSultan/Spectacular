@@ -8,8 +8,8 @@ const mapStateToProps = state => {
         spectacles: Object.values(state.cart),
         loading: state.ui.loading.indexLoading,
         price: state.cart.price_total,
-        total_items: state.cart.cart_count
-           }
+        totalItems: state.cart.cart_count
+        }
 };
 
 const mapDispatchToProps = dispatch => {
@@ -33,15 +33,49 @@ class CartIndex extends React.Component{
     
 
     render(){
-
+        const {price, totalItems} = this.props;
         if (this.props.loading) { return <h4> loading.. </h4>; }
 
         const cartIndexItems = this.props.spectacles.map( (spectacle) => <CartIndexItem  key={spectacle.id} deleteCartItem={this.props.deleteCartItem} spectacle={spectacle} />)
-            return(<div>
-                <ul>
+            return(
+            <div className="col-md-12 cart-container">
+                <div className="jumbotron-blank" >
+                    <div className="row"> 
+                        <span className= "total-items"> You have {totalItems} items in your cart: </span> 
+                        <span className="price">  ${price}.00 </span> 
+                    </div> 
+
+                    <button> Checkout </button> 
+                    <span className="small-text"> Free standard shipping and free returns on all your orders </span> 
+                
+                </div> 
+                
+                <ul className="cart-item-list-group">
                     {cartIndexItems}
-                </ul>
-            </div>); 
+                </ul> 
+
+                <div className="hrBorder"></div>
+
+                <div className="cart-advertisement-container">
+                    <span> Also worth checking out </span>
+                    <div className="cart-case">
+                    
+                        <button className="BlankAddToCart"> Add To Cart </button> 
+                    </div>
+                    <div className="clean-my-lenses-kit">
+                        <button> Add To Cart </button> 
+                    </div>
+                </div> 
+
+                <div className="hrBorder"></div> 
+                
+                <div className="back-to-shopping"> 
+                    <span> Still want to continue shopping? </span>
+                    <button> Shop Frames </button> 
+                </div>
+
+            </div>
+            ); 
     }
 }; 
 

@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
       update_user
     else 
       @user = guest_user 
-      login(@user), status: 422
+      login(@user)
       render :show
     end
   end
@@ -22,7 +22,7 @@ class Api::UsersController < ApplicationController
   def guest_user
     random_key = "guest" + SecureRandom.hex(5)
     @user = User.create!(username: random_key, email: random_key, password: "password" )
-    login(@user), status: 422 
+    login(@user) 
   end
 
   def update_user
