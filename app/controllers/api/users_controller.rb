@@ -22,7 +22,7 @@ class Api::UsersController < ApplicationController
 
   def guest_user
     random_key = "guest" + SecureRandom.hex(5)
-    @user = User.create!(username: random_key, email: random_key, password: "password" )
+    @user = User.create!(username: random_key, email: random_key, password: "password", guest_user: true )
     login(@user) 
   end
 
