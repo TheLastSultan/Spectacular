@@ -5,8 +5,16 @@ import Slider from "react-slick";
 export default class ReactSlickDemo extends React.Component {
   render() {
     var settings = {
-      dots: true
+      dots: false
     };
+
+    const felix = []
+    const hardey = []
+    const hawkins = []
+    const huges = []
+
+
+
     return (
       <div className="container">
         <Slider {...settings}>

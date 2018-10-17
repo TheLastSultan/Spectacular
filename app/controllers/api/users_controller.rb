@@ -4,7 +4,6 @@ class Api::UsersController < ApplicationController
 
  
   def create
-    debugger; 
     if logged_in? 
       update_user
     else 
@@ -30,6 +29,7 @@ class Api::UsersController < ApplicationController
     @user = current_user
     @user.update(user_params)
     if @user.save
+      @user.guest_user = false
       login(@user)
       render :show
     else

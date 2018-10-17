@@ -1,0 +1,53 @@
+input[type='radio'] { 
+    display: none;
+
+}
+
+input[type=radio]+label span {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  position:relative;
+  border-radius: 50%;
+  margin: 6px;
+/*   margin: -1px 4px 0 0; */
+  vertical-align: middle;
+  cursor: pointer;
+  background-size: 100px 75px;
+  background-position: center;
+  box-shadow: inset 0 0 0 4px #fff, 0 0 0 1px #414b56;
+/*     background-size: cover; */
+    cursor: pointer;
+    transition: border-color .1s;
+}
+
+input[type=radio]:checked +label span {
+  box-shadow: inset 0 0 0 4px #fff, 0 0 0 2px #414b56;
+}
+
+input[type=radio]+label span:hover{
+    outline: none;
+    border: 0;
+}
+
+
+input[type=radio]:checked+label span {
+  background-position: -25px top;
+}
+
+#black{
+  background:url('https://storage.googleapis.com/spec-tacular/9774b87ed5ebea7d5f6f7b9012f1e203d6b70c59.jpeg') left top no-repeat;
+}
+
+
+// <div>
+// <form>
+// <input id="r1" type="radio" name="fruit" value="apple" />
+// <label for="r1"> <span id="black"></span> </label>
+  
+// <input id="r2" type="radio" name="fruit" value="orange" />
+// <label for="r2"> <span></span> </label>  
+
+//  <input type="radio" name="fruit" value="watermelon" /><span>Watermelon</span>
+// </form>
+// </div>

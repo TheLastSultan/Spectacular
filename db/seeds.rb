@@ -2,13 +2,15 @@
     User.create!(
         username: "hello#{i}",
         email: "hello#{i}",
-        password: "password"
+        password: "password",
+        guest_user: false
     )
 end
 
 p "created 10 users"
 
-50.times do |i|
+
+48.times do |i|
     possible_title= [Faker::Book.genre,
                     Faker::Book.publisher, 
                     Faker::BossaNova.song, 
@@ -36,7 +38,6 @@ end
 
 p "created 50 spectacle details"
 
-
 (1..49).each do |i|
     Cartitem.create!(
         spectacle_id: i,
@@ -45,4 +46,3 @@ p "created 50 spectacle details"
 end
 
 p "created 50 cart items"
-

@@ -56,7 +56,7 @@ class SpectacleIndexItem extends React.Component{
         <li className="spectacle-thumbnail col-md-3">
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
                 <img src={spectacle.image_url} className="spectacle-image" alt={spectacle.title} /> 
-                <span className="spectacle-title">{spectacle.title}</span> 
+                <span className="spectacle-title">{spectacle.title}{spectacle.id}</span> 
             </Link>
             <div className="heart-icon">
                 {this.handleCartButton()}

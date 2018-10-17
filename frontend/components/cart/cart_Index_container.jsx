@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
     return {
-        spectacles: Object.values(state.cart),
+        spectacles: Object.values(state.cart.items),
         loading: state.ui.loading.indexLoading,
         price: state.cart.price_total,
         totalItems: state.cart.cart_count

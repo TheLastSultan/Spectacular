@@ -445,7 +445,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    spectacles: Object.values(state.cart),
+    spectacles: Object.values(state.cart.items),
     loading: state.ui.loading.indexLoading,
     price: state.cart.price_total,
     totalItems: state.cart.cart_count
@@ -921,20 +921,33 @@ function (_React$Component) {
   _createClass(Signup, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
       var user = Object.assign({}, {
         user: this.state
       });
-      this.props.createNewUser(user); // .then( () => this.props.history.push('/'))
+      this.props.createNewUser(user).then(function () {
+        return _this2.conditionalRender();
+      });
     }
   }, {
     key: "handleInput",
     value: function handleInput(type) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        _this2.setState(_defineProperty({}, type, e.target.value));
+        _this3.setState(_defineProperty({}, type, e.target.value));
       };
+    }
+  }, {
+    key: "conditionalRender",
+    value: function conditionalRender() {
+      if (this.props.errors.length > 0) {
+        return this.props.history.push('/login');
+      } else {
+        this.props.history.push('/');
+      }
     }
   }, {
     key: "renderErrors",
@@ -1314,7 +1327,8 @@ function (_React$Component) {
 
       if (Object(lodash__WEBPACK_IMPORTED_MODULE_5__["isEmpty"])(this.props.currentUser)) {
         this.props.signUp();
-      } else if (this.props.currentUser.session_token == undefined) {
+        display = guestUser;
+      } else if (this.props.currentUser.guest_user == true) {
         display = guestUser;
       } else {
         display = logOut;
@@ -1350,7 +1364,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "nav-item"
       }, "Home Try-On"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "navbar-nav mr-auto"
+        className: "navbar-nav custom-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link-navbar",
         to: "#"
@@ -1450,8 +1464,12 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var settings = {
-        dots: true
+        dots: false
       };
+      var felix = [];
+      var hardey = [];
+      var hawkins = [];
+      var huges = [];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, settings, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2066,7 +2084,7 @@ function (_React$Component) {
         alt: spectacle.title
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "spectacle-title"
-      }, spectacle.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, spectacle.title, spectacle.id)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "heart-icon"
       }, this.handleCartButton()));
     }
@@ -2090,8 +2108,10 @@ function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/cart_actions */ "./frontend/actions/cart_actions.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
@@ -2099,7 +2119,7 @@ var cartReducer = function cartReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state);
+  var nextState = lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state);
 
   switch (action.type) {
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CART_ITEM"]:
@@ -2107,10 +2127,13 @@ var cartReducer = function cartReducer() {
       return nextState;
 
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CART_ITEMS"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.items);
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.items);
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["LOGOUT_CURRENT_USER"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({});
 
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CART_ITEM"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, action.item);
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.item);
 
     default:
       return state;

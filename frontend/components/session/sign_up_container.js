@@ -31,7 +31,7 @@ class Signup extends React.Component {
         const user = Object.assign({}, {user:this.state})
     
         this.props.createNewUser(user)
-            // .then( () => this.props.history.push('/'))
+            .then( () => this.conditionalRender())
     }
 
     handleInput(type){
@@ -39,6 +39,14 @@ class Signup extends React.Component {
             this.setState({[type] : e.target.value});
         };
     }
+
+    conditionalRender(){
+        if (this.props.errors.length > 0 ){
+          return this.props.history.push('/login')
+        } else {
+          this.props.history.push('/')
+        }
+      }
 
     renderErrors() { 
         return(

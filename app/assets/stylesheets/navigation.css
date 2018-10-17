@@ -21,6 +21,10 @@ nav.navbar{
     padding-left: 4%;
 }
 
+.custom-nav{
+    margin-right: 10%; 
+}
+
 .nav-item{
     margin-left: 5px; 
     margin-right: 5px;

@@ -50,7 +50,8 @@ class Navbar extends React.Component{
     let display = undefined 
     if(isEmpty(this.props.currentUser)){
         this.props.signUp();
-    }else if(this.props.currentUser.session_token == undefined){
+        display = guestUser;
+    }else if(this.props.currentUser.guest_user == true){
         display = guestUser;
     }else{
         display = logOut; 
@@ -75,7 +76,7 @@ class Navbar extends React.Component{
             </ul>
 
         
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav custom-nav">
                 <Link className="link-navbar" to={`#`}>
                     <FontAwesomeIcon icon="search" className="faSearch" />
                     <span className="nav-item">search  | </span>
