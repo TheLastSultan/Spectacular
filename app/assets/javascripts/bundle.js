@@ -418,6 +418,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cart_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cart_index_item */ "./frontend/components/cart/cart_index_item.jsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -435,6 +436,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -522,9 +524,14 @@ function (_React$Component) {
         className: "hrBorder"
       }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
         className: "back-to-shopping"
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", null, " Still want to continue shopping? "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
-        className: "btn btn-outline-dark"
-      }, " Shop Frames ")));
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", {
+        className: "small-text"
+      }, " Still want to continue shopping? "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+        to: "/",
+        className: "spectacle-link"
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
+        className: "btn btn-outline-dark back-to-browse"
+      }, " Shop Frames "))));
     }
   }]);
 

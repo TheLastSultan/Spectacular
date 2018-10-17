@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { fetchCartItems, deleteCartItem} from '../../actions/cart_actions';
 import CartIndexItem from './cart_index_item';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
     return {
@@ -62,16 +63,18 @@ class CartIndex extends React.Component{
 
                 <div className="hrBorder"></div> 
                 
-                <div className="back-to-shopping"> 
-                    <span> Still want to continue shopping? </span>
-                    <button className="btn btn-outline-dark" > Shop Frames </button> 
+                <div className="back-to-shopping">
+                    <span className="small-text"> Still want to continue shopping? </span>
+                    
+                    <Link to={`/`} className="spectacle-link">
+                        <button className="btn btn-outline-dark back-to-browse" > Shop Frames </button> 
+                    </Link>
                 </div>
 
             </div>
             ); 
     }
 }; 
-
 
 
 

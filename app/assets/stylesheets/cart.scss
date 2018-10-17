@@ -80,3 +80,22 @@
     display: flex;
     flex-direction: column;
  }
+
+ .back-to-shopping{
+    display:flex;
+    justify-content: center; 
+    flex-direction: column;
+    margin-top: 4%;
+
+    
+
+    span{
+        text-align: center; 
+    }
+ }
+
+ .back-to-browse{
+    width: 10%;
+    margin: auto;
+    margin-top: 10px;    
+}
