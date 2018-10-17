@@ -4,6 +4,7 @@ class Api::UsersController < ApplicationController
 
  
   def create
+    debugger; 
     if logged_in? 
       update_user
     else 

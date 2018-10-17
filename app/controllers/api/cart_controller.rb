@@ -15,9 +15,10 @@ class Api::CartController < ApplicationController
     end
   
     def destroy
-        @cartitem = current_user.cart.find(params[:item][:spectacleId])
+        @spectacle = current_user.cart.find(params[:item][:spectacleId])
+        @cartitem = Cartitem.find_by(spectacle_id: @spectacle.id, user_id: current_user.id)
         if @cartitem.destroy
-            render json: @cartitem
+            render json: @spectacle
         end
     end
 
