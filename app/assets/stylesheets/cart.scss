@@ -2,7 +2,7 @@
 
 .jumbotron-blank{
     width: 100%;
-    min-height:300px;
+    min-height:250px;
     background-color: #f8f8f8;
     border-top: 1px solid #d0d5d8; 
     border-bottom: 1px solid#d0d5d8; 
@@ -57,11 +57,26 @@
     }
 }
 
-.cart-item-list-group{
+.cart-advertisement-container{
+    display: flex;
+    justify-content: center;
+    // width: 80%;
+
 
 }
 
 .hrBorder{
-
+    border-bottom: 2px solid#d0d5d8; 
 }
 
+.cart-thumbnail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+ }
+
+ .cart-information{
+    display: flex;
+    flex-direction: column;
+ }

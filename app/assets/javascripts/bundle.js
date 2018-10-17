@@ -525,17 +525,16 @@ function (_React$Component) {
         className: "hrBorder"
       }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
         className: "cart-advertisement-container"
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", null, " Also worth checking out "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
-        className: "cart-case"
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
-        className: "BlankAddToCart"
-      }, " Add To Cart ")), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
-        className: "clean-my-lenses-kit"
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", null, " Add To Cart "))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/AlsoWorthCheckingOut.png",
+        alt: "advertisement"
+      })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
         className: "hrBorder"
       }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
         className: "back-to-shopping"
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", null, " Still want to continue shopping? "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", null, " Shop Frames ")));
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("span", null, " Still want to continue shopping? "), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
+        className: "btn btn-outline-dark"
+      }, " Shop Frames ")));
     }
   }]);
 
@@ -610,9 +609,12 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       // debugger; 
+      // // {title: "Chuva de Prata", id: 2, fit: "Narrow", price: 169, material: "Mixed", …}
       var spectacle = this.props.spectacle;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "spectacle-thumbnail col-md-3"
+        className: "cart-thumbnail col-md-8"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        classname: "photo-aside col-md-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/spectacles/".concat(spectacle.id),
         className: "spectacle-link"
@@ -620,15 +622,23 @@ function (_React$Component) {
         src: spectacle.image_url,
         className: "spectacle-image",
         alt: spectacle.title
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "cart-information col-md-3"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "spectacle-title"
-      }, spectacle.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "heart-icon"
+      }, " ", spectacle.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "spectacle-color"
+      }, " ", spectacle.fit, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "single-vision"
+      }, " $", spectacle.price, ".00 "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "remove-icon col-md-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
         icon: "heart",
         id: "spectacle-heart-".concat(spectacle.id),
         className: "faHeart"
-      })));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "price col-md-1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ")));
     }
   }]);
 

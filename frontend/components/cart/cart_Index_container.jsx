@@ -47,9 +47,9 @@ class CartIndex extends React.Component{
 
                     <button> Checkout </button> 
                     <span className="small-text"> Free standard shipping and free returns on all your orders </span> 
-                
                 </div> 
-                
+
+               
                 <ul className="cart-item-list-group">
                     {cartIndexItems}
                 </ul> 
@@ -57,21 +57,14 @@ class CartIndex extends React.Component{
                 <div className="hrBorder"></div>
 
                 <div className="cart-advertisement-container">
-                    <span> Also worth checking out </span>
-                    <div className="cart-case">
-                    
-                        <button className="BlankAddToCart"> Add To Cart </button> 
-                    </div>
-                    <div className="clean-my-lenses-kit">
-                        <button> Add To Cart </button> 
-                    </div>
+                    <img src="https://storage.googleapis.com/spec-tacular/AlsoWorthCheckingOut.png" alt="advertisement"/>
                 </div> 
 
                 <div className="hrBorder"></div> 
                 
                 <div className="back-to-shopping"> 
                     <span> Still want to continue shopping? </span>
-                    <button> Shop Frames </button> 
+                    <button className="btn btn-outline-dark" > Shop Frames </button> 
                 </div>
 
             </div>
