@@ -366,7 +366,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_6__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faSearch"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faShoppingCart"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faWindowClose"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faHeart"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_6__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faSearch"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faShoppingCart"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faWindowClose"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faHeart"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faTimes"]);
 
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -608,8 +608,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger; 
-      // // {title: "Chuva de Prata", id: 2, fit: "Narrow", price: 169, material: "Mixed", …}
       var spectacle = this.props.spectacle;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "cart-thumbnail col-md-8"
@@ -633,9 +631,8 @@ function (_React$Component) {
       }, " $", spectacle.price, ".00 "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "remove-icon col-md-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
-        icon: "heart",
-        id: "spectacle-heart-".concat(spectacle.id),
-        className: "faHeart"
+        icon: "times",
+        className: "faTimes"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "price col-md-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ")));

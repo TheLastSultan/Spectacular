@@ -20,8 +20,6 @@ class CartIndexItem extends React.Component{
     }
 
     render(){
-        // debugger; 
-        // // {title: "Chuva de Prata", id: 2, fit: "Narrow", price: 169, material: "Mixed", …}
         const {spectacle} = this.props
         return(
         <li className="cart-thumbnail col-md-8">
@@ -37,15 +35,18 @@ class CartIndexItem extends React.Component{
                 <span> </span>
             </div> 
             <div className="remove-icon col-md-1">
-                <FontAwesomeIcon icon="heart" id={`spectacle-heart-${spectacle.id}`} className="faHeart" />
+                <FontAwesomeIcon icon="times"  className="faTimes" />
             </div>
             <div className="price col-md-1">
                 <span> </span>
             </div>    
         </li>
+  
         ) 
     }
     
 }; 
 
 export default CartIndexItem;
+
+

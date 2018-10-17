@@ -8,12 +8,12 @@ import Navbar from './sidecomponents/navbar';
 // Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faShoppingCart, faWindowClose, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faShoppingCart, faWindowClose, faHeart, faTimes} from '@fortawesome/free-solid-svg-icons'
 import SpectacleDetailContainer from './spectacles/spectacle_detail_container';
 import BasicModal from './sidecomponents/modal/basic_modal';
 import Cart from './cart/cart_Index_container'; 
 
-library.add(faSearch, faShoppingCart, faWindowClose, faHeart)
+library.add(faSearch, faShoppingCart, faWindowClose, faHeart, faTimes)
 
 const App = () => (
   <div className="app">
