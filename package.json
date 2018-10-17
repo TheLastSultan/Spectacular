@@ -22,6 +22,7 @@
     "babel-loader": "^8.0.4",
     "babel-runtime": "^6.26.0",
     "emotion": "^9.2.12",
+    "jquery": "^3.3.1",
     "lodash": "^4.17.11",
     "logger": "0.0.1",
     "prop-types": "^15.6.2",

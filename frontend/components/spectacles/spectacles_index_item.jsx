@@ -50,6 +50,32 @@ class SpectacleIndexItem extends React.Component{
         return (this.state.addedToCart) ? removeLikeButton : addLikeButton;
     }
 
+    handleRadioButton(){
+        const type = this.props.spectacle.description
+        if (type == "felix"){
+            this.felixRadioButtons()
+        } else if (type == "hardey"){
+            this.hardeyRadioButtons()
+        }
+        else{
+            this.hawkinsRadioButtons()
+        }
+    }
+
+    felixRadioButton(){
+        const {spectacle} = this.props
+
+    }
+
+    hardeyRadioButton(){
+
+    }
+
+    hawkinsRadioButton(){
+
+    }
+
+
     render(){
         const {spectacle} = this.props
         return(

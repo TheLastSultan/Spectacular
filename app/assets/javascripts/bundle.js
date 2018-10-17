@@ -2082,6 +2082,30 @@ function (_React$Component) {
       return this.state.addedToCart ? removeLikeButton : addLikeButton;
     }
   }, {
+    key: "handleRadioButton",
+    value: function handleRadioButton() {
+      var type = this.props.spectacle.description;
+
+      if (type == "felix") {
+        this.felixRadioButtons();
+      } else if (type == "hardey") {
+        this.hardeyRadioButtons();
+      } else {
+        this.hawkinsRadioButtons();
+      }
+    }
+  }, {
+    key: "felixRadioButton",
+    value: function felixRadioButton() {
+      var spectacle = this.props.spectacle;
+    }
+  }, {
+    key: "hardeyRadioButton",
+    value: function hardeyRadioButton() {}
+  }, {
+    key: "hawkinsRadioButton",
+    value: function hawkinsRadioButton() {}
+  }, {
     key: "render",
     value: function render() {
       var spectacle = this.props.spectacle;
