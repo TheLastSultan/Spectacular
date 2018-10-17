@@ -2,7 +2,7 @@ import React from 'react';
 import { fetchSpectacles, fetchSpectacle } from '../../actions/spectacle_action';
 import { connect } from 'react-redux';
 import SpectacleIndex from './spectacles_index';
-import {sendCartItem} from '../../actions/cart_actions';
+import {sendCartItem, deleteCartItem} from '../../actions/cart_actions';
 
 const mapStateToProps = state => {
     return {
@@ -14,7 +14,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchSpectacles: () => dispatch(fetchSpectacles()),
-        sendCartItem: (item) => dispatch(sendCartItem(item))
+        sendCartItem: (item) => dispatch(sendCartItem(item)),
+        removeCartItem: (item) => dispatch(deleteCartItem(item))
             }
 };
 

@@ -16,7 +16,7 @@ class SpectacleIndex extends React.Component{
     }
 
     render(){
-        const { spectacles , loading , sendCartItem } = this.props;
+        const { spectacles , loading , sendCartItem, removeCartItem} = this.props;
 
         if (loading) { return <h4> loading.. </h4>; }
              
@@ -25,7 +25,10 @@ class SpectacleIndex extends React.Component{
                 <div className="jumbotron jumbotron-fluid" ></div> 
                 <div className="row" >
                     <ul className="spectacle-list-group"> 
-                        {spectacles.map(spectacle => <SpectacleIndexItem key={spectacle.id} spectacle={spectacle} sendCartItem={sendCartItem} /> )}
+                        {spectacles.map(spectacle => <SpectacleIndexItem key={spectacle.id} 
+                                                        spectacle={spectacle} 
+                                                        removeCartItem={removeCartItem}
+                                                        sendCartItem={sendCartItem} /> )}
                     </ul> 
                 </div>
             </section>

@@ -104,3 +104,19 @@
     margin: auto;
     margin-top: 10px;    
 }
+
+.icon-likes {
+    background-image: url('https://storage.googleapis.com/instacram/like_stroke.svg');
+    background-color: white;
+    background-repeat: no-repeat;
+    border: none; 
+    
+    &.no-like {
+      background-image: url("https://storage.googleapis.com/instacram/like.svg");
+      background-color: white; 
+      background-repeat: no-repeat;
+      border: none;
+
+    }
+}
+

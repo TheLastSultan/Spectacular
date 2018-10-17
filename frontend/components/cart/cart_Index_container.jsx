@@ -37,7 +37,7 @@ class CartIndex extends React.Component{
         const {price, totalItems} = this.props;
         if (this.props.loading) { return <h4> loading.. </h4>; }
 
-        const cartIndexItems = this.props.spectacles.map( (spectacle) => <CartIndexItem  key={spectacle.id} deleteCartItem={this.props.deleteCartItem} spectacle={spectacle} />)
+        const cartIndexItems = this.props.spectacles.map( (spectacle) => <CartIndexItem  key={spectacle.id} deleteCartItem={this.props.deleteCartItem} fetchCartItems={this.props.fetchCartItems} spectacle={spectacle} />)
             return(
             <div className="col-md-12 cart-container">
                 <div className="jumbotron-blank" >

@@ -16,6 +16,7 @@ class CartIndexItem extends React.Component{
 
     handleClick(itemId){ 
         this.props.deleteCartItem(itemId);
+        this.props.fetchCartItems();
     
     }
 

@@ -496,6 +496,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_cart_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: spectacle.id,
           deleteCartItem: _this.props.deleteCartItem,
+          fetchCartItems: _this.props.fetchCartItems,
           spectacle: spectacle
         });
       });
@@ -602,6 +603,7 @@ function (_React$Component) {
     key: "handleClick",
     value: function handleClick(itemId) {
       this.props.deleteCartItem(itemId);
+      this.props.fetchCartItems();
     }
   }, {
     key: "render",
@@ -1862,7 +1864,8 @@ function (_React$Component) {
       var _this$props = this.props,
           spectacles = _this$props.spectacles,
           loading = _this$props.loading,
-          sendCartItem = _this$props.sendCartItem;
+          sendCartItem = _this$props.sendCartItem,
+          removeCartItem = _this$props.removeCartItem;
 
       if (loading) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " loading.. ");
@@ -1880,6 +1883,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: spectacle.id,
           spectacle: spectacle,
+          removeCartItem: removeCartItem,
           sendCartItem: sendCartItem
         });
       }))));
@@ -1931,6 +1935,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     sendCartItem: function sendCartItem(item) {
       return dispatch(Object(_actions_cart_actions__WEBPACK_IMPORTED_MODULE_4__["sendCartItem"])(item));
+    },
+    removeCartItem: function removeCartItem(item) {
+      return dispatch(Object(_actions_cart_actions__WEBPACK_IMPORTED_MODULE_4__["deleteCartItem"])(item));
     }
   };
 }; // store.dispatch(sendCartItem({spectacle_id: 27}))
@@ -2007,7 +2014,7 @@ function (_React$Component) {
         spectacleId: "".concat(spectacleId)
       };
       this.props.sendCartItem(item);
-      var id = "spectacle-heart-".concat(spectacle.id);
+      var id = "spectacle-heart-".concat(spectacleId);
 
       if (this.state.addedToCart == true) {
         document.getElementById(id).setAttribute("color", "red");
@@ -2016,10 +2023,50 @@ function (_React$Component) {
         });
       } else {
         document.getElementById(id).setAttribute("color", "white");
-        this.setState({
-          addedToCart: false
-        });
       }
+    }
+  }, {
+    key: "addItemToCart",
+    value: function addItemToCart() {
+      var _this2 = this;
+
+      var spectacleId = this.props.spectacle.id;
+      var item = {
+        spectacleId: "".concat(spectacleId)
+      };
+      this.props.sendCartItem(item).then(function () {
+        return _this2.setState({
+          addedToCart: true
+        });
+      });
+    }
+  }, {
+    key: "removeItemFromCart",
+    value: function removeItemFromCart() {
+      var spectacleId = this.props.spectacle.id;
+      this.props.removeCartItem(spectacleId).then(this.setState({
+        addedToCart: false
+      }));
+    }
+  }, {
+    key: "handleCartButton",
+    value: function handleCartButton() {
+      var _this3 = this;
+
+      var likeClass = this.state.addedToCart ? 'no-like' : 'like';
+      var addLikeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "icon icon-likes ".concat(likeClass),
+        onClick: function onClick() {
+          return _this3.addItemToCart();
+        }
+      }, "Like");
+      var removeLikeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "icon icon-likes ".concat(likeClass),
+        onClick: function onClick() {
+          return _this3.removeItemFromCart();
+        }
+      }, "Unlike");
+      return this.state.addedToCart ? removeLikeButton : addLikeButton;
     }
   }, {
     key: "render",
@@ -2038,12 +2085,7 @@ function (_React$Component) {
         className: "spectacle-title"
       }, spectacle.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "heart-icon"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"], {
-        icon: "heart",
-        id: "spectacle-heart-".concat(spectacle.id),
-        onClick: this.handleClick,
-        className: "faHeart"
-      })));
+      }, this.handleCartButton()));
     }
   }]);
 
@@ -2051,7 +2093,7 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 ;
-/* harmony default export */ __webpack_exports__["default"] = (SpectacleIndexItem);
+/* harmony default export */ __webpack_exports__["default"] = (SpectacleIndexItem); // /home/mobro/Downloads/AppAcademy/Spectacular/app/assets/images/like_stroke.svg
 
 /***/ }),
 
