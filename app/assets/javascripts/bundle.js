@@ -455,19 +455,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchCartItems: function fetchCartItems() {
       return dispatch(Object(_actions_cart_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCartItems"])());
     },
-    deleteCartItem: function (_deleteCartItem) {
-      function deleteCartItem(_x) {
-        return _deleteCartItem.apply(this, arguments);
-      }
-
-      deleteCartItem.toString = function () {
-        return _deleteCartItem.toString();
-      };
-
-      return deleteCartItem;
-    }(function (item) {
-      return dispatch(deleteCartItem(item));
-    })
+    deleteCartItem: function deleteCartItem(item) {
+      return dispatch(Object(_actions_cart_actions__WEBPACK_IMPORTED_MODULE_1__["deleteCartItem"])(item));
+    }
   };
 };
 
@@ -571,13 +561,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -598,17 +588,21 @@ function (_React$Component) {
     _this.state = {
       addedToCart: false
     };
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
   _createClass(CartIndexItem, [{
     key: "handleClick",
-    value: function handleClick() {}
+    value: function handleClick(itemId) {
+      this.props.deleteCartItem(itemId);
+    }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var spectacle = this.props.spectacle;
+      var itemId = spectacle.id;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "cart-thumbnail col-md-8"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -632,6 +626,9 @@ function (_React$Component) {
         className: "remove-icon col-md-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
         icon: "times",
+        onClick: function onClick() {
+          return _this2.handleClick(itemId);
+        },
         className: "faTimes"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "price col-md-1"
@@ -2074,7 +2071,8 @@ var cartReducer = function cartReducer() {
 
   switch (action.type) {
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_CART_ITEM"]:
-      delete nextState[action.item.cartitem.id];
+      debugger;
+      delete nextState[action.item.id];
       return nextState;
 
     case _actions_cart_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CART_ITEMS"]:
@@ -2505,12 +2503,14 @@ var sendItem = function sendItem(item) {
     data: item
   });
 };
-var deleteCartItem = function deleteCartItem(UserIdAndCartId) {
+var deleteCartItem = function deleteCartItem(spectacleId) {
   return $.ajax({
     method: 'DELETE',
     url: '/api/cart',
     data: {
-      UserIdAndCartId: UserIdAndCartId
+      item: {
+        spectacleId: spectacleId
+      }
     }
   });
 };

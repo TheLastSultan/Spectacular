@@ -13,11 +13,11 @@ export const sendItem = (item) => {
     })
 } 
 
-export const deleteCartItem = (UserIdAndCartId) => {
+export const deleteCartItem = (spectacleId) => {
     return $.ajax({
         method: 'DELETE',
         url: '/api/cart',
-        data: {UserIdAndCartId}
+        data: {item: {spectacleId}}
     })
 };
 

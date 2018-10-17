@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchCartItems} from '../../actions/cart_actions';
+import { fetchCartItems, deleteCartItem} from '../../actions/cart_actions';
 import CartIndexItem from './cart_index_item';
 import React from 'react';
 

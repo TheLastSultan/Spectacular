@@ -12,15 +12,16 @@ class CartIndexItem extends React.Component{
             addedToCart: false 
         }
 
-        this.handleClick = this.handleClick.bind(this)
     }
 
-    handleClick(){
+    handleClick(itemId){ 
+        this.props.deleteCartItem(itemId);
     
     }
 
     render(){
         const {spectacle} = this.props
+        const itemId = spectacle.id
         return(
         <li className="cart-thumbnail col-md-8">
             <div classname="photo-aside col-md-3">
@@ -35,7 +36,9 @@ class CartIndexItem extends React.Component{
                 <span> </span>
             </div> 
             <div className="remove-icon col-md-1">
-                <FontAwesomeIcon icon="times"  className="faTimes" />
+                <FontAwesomeIcon icon="times"  
+                onClick={() => this.handleClick(itemId)} 
+                className="faTimes" />
             </div>
             <div className="price col-md-1">
                 <span> </span>
