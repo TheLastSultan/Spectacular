@@ -1,14 +1,21 @@
-.splash-button{
+.splash-pri{
     color: #fff;
     background: #00a2e1;
     border: 1px solid #0089bf;
-    min-width: 284px;
-    padding: 0 24px;
-    height: 60px;
-    font-weight: 600;
-    font-size: 16px; 
-    margin-bottom: 1%
+    margin-right: 15px;
+    margin-top: 30px;
+    font-family: 'Neuton', serif;
+    font-size: 18px;
 }
+
+.splash-second{
+    font-family: 'Neuton', serif;
+    margin-top: 30px;
+    font-family: 'Neuton', serif;
+    font-size: 18px;
+
+}
+
 
 .homepage-container{
     display: flex;
@@ -37,3 +44,11 @@
     font-weight: bold;
     letter-spacing: 3px;
 }
+
+.aside2-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {border-radius: 0;}

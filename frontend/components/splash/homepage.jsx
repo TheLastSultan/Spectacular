@@ -27,10 +27,10 @@ export default class SplashPage extends React.Component {
                     </div>
                     <div className="spash-button-holders">
                         <Link to="/quiz" className="button-link">
-                            <button className="splash-button"> Take a quiz </button>
+                            <button className="splash-pri btn btn-primary btn-lg"> Take a quiz </button>
                         </Link>
                         <Link to="/browse" className="button-link">
-                            <button className="splash-button"> Browse Frames </button>
+                            <button className="splash-second btn btn-outline-secondary btn-lg"> Browse Frames </button>
                         </Link>
                     </div> 
                 </div>

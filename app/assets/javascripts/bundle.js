@@ -2348,12 +2348,12 @@ function (_React$Component) {
         to: "/quiz",
         className: "button-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "splash-button"
+        className: "splash-pri btn btn-primary btn-lg"
       }, " Take a quiz ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/browse",
         className: "button-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "splash-button"
+        className: "splash-second btn btn-outline-secondary btn-lg"
       }, " Browse Frames ")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-4 aside2-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
