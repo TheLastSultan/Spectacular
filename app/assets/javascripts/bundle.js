@@ -2004,13 +2004,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
 
@@ -2033,6 +2033,7 @@ function (_React$Component) {
       addedToCart: _this.props.spectacle.cart_status,
       imageUrl: _this.props.spectacle.image_url
     };
+    _this.onSelectedColor = _this.onSelectedColor.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -2092,23 +2093,19 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "radio",
           name: "radio-color" + index.toString(),
-          id: "r" + color + index.toString(),
+          id: "r" + color + index.toString() + "-" + _this4.props.spectacle.id.toString(),
           value: url + type + "/" + color + "/1.jpg",
-          onChange: function onChange(e) {
-            return _this4.onSelectedColor(e);
-          },
+          onChange: _this4.onSelectedColor,
           checked: _this4.state.image_url === url + type + "/" + color + "/1.jpg"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          for: "r" + color + index.toString()
-        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          id: color
-        }), " "));
+          for: "r" + color + index.toString() + "-" + _this4.props.spectacle.id.toString()
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null), " "));
       });
     }
   }, {
     key: "onSelectedColor",
     value: function onSelectedColor(e) {
-      debugger;
+      console.log(this.props.spectacle.id);
       this.setState({
         imageUrl: e.target.value
       });
@@ -2117,6 +2114,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var spectacle = this.props.spectacle;
+      console.log(spectacle.id);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "spectacle-thumbnail col-md-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
@@ -2132,7 +2130,9 @@ function (_React$Component) {
         className: "spectacle-index-options-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "heart-icon"
-      }, this.handleCartButton()), this.handleRadioButton()));
+      }, this.handleCartButton()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "radio-form"
+      }, this.handleRadioButton())));
     }
   }]);
 
