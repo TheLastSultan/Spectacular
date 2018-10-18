@@ -9,21 +9,24 @@ export default class SplashPage extends React.Component {
             messages: ["at home", "in your pajamas", "while cross-wording", "on the phone", "in your own mirror"],
             count: 0
         }
-
-       
     }
 
-    // displayMessage(){
-
-    // }
-
+    componentDidMount(){
+            setInterval( () => {
+            this.setState({
+            count: this.state.count + 1 
+            })
+        },5005)
+    }
     render() {
+        const message= <h1 className="animation fadeInLeft slow "> {this.state.messages[this.state.count % 5]}</h1> 
+
         return (
             <div className="homepage-container">
                 <div ClassName="col-md-6" id="main-container">
                     <div className="Static-Header">
-                        <h1 id="try-5"> Try 5 pairs for free While </h1>
-                        {/* {this.state.messages[count % 5]} */}
+                        <h1 id="try-5"> Try 5 pairs for free </h1>
+                        {message}
                     </div>
                     <div className="spash-button-holders">
                         <Link to="/quiz" className="button-link">

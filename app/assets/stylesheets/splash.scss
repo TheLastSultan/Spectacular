@@ -45,6 +45,14 @@
     letter-spacing: 3px;
 }
 
+#while{
+    font-family: 'Tinos', serif;
+    font-size: 60px; 
+    color: #414b56;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
 .aside2-container{
     display: flex;
     justify-content: center;
@@ -52,3 +60,11 @@
 }
 
 .btn {border-radius: 0;}
+
+
+.animation {
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    font-family: 'Tinos', serif;
+
+  }

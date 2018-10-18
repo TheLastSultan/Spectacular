@@ -2326,13 +2326,25 @@ function (_React$Component) {
       count: 0
     };
     return _this;
-  } // displayMessage(){
-  // }
-
+  }
 
   _createClass(SplashPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      setInterval(function () {
+        _this2.setState({
+          count: _this2.state.count + 1
+        });
+      }, 5005);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var message = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "animation fadeInLeft slow "
+      }, " ", this.state.messages[this.state.count % 5]);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "homepage-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2342,7 +2354,7 @@ function (_React$Component) {
         className: "Static-Header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         id: "try-5"
-      }, " Try 5 pairs for free While ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " Try 5 pairs for free "), message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spash-button-holders"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/quiz",
