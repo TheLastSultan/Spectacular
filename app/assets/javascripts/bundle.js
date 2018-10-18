@@ -1328,10 +1328,10 @@ function (_React$Component) {
       if (Object(lodash__WEBPACK_IMPORTED_MODULE_5__["isEmpty"])(this.props.currentUser)) {
         this.props.signUp();
         display = guestUser;
-      } else if (this.props.currentUser.guest_user == true) {
-        display = guestUser;
+      } else if (this.props.currentUser.guest_user == false) {
+        display = _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"];
       } else {
-        display = logOut;
+        display = guestUser;
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1454,32 +1454,36 @@ var ReactSlickDemo =
 function (_React$Component) {
   _inherits(ReactSlickDemo, _React$Component);
 
-  function ReactSlickDemo() {
+  function ReactSlickDemo(props) {
     _classCallCheck(this, ReactSlickDemo);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ReactSlickDemo).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ReactSlickDemo).call(this, props));
   }
 
   _createClass(ReactSlickDemo, [{
     key: "render",
     value: function render() {
       var settings = {
-        dots: false
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
       };
-      var felix = [];
-      var hardey = [];
-      var hawkins = [];
-      var huges = [];
+      var _this$props = this.props,
+          color = _this$props.color,
+          description = _this$props.description;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, settings, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/felix-3.png"
+        className: "img-slider",
+        slidersrc: "https://storage.googleapis.com/spec-tacular/" + description + "/" + color + "/1.jpg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/felix-1.png"
+        className: "img-slider",
+        src: "https://storage.googleapis.com/spec-tacular/" + description + "/" + color + "/2.jpg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/felix-2.png"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/felix-4.png"
+        className: "img-slider",
+        src: "https://storage.googleapis.com/spec-tacular/" + description + "/" + color + "/3.jpg"
       }))));
     }
   }]);
@@ -1693,6 +1697,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _spectacles_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./spectacles_index */ "./frontend/components/spectacles/spectacles_index.jsx");
 /* harmony import */ var _sidecomponents_slider_slide_root__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../sidecomponents/slider/slide_root */ "./frontend/components/sidecomponents/slider/slide_root.jsx");
 /* harmony import */ var _sidecomponents_slick_slider_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../sidecomponents/slick-slider/component */ "./frontend/components/sidecomponents/slick-slider/component.jsx");
+/* harmony import */ var _actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/cart_actions */ "./frontend/actions/cart_actions.js");
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-spinners */ "./node_modules/react-spinners/index.js");
+/* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_7__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1718,6 +1725,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var spectacle = state.entities.spectacles[ownProps.match.params.spectacleId]; // debugger; 
 
@@ -1734,6 +1743,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchSpectacle: function fetchSpectacle(id) {
       return dispatch(Object(_actions_spectacle_action__WEBPACK_IMPORTED_MODULE_1__["fetchSpectacle"])(id));
+    },
+    sendCartItem: function sendCartItem(item) {
+      return dispatch(Object(_actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__["sendCartItem"])(item));
+    },
+    removeCartItem: function removeCartItem(item) {
+      return dispatch(Object(_actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__["deleteCartItem"])(item));
     }
   };
 };
@@ -1744,9 +1759,16 @@ function (_React$Component) {
   _inherits(SpectacleDetail, _React$Component);
 
   function SpectacleDetail(props) {
+    var _this;
+
     _classCallCheck(this, SpectacleDetail);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
+    _this.state = {
+      addedToCart: false,
+      color_selected: false
+    };
+    return _this;
   }
 
   _createClass(SpectacleDetail, [{
@@ -1761,34 +1783,112 @@ function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchSpectacles();
       this.props.fetchSpectacle(this.props.match.params.spectacleId);
-    } // color "green"
-    // description"Facere lomo pork belly. Bicycle rights id suscipit. Iure pbr&b amet nisi minus. 8-bit a organic accusamus natus exercitationem you probably haven't heard of them. Et tattooed quia butcher voluptatem mustache."
-    // fit"Wide"
-    // id3
-    // image_url "/assets/3-5f1131d3b452e2a597cf3533925b18c609398948dff7ef0498a89d6856bff943.jpg"
-    // material "Polycarbonate"
-    // sex false
-    // shape"Oval"
-    // staffpick:true
-    // title:string
 
+      if (this.state.color_selected == false && this.props.loading == false) {
+        this.setState({
+          color_selected: this.props.spectacle.color[0]
+        });
+      }
+    }
+  }, {
+    key: "handleRadioButton",
+    value: function handleRadioButton() {
+      var _this2 = this;
+
+      var url = "https://storage.googleapis.com/spec-tacular/";
+      var type = this.props.spectacle.description;
+      return this.props.spectacle.color.map(function (color, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          className: "spectacle-color-options"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "radio",
+          name: "radio-color" + index.toString(),
+          id: "r" + color + index.toString() + "-" + _this2.props.spectacle.id.toString(),
+          value: color,
+          onChange: function onChange(e) {
+            return _this2.onSelectedColor(e);
+          },
+          checked: _this2.state.color_selected === color
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          for: "r" + color + index.toString() + "-" + _this2.props.spectacle.id.toString()
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          id: color
+        }), " "));
+      });
+    }
+  }, {
+    key: "onSelectedColor",
+    value: function onSelectedColor(e) {
+      this.setState({
+        color_selected: e.target.value
+      });
+    }
+  }, {
+    key: "addItemToCart",
+    value: function addItemToCart() {
+      var _this3 = this;
+
+      var spectacleId = this.props.spectacle.id;
+      var item = {
+        spectacleId: "".concat(spectacleId)
+      };
+      this.props.sendCartItem(item).then(function () {
+        return _this3.setState({
+          addedToCart: true
+        });
+      });
+    }
+  }, {
+    key: "removeItemFromCart",
+    value: function removeItemFromCart() {
+      var _this4 = this;
+
+      var spectacleId = this.props.spectacle.id;
+      this.props.removeCartItem(spectacleId).then(function () {
+        return _this4.setState({
+          addedToCart: false
+        });
+      });
+    }
+  }, {
+    key: "handleCartButton",
+    value: function handleCartButton() {
+      var _this5 = this;
+
+      var likeClass = this.state.addedToCart ? 'no-like' : 'like';
+      var addLikeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "detail-a",
+        onClick: function onClick() {
+          return _this5.addItemToCart();
+        }
+      }, " Add Item to Cart ");
+      var removeLikeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "detail-a",
+        onClick: function onClick() {
+          return _this5.removeItemFromCart();
+        }
+      }, " Remove Item from Cart ");
+      return this.state.addedToCart ? removeLikeButton : addLikeButton;
+    }
   }, {
     key: "render",
     value: function render() {
+      // debugger; 
       if (this.props.loading) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null);
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "large-loader-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_spinners__WEBPACK_IMPORTED_MODULE_7__["ClipLoader"], {
+          sizeUnit: "px",
+          size: 500,
+          color: '#123abc'
+        })));
       }
 
       var _this$props$spectacle = this.props.spectacle,
-          color = _this$props$spectacle.color,
+          sex = _this$props$spectacle.sex,
           description = _this$props$spectacle.description,
-          fit = _this$props$spectacle.fit,
-          material = _this$props$spectacle.material,
-          shape = _this$props$spectacle.shape,
-          staffpick = _this$props$spectacle.staffpick,
           title = _this$props$spectacle.title,
           price = _this$props$spectacle.price;
-      var sex = this.props.spectacle.sex;
 
       if (title != false) {
         sex = "UNISEX";
@@ -1796,20 +1896,24 @@ function (_React$Component) {
         sex = "Women";
       }
 
+      var color = this.state.color_selected || this.props.spectacle.color[0];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "col-md-12 spectacle-detail"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "tagline"
-      }, " Glasses / ", sex, " / ", title, "  "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidecomponents_slick_slider_component__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " Glasses / ", sex, " / ", title, "  "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidecomponents_slick_slider_component__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        color: color,
+        description: description
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "detail-elements"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "detail-title"
       }, " ", title, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Starting at $", price, ", including prescription lenses "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "detail-radio-container"
+      }, this.handleRadioButton()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-holders"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary btn-lg detail-btn"
-      }, " Try at home for free "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-primary btn-lg detail-btn"
+      }, this.handleCartButton(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "detail-a"
       }, " Buy from 95$ "))));
     }
   }]);

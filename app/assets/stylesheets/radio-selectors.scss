@@ -10,13 +10,13 @@ input[type=radio]+label span {
   position:relative;
   border-radius: 50%;
   margin: 6px;
-/*   margin: -1px 4px 0 0; */
+  margin: -1px 4px 0 0;
   vertical-align: middle;
   cursor: pointer;
   background-size: 100px 75px;
   background-position: center;
   box-shadow: inset 0 0 0 4px #fff, 0 0 0 1px #414b56;
-/*     background-size: cover; */
+  background-size: cover;
     cursor: pointer;
     transition: border-color .1s;
 }
@@ -36,11 +36,12 @@ input[type=radio]:checked+label span {
 }
 
 #black{
-  background:url('https://storage.googleapis.com/spec-tacular/9774b87ed5ebea7d5f6f7b9012f1e203d6b70c59.jpeg') left top no-repeat;
+  background-image: radial-gradient(circle, #a63754, #f08da7);
 }
 
 #crystal{
-  background:url('https://storage.googleapis.com/spec-tacular/radio_color_buttons/crystal.jpeg') left top no-repeat;
+ 
+  background-image: radial-gradient(circle, #a96735,#e8985c);
 }
 
 #gold{
@@ -57,7 +58,8 @@ input[type=radio]:checked+label span {
 }
 
 #sandlewood{
-  background:url('https://storage.googleapis.com/spec-tacular/radio_color_buttons/sandlewood.jpeg') left top no-repeat;
+  background-image: radial-gradient(circle, #a63754, #f08da7);
+
 }
 
 #silver{
@@ -69,7 +71,8 @@ input[type=radio]:checked+label span {
 }
 
 #whiskey{
-  background:url('https://storage.googleapis.com/spec-tacular/radio_color_buttons/whiskey.jpeg') left top no-repeat;
+  background-image: radial-gradient(circle, #fbc100, #23212e);
+
 }
 
 

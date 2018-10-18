@@ -3,32 +3,34 @@ import ReactDOM from "react-dom";
 import Slider from "react-slick";
 
 export default class ReactSlickDemo extends React.Component {
+  
+  constructor(props){
+    super(props);
+  }
+  
   render() {
+    
     var settings = {
-      dots: false
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
     };
 
-    const felix = []
-    const hardey = []
-    const hawkins = []
-    const huges = []
-
-
+    const { color , description} = this.props
 
     return (
       <div className="container">
         <Slider {...settings}>
           <div>
-            <img src="https://storage.googleapis.com/spec-tacular/felix-3.png" />
+            <img className="img-slider" slidersrc={"https://storage.googleapis.com/spec-tacular/"+description+"/"+ color+"/1.jpg"} />
           </div>
           <div>
-            <img src="https://storage.googleapis.com/spec-tacular/felix-1.png" />
+            <img className="img-slider" src={"https://storage.googleapis.com/spec-tacular/"+description+"/"+ color+"/2.jpg"} />
           </div>
           <div>
-            <img src="https://storage.googleapis.com/spec-tacular/felix-2.png" />
-          </div>
-          <div>
-            <img src="https://storage.googleapis.com/spec-tacular/felix-4.png" />
+            <img className="img-slider" src={"https://storage.googleapis.com/spec-tacular/"+description+"/"+ color+"/3.jpg"} />
           </div>
         </Slider>
       </div>

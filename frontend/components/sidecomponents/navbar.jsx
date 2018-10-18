@@ -51,10 +51,10 @@ class Navbar extends React.Component{
     if(isEmpty(this.props.currentUser)){
         this.props.signUp();
         display = guestUser;
-    }else if(this.props.currentUser.guest_user == true){
-        display = guestUser;
+    }else if(this.props.currentUser.guest_user == false){
+        display = logout; 
     }else{
-        display = logOut; 
+        display = guestUser; 
     }
 
     return (
