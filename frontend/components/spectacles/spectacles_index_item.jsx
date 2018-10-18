@@ -35,18 +35,18 @@ class SpectacleIndexItem extends React.Component{
         const heartLogo = (this.state.addedToCart) ? 'fa-heart' : 'fa-heart-o'
     
         const addLikeButton = (
-          <button
-            className={`icon icon-likes ${likeClass}`}
-            onClick={() => this.addItemToCart()}
-            >
-            <i class={`fa ${heartLogo} fa1`} aria-hidden="true"></i>
+            <button
+                className={`icon icon-likes ${likeClass}`}
+                onClick={() => this.addItemToCart()}>
+                <i class={`fa ${heartLogo} fa1`} aria-hidden="true"></i>
             </button>
         );
         const removeLikeButton = (
           <button
             className={`icon icon-likes ${likeClass}`}
-            onClick={() => this.removeItemFromCart()}
-            > Unlike </button>
+            onClick={() => this.removeItemFromCart()}>
+            <i class={`fa ${heartLogo} fa1`} aria-hidden="true"></i>
+            </button>
         );
         return (this.state.addedToCart) ? removeLikeButton : addLikeButton;
     }
