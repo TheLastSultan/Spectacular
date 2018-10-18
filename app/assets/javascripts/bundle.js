@@ -1461,27 +1461,35 @@ function (_React$Component) {
   }
 
   _createClass(ReactSlickDemo, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
     key: "render",
     value: function render() {
       var settings = {
         dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
+        speed: 500
       };
       var _this$props = this.props,
           color = _this$props.color,
           description = _this$props.description;
+      var image1 = "https://storage.googleapis.com/spec-tacular/" + description + "/" + color + "/1.jpg";
+      var image2 = "https://storage.googleapis.com/spec-tacular/" + description + "/" + color + "/2.jpg";
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, settings, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, settings, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "imageSliderHolder"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "img-slider",
-        slidersrc: "https://storage.googleapis.com/spec-tacular/" + description + "/" + color + "/1.jpg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: image1
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "imageSliderHolder"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "img-slider",
-        src: "https://storage.googleapis.com/spec-tacular/" + description + "/" + color + "/2.jpg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: image2
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "imageSliderHolder"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "img-slider",
         src: "https://storage.googleapis.com/spec-tacular/" + description + "/" + color + "/3.jpg"
       }))));
@@ -1898,7 +1906,7 @@ function (_React$Component) {
 
       var color = this.state.color_selected || this.props.spectacle.color[0];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "col-md-12 spectacle-detail"
+        className: "col-md-10 spectacle-detail"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "tagline"
       }, " Glasses / ", sex, " / ", title, "  "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidecomponents_slick_slider_component__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -2006,13 +2014,13 @@ function (_React$Component) {
 
       ;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "col-md-12 spectacle-app"
+        className: "spectacle-app"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "jumbotron jumbotron-fluid"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "spectacle-list-group"
+        className: "container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spectacles-grid"
       }, spectacles.map(function (spectacle) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: spectacle.id,
@@ -2170,18 +2178,25 @@ function (_React$Component) {
       var _this3 = this;
 
       var likeClass = this.state.addedToCart ? 'no-like' : 'like';
+      var heartLogo = this.state.addedToCart ? 'fa-heart' : 'fa-heart-o';
       var addLikeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "icon icon-likes ".concat(likeClass),
         onClick: function onClick() {
           return _this3.addItemToCart();
         }
-      }, " Like ");
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        class: "fa ".concat(heartLogo, " fa1"),
+        "aria-hidden": "true"
+      }));
       var removeLikeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "icon icon-likes ".concat(likeClass),
         onClick: function onClick() {
           return _this3.removeItemFromCart();
         }
-      }, " Unlike ");
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        class: "fa ".concat(heartLogo, " fa1"),
+        "aria-hidden": "true"
+      }));
       return this.state.addedToCart ? removeLikeButton : addLikeButton;
     }
   }, {
@@ -2219,8 +2234,8 @@ function (_React$Component) {
     value: function render() {
       var spectacle = this.props.spectacle;
       console.log(spectacle.id);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "spectacle-thumbnail col-md-3"
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spectacle-grid-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/spectacles/".concat(spectacle.id),
         className: "spectacle-link"
@@ -2228,15 +2243,15 @@ function (_React$Component) {
         src: this.state.imageUrl,
         className: "spectacle-image",
         alt: spectacle.title
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "spectacle-title"
-      }, spectacle.title, spectacle.id)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spectacle-index-options-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "heart-icon"
-      }, this.handleCartButton()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "spectacle-title"
+      }, spectacle.title, spectacle.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "radio-form"
-      }, this.handleRadioButton())));
+      }, this.handleRadioButton(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "heart-icon"
+      }, this.handleCartButton()))));
     }
   }]);
 

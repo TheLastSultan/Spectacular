@@ -8,28 +8,34 @@ export default class ReactSlickDemo extends React.Component {
     super(props);
   }
   
+
+  componentDidMount(){
+    
+  }
+
+
   render() {
     
     var settings = {
       dots: false,
-      infinite: true,
       speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
     };
 
     const { color , description} = this.props
 
+    const image1 = "https://storage.googleapis.com/spec-tacular/"+description+"/"+ color+"/1.jpg"
+    const image2 = "https://storage.googleapis.com/spec-tacular/"+description+"/"+ color+"/2.jpg"
+
     return (
       <div className="container">
         <Slider {...settings}>
-          <div>
-            <img className="img-slider" slidersrc={"https://storage.googleapis.com/spec-tacular/"+description+"/"+ color+"/1.jpg"} />
+          <div className="imageSliderHolder">
+            <img className="img-slider" src={image1} />
           </div>
-          <div>
-            <img className="img-slider" src={"https://storage.googleapis.com/spec-tacular/"+description+"/"+ color+"/2.jpg"} />
+          <div className="imageSliderHolder">
+            <img className="img-slider" src={image2} />
           </div>
-          <div>
+          <div className="imageSliderHolder">
             <img className="img-slider" src={"https://storage.googleapis.com/spec-tacular/"+description+"/"+ color+"/3.jpg"} />
           </div>
         </Slider>

@@ -45,7 +45,7 @@ class SpectacleDetail extends React.Component{
 
     componentDidMount(){
       this.props.fetchSpectacles();
-      this.props.fetchSpectacle(this.props.match.params.spectacleId);
+      this.props.fetchSpectacle(this.props.match.params.spectacleId); 
       if (this.state.color_selected == false && this.props.loading == false ){
           this.setState({color_selected: this.props.spectacle.color[0]})
       }
@@ -129,7 +129,7 @@ class SpectacleDetail extends React.Component{
         let color = this.state.color_selected || this.props.spectacle.color[0]
 
         return(
-            <section className="col-md-12 spectacle-detail">
+            <section className="col-md-10 spectacle-detail">
                 <h3 className="tagline"> Glasses / {sex} / {title}  </h3> 
                     <ReactSlick color={color} description={description} />
                 <div className="detail-elements">

@@ -17,6 +17,7 @@
   .tagline{
       font-family: proxima-nova,helvetica,verdana,sans-serif;
       text-transform: uppercase;
+      margin-top: 3%;
       position: absolute; 
       font-size: 16px; 
   }
@@ -29,6 +30,15 @@
 
 .container{
     padding-bottom: 0px;
+    justify-content: center;
+    width: 50%;
+    margin-top: 5%; 
+    
+}
+
+.slick-slider{
+    width: 66%;
+    margin: auto;
 }
 
 
@@ -60,6 +70,10 @@
     padding-right: 18px;
 }
 
+.spectacle-detail{
+    margin: auto;
+}
+
 .button-holders{
     display: flex;
     justify-content: center; 
@@ -84,3 +98,5 @@
     max-width: 100%;
     max-height: 100%; 
 }
+
+.imageSliderHolder{}

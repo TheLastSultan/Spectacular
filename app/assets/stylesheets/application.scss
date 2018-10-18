@@ -76,7 +76,7 @@
     flex-direction: column;
     flex-grow: 0;
     flex-shrink: 0;
-    flex-basis: 353px;
+    flex-basis: 350px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -112,15 +112,7 @@
     will-change: opacity;
     opacity: 0;
 }
-// .spectacle-grid-item:hover {
-//     -webkit-transform: translate(0, -4px);
-//     -webkit-transform: translate3d(0, -4px, 0);
-//     transform: translate(0, -4px);
-//     transform: translate3d(0, -4px, 0);
-// }
-.spectacle-grid-item:hover:before {
-    opacity: 1;
-}
+
 
 .radio-form{
   display: flex;
@@ -222,6 +214,9 @@
         overflow: hidden;
         outline:none;
         color: red;
+        i {
+            transition: color .5s ease;
+        }
         i.fa.fa-heart.fa1 {
             color: #f30f0f;
         }
