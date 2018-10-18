@@ -69,7 +69,7 @@ class SpectacleIndexItem extends React.Component{
 
     onSelectedColor(e){
         debugger; 
-        this.setState({ imageUrl: e.currentTarget.value});
+        this.setState({ imageUrl: e.target.value});
     }
 
 

@@ -2110,7 +2110,7 @@ function (_React$Component) {
     value: function onSelectedColor(e) {
       debugger;
       this.setState({
-        imageUrl: e.currentTarget.value
+        imageUrl: e.target.value
       });
     }
   }, {
