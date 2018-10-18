@@ -32,12 +32,15 @@ class SpectacleIndexItem extends React.Component{
     handleCartButton() {
 
         const likeClass = (this.state.addedToCart) ? 'no-like' : 'like';
+        const heartLogo = (this.state.addedToCart) ? 'fa-heart' : 'fa-heart-o'
     
         const addLikeButton = (
           <button
             className={`icon icon-likes ${likeClass}`}
             onClick={() => this.addItemToCart()}
-            > Like </button>
+            >
+            <i class={`fa ${heartLogo} fa1`} aria-hidden="true"></i>
+            </button>
         );
         const removeLikeButton = (
           <button
@@ -77,21 +80,20 @@ class SpectacleIndexItem extends React.Component{
         const {spectacle} = this.props
         console.log(spectacle.id);
         return(
-        <li className="spectacle-thumbnail col-md-3">
+        <div className="spectacle-grid-item">
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
-                <img src={this.state.imageUrl} className="spectacle-image" alt={spectacle.title} /> 
-                <span className="spectacle-title">{spectacle.title}{spectacle.id}</span> 
+                <img src={this.state.imageUrl} className="spectacle-image" alt={spectacle.title} />
             </Link>
             <div className="spectacle-index-options-container">
-                <div className="heart-icon">
-                    {this.handleCartButton()}
-                </div> 
+                <span className="spectacle-title">{spectacle.title}{spectacle.id}</span> 
                 <form className="radio-form">
                     {this.handleRadioButton()}
+                    <div className="heart-icon">
+                        {this.handleCartButton()}
+                    </div> 
                 </form>
-               
             </div>  
-        </li>) 
+        </div>) 
     }
     
 }; 
