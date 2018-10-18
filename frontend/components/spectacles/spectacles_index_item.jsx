@@ -80,7 +80,6 @@ class SpectacleIndexItem extends React.Component{
 
     render(){
         const {spectacle} = this.props
-        console.log(spectacle.id);
         return(
         <li className="spectacle-thumbnail col-md-3">
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">

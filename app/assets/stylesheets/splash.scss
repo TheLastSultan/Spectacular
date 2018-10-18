@@ -1,0 +1,39 @@
+.splash-button{
+    color: #fff;
+    background: #00a2e1;
+    border: 1px solid #0089bf;
+    min-width: 284px;
+    padding: 0 24px;
+    height: 60px;
+    font-weight: 600;
+    font-size: 16px; 
+    margin-bottom: 1%
+}
+
+.homepage-container{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    background-color: #f8f8f8;
+    width: 100%; 
+    min-height: 1000px; 
+}
+
+#main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.static-header{
+    
+}
+
+#try-5{
+    font-family: 'Tinos', serif;
+    font-size: 70px; 
+    color: #414b56;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
