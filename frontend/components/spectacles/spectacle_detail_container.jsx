@@ -151,7 +151,9 @@ class SpectacleDetail extends React.Component{
                     </div> 
                     <div className="button-holders">
                         {this.handleCartButton()}
-                        <button className="detail-a"> Buy from ${price} </button>
+                        <Link to={'/cart'}>
+                            <button className="detail-a"> Buy from ${price} </button>
+                        </Link>
                     </div>
 
                     <div className="detail-detail-container">

@@ -1938,9 +1938,11 @@ function (_React$Component) {
         className: "detail-radio-container"
       }, this.handleRadioButton()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-holders"
-      }, this.handleCartButton(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, this.handleCartButton(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Link"], {
+        to: '/cart'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "detail-a"
-      }, " Buy from $", price, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " Buy from $", price, " "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "detail-detail-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://storage.googleapis.com/spec-tacular/detail-page/about-the-frames.png"
@@ -2253,16 +2255,20 @@ function (_React$Component) {
           checked: _this4.state.image_url === url + type + "/" + color + "/1.jpg"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           for: "r" + color + index.toString() + "-" + _this4.props.spectacle.id.toString()
-        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null), " "));
+        }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          id: color
+        }), " "));
       });
     }
   }, {
     key: "onSelectedColor",
     value: function onSelectedColor(e) {
+      // debugger; 
       console.log(this.props.spectacle.id);
       this.setState({
         imageUrl: e.target.value
       });
+      document.getElementById("spectacle-" + this.props.spectacle.id.toString()).setAttribute("class", "transform-y");
     }
   }, {
     key: "render",
@@ -2277,6 +2283,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.imageUrl,
         className: "spectacle-image",
+        id: "spectacle-" + spectacle.id.toString(),
         alt: spectacle.title
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spectacle-index-options-container"

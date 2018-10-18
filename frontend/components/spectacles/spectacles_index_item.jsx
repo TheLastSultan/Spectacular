@@ -64,15 +64,17 @@ class SpectacleIndexItem extends React.Component{
                     onChange={this.onSelectedColor}
                     checked={this.state.image_url === url + type + "/" + color + "/1.jpg" }
                 /> 
-                <label for={"r"+ color + index.toString() + "-" + this.props.spectacle.id.toString() } > <span ></span> </label>
+                <label for={"r"+ color + index.toString() + "-" + this.props.spectacle.id.toString() } > <span id={color}></span> </label>
             </div>
         
         ))
     }
 
     onSelectedColor(e){
+        // debugger; 
         console.log(this.props.spectacle.id);   
-        this.setState({ imageUrl: e.target.value});
+        this.setState({ imageUrl: e.target.value})
+        document.getElementById("spectacle-" + this.props.spectacle.id.toString()).setAttribute("class", "transform-y");    
     }
 
 
@@ -82,7 +84,8 @@ class SpectacleIndexItem extends React.Component{
         return(
         <div className="spectacle-grid-item">
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
-                <img src={this.state.imageUrl} className="spectacle-image" alt={spectacle.title} />
+                <img src={this.state.imageUrl} className="spectacle-image" 
+                id={"spectacle-" + spectacle.id.toString()} alt={spectacle.title} />
             </Link>
             <div className="spectacle-index-options-container">
                 <span className="spectacle-title">{spectacle.title}{spectacle.id}</span> 
