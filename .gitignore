@@ -30,3 +30,5 @@ node_modules/
 /frontend/node_modules/
 /frontend/bundle.js
 /frontend/bundle.js.map
+app/assets/javascripts/bundle.js
+app/assets/javascripts/bundle.js.map
