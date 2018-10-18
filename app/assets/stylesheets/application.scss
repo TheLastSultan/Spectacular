@@ -14,182 +14,6 @@
  *= require_self
  */
 
-.large-loader-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.transform-y{
-    transform: translateY(-17.3%);
-    position: relative; 
-    // padding: 10px ;
-    padding-left: 15px; 
-    padding-right: 15px;
-    min-height: 70%;
-    // max-height: 15%; 
-    max-width: 100%;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-
-
-.spectacle-app{
-    
-}
-
-
-.row li{
-    margin: 10px; 
-    padding: 10px; 
-}
-
-.spectacle-list-group{
-    display: flex; 
-    flex-wrap: wrap;
-    align-content: space-evenly; 
-    justify-content: space-evenly;
-    padding-left: 0px;
-    margin-left: 10%;
-    margin-right: 10%; 
-
-
-}
-
-.spectacle-thumbnail{
-    margin: 5px;
-    padding: 10px;  
-    position: absolute; 
-    display: flex ; 
-    flex-direction: column; 
-
-}
-
-.spectacle-image{
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
- 
-    
-}
-
-.spectacle-group-item{
-    justify-content: center; 
-    flex-wrap: wrap; 
-
-}
-
-.spectacle-image{
-    position: relative; 
-    // padding: 10px ;
-    padding-left: 15px; 
-    padding-right: 15px;
-    min-height: 70%;
-    // max-height: 15%; 
-    max-width: 100%;
-}
-
-.spectacle-link{
-    text-align: center; 
-}
-
-
-.spectacle-title{
-    font-size: 22px; 
-    width: 100%; 
-    font-family: 'Neuton', serif;
-    margin-top: 10px; 
-    font-weight: 450;
-    line-height: calc(1em+6px);
-    color: #414b56; 
-    font-weight: bold;
-}
-
-
-
-  /* TiTLE PAGE */
-  .spectacle-detail{
-    position: relative; 
-    /* display: flex;  */
-    display: flex;
-    flex-direction: column; 
-  }
-
-  .detail-title{
-    /* text-align: center;  */
-    align-items: center;
-    margin-bottom: 5px;
-  }
-
-  .detail-btn{
-    color:#00a2f5;
-    margin-left: 10px;  
-  }
-
-  .detail-elements span{
-      margin-bottom: 10px;
-  }
-
-
-
-  .detail-elements{
-    /* position: absolute; */
-    /* background-color: red; */
-    flex-direction: column;
-    // justify-content: center;
-    // display: flex; 
-    align-items: center; 
-  }
-  
-  .tagline{
-      font-family: proxima-nova,helvetica,verdana,sans-serif;
-      text-transform: uppercase;
-      position: absolute; 
-      font-size: 16px; 
-  }
-
- 
-  .spectacle-color-options{
-    display: flex; 
-  }
-  
-  .heart-icon{
-    margin-right: 20%;
-  }
-
-  .spectacle-index-options-container{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-   
-  }
-
-  .radio-form{
-    display: flex;
-  }
-  
-// DJLKDJ:FLKJ
-// ;kadsf;akljdfs
-
-
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
  .large-loader-container{
     display: flex;
     justify-content: center;
@@ -201,6 +25,10 @@
     
 }
 
+.row{
+    /* justify-content: center; */
+    /* flex-1: 100% */
+}
 
 .row li{
     margin: 10px; 
@@ -220,19 +48,16 @@
 }
 
 .spectacle-thumbnail{
-    margin: 5px;
-    padding: 10px;  
-    position: absolute; 
+    margin: 5px; 
+    flex-direction: column ;
+    position: relative; 
     display: flex ; 
-    flex-direction: column; 
 
 }
 
 .spectacle-image{
     width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
- 
+    margin-bottom: 5%;
     
 }
 
@@ -243,13 +68,12 @@
 }
 
 .spectacle-image{
-    position: relative; 
-    // padding: 10px ;
+    padding: 10px ;
     padding-left: 15px; 
-    padding-right: 15px;
-    min-height: 70%;
-    // max-height: 15%; 
+    padding-right: 15px; 
     max-width: 100%;
+    border: 0; 
+
 }
 
 .spectacle-link{
@@ -316,18 +140,40 @@
     display: flex; 
   }
   
+  
   .heart-icon{
-    margin-right: 20%;
-  }
-
-  .spectacle-index-options-container{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-   
-  }
-
-  .radio-form{
-    display: flex;
+    line-height: 0;
+    font-size: 27px;
+    order: 1;
+    button {
+        background-color: Transparent;
+        background-repeat:no-repeat;
+        border: none;
+        cursor:pointer;
+        overflow: hidden;
+        outline:none;
+        color: red;
+        i {
+            transition: color .5s ease;
+        }
+        i.fa.fa-heart.fa1 {
+            color: #f30f0f;
+        }
+        i.fa.fa-heart-o.fa1 {
+            color: lightgray;
+        }
+    }
   }
   
+  .spectacle-index-options-container{
+    width: 90%;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.radio-form{
+    display: flex;
+    justify-content: center;
+    margin-top: 3px;
+    margin-right: 20%;
+  }

@@ -82,21 +82,21 @@ class SpectacleIndexItem extends React.Component{
         const {spectacle} = this.props
         console.log(spectacle.id);
         return(
-        <div className="spectacle-grid-item">
+        <li className="spectacle-thumbnail col-md-3">
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
-                <img src={this.state.imageUrl} className="spectacle-image" 
-                id={"spectacle-" + spectacle.id.toString()} alt={spectacle.title} />
+                <img src={this.state.imageUrl} className="spectacle-image" alt={spectacle.title} /> 
+                <span className="spectacle-title">{spectacle.title}{spectacle.id}</span> 
             </Link>
             <div className="spectacle-index-options-container">
-                <span className="spectacle-title">{spectacle.title}{spectacle.id}</span> 
+                <div className="heart-icon">
+                    {this.handleCartButton()}
+                </div> 
                 <form className="radio-form">
                     {this.handleRadioButton()}
-                    <div className="heart-icon">
-                        {this.handleCartButton()}
-                    </div> 
                 </form>
+               
             </div>  
-        </div>) 
+        </li>) 
     }
     
 }; 

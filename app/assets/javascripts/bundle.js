@@ -2051,13 +2051,13 @@ function (_React$Component) {
 
       ;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "spectacle-app"
+        className: "col-md-12 spectacle-app"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "jumbotron jumbotron-fluid"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "spectacles-grid"
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "spectacle-list-group"
       }, spectacles.map(function (spectacle) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: spectacle.id,
@@ -2275,25 +2275,24 @@ function (_React$Component) {
     value: function render() {
       var spectacle = this.props.spectacle;
       console.log(spectacle.id);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "spectacle-grid-item"
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "spectacle-thumbnail col-md-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/spectacles/".concat(spectacle.id),
         className: "spectacle-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.imageUrl,
         className: "spectacle-image",
-        id: "spectacle-" + spectacle.id.toString(),
         alt: spectacle.title
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "spectacle-index-options-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "spectacle-title"
-      }, spectacle.title, spectacle.id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "radio-form"
-      }, this.handleRadioButton(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, spectacle.title, spectacle.id)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spectacle-index-options-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "heart-icon"
-      }, this.handleCartButton()))));
+      }, this.handleCartButton()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "radio-form"
+      }, this.handleRadioButton())));
     }
   }]);
 

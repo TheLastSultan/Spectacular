@@ -33,17 +33,18 @@ class SpectacleIndex extends React.Component{
         };
              
         return(
-            <section className="spectacle-app">
-                <div className="jumbotron jumbotron-fluid" ></div>
-                <div className="container">
-                    <div className="spectacles-grid">
+            <section className="col-md-12 spectacle-app">
+                <div className="jumbotron jumbotron-fluid" ></div> 
+                <div className="row" >
+                    <ul className="spectacle-list-group"> 
                         {spectacles.map(spectacle => <SpectacleIndexItem key={spectacle.id} 
                                                         spectacle={spectacle} 
                                                         removeCartItem={removeCartItem}
                                                         sendCartItem={sendCartItem} /> )}
-                    </div>
+                    </ul> 
                 </div>
             </section>
+
         ); 
     }
 }; 
