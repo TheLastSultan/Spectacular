@@ -24,18 +24,23 @@ p "created 10 users"
     description = nil 
     material = nil
     shape = nil 
+    color = nil 
 
     if felix.any?{|id| id == i }
         description = "felix"
         material = ["acetate", "mixed"].sample
+        color = ["crystal","sandlewood","whiskey"]
         shape = "square"
     elsif hardey.any?{|id| id == i}
-        description = "hardey"
+        description = "Hardey"
         material = "mixed"
-        shape= "rectangle"
+        shape = "rectangle"
+        color = ["jetblack","pacific","turqouise"]
     else
-        description = "hawkins"
+        description = "Hawkins"
+        color = ["gold","silver"]
         material= ["metal","mixed"].sample
+        color= ["silver","gold"]
         shape= "oval"
     end
 
@@ -47,7 +52,7 @@ p "created 10 users"
     possible_staffpick = [true, false].sample
 
     Spectacle.create!(
-        color: Faker::Color.color_name, 
+        color: color,
         shape: shape,
         description: description,
         title: possible_title,

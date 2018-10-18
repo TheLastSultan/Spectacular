@@ -10,13 +10,11 @@ class SpectacleIndexItem extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            addedToCart: this.props.spectacle.cart_status
+            addedToCart: this.props.spectacle.cart_status,
+            imageUrl: this.props.spectacle.image_url 
         }
-    }
 
-
-    componentDidMount(){
-
+        
     }
 
     addItemToCart(){
@@ -39,40 +37,39 @@ class SpectacleIndexItem extends React.Component{
           <button
             className={`icon icon-likes ${likeClass}`}
             onClick={() => this.addItemToCart()}
-            >Like</button>
+            > Like </button>
         );
         const removeLikeButton = (
           <button
             className={`icon icon-likes ${likeClass}`}
             onClick={() => this.removeItemFromCart()}
-            >Unlike</button>
+            > Unlike </button>
         );
         return (this.state.addedToCart) ? removeLikeButton : addLikeButton;
     }
 
     handleRadioButton(){
-        const type = this.props.spectacle.description
-        if (type == "felix"){
-            this.felixRadioButtons()
-        } else if (type == "hardey"){
-            this.hardeyRadioButtons()
-        }
-        else{
-            this.hawkinsRadioButtons()
-        }
+        const url = "https://storage.googleapis.com/spec-tacular/"
+        const type= this.props.spectacle.description
+        return(this.props.spectacle.color.map((color, index) => 
+            <div className="spectacle-color-options">
+                <input 
+                    type="radio"
+                    name={"radio-color" + index.toString() }
+                    id={"r" + color + index.toString()}
+                    value={ url + type + "/" + color + "/1.jpg" }
+                    onChange={(e) => this.onSelectedColor(e)}
+                    checked={this.state.image_url === url + type + "/" + color + "/1.jpg" }
+                /> 
+                <label for={"r"+ color + index.toString()} > <span id={color}></span> </label>
+            </div>
+        
+        ))
     }
 
-    felixRadioButton(){
-        const {spectacle} = this.props
-
-    }
-
-    hardeyRadioButton(){
-
-    }
-
-    hawkinsRadioButton(){
-
+    onSelectedColor(e){
+        debugger; 
+        this.setState({ imageUrl: e.currentTarget.value});
     }
 
 
@@ -81,12 +78,17 @@ class SpectacleIndexItem extends React.Component{
         return(
         <li className="spectacle-thumbnail col-md-3">
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
-                <img src={spectacle.image_url} className="spectacle-image" alt={spectacle.title} /> 
+                <img src={this.state.imageUrl} className="spectacle-image" alt={spectacle.title} /> 
                 <span className="spectacle-title">{spectacle.title}{spectacle.id}</span> 
             </Link>
-            <div className="heart-icon">
-                {this.handleCartButton()}
-            </div>   
+            <div className="spectacle-index-options-container">
+                <div className="heart-icon">
+                    {this.handleCartButton()}
+                </div> 
+               
+                {this.handleRadioButton()}
+               
+            </div>  
         </li>) 
     }
     

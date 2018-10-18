@@ -14,8 +14,8 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['@babel/env', '@babel/react', "react", "env"],
-            plugins: [ "@babel/plugin-proposal-class-properties", "emotion"]
+            presets: ['@babel/env', '@babel/react'],
+            plugins: [ '@babel/plugin-proposal-class-properties', 'emotion']
           }
         },
       }
