@@ -42,6 +42,7 @@
 }
 
 
+
   .detail-a {
     display: inline-block;
     -webkit-appearance: none;
@@ -77,7 +78,7 @@
 .button-holders{
     display: flex;
     justify-content: center; 
-    
+    margin-top: 2%; 
     // margin-right: 5%;
 }
 
@@ -100,3 +101,34 @@
 }
 
 .imageSliderHolder{}
+
+.slides {
+    position: relative;
+    .slick-prev, .slick-next {
+      position: absolute;
+      top: 50%;
+    }
+    
+    .slick-next {
+      right: 5%;
+    }
+  }
+
+  .slick-prev {
+    display: block;
+    height: 800px;
+    width: 400px;
+}
+
+.slick-nex{
+    display: block;
+    height: 800px;
+    width: 400px;
+}
+
+.detail-detail-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4%; 
+}
+

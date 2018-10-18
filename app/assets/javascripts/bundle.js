@@ -1708,6 +1708,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_cart_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/cart_actions */ "./frontend/actions/cart_actions.js");
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-spinners */ "./node_modules/react-spinners/index.js");
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_spinners__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1725,6 +1726,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1774,7 +1776,8 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SpectacleDetail).call(this, props));
     _this.state = {
       addedToCart: false,
-      color_selected: false
+      color_selected: false,
+      progresive: false
     };
     return _this;
   }
@@ -1879,8 +1882,23 @@ function (_React$Component) {
       return this.state.addedToCart ? removeLikeButton : addLikeButton;
     }
   }, {
+    key: "switchBetweenRx",
+    value: function switchBetweenRx() {
+      if (this.state.progressive == true) {
+        this.setState({
+          progresive: false
+        });
+      } else {
+        this.setState({
+          progressive: true
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this6 = this;
+
       // debugger; 
       if (this.props.loading) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1922,7 +1940,24 @@ function (_React$Component) {
         className: "button-holders"
       }, this.handleCartButton(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "detail-a"
-      }, " Buy from 95$ "))));
+      }, " Buy from $", price, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "detail-detail-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/detail-page/about-the-frames.png"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: function onClick() {
+          return _this6.switchBetweenRx();
+        }
+      }, this.state.progressive ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/detail-page/Rx-options-1b.png"
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/detail-page/rx-options-2.png"
+      }), console.log(this.state.progressive)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Link"], {
+        to: '/',
+        className: "detail-link"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/detail-page/Recommended.png"
+      })))));
     }
   }]);
 

@@ -6,6 +6,7 @@ import SlideShow from '../sidecomponents/slider/slide_root';
 import ReactSlick from '../sidecomponents/slick-slider/component';
 import {sendCartItem, deleteCartItem} from '../../actions/cart_actions';
 import { ClipLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -33,7 +34,8 @@ class SpectacleDetail extends React.Component{
         super(props);
         this.state = {
             addedToCart: false,
-            color_selected: false
+            color_selected: false,
+            progresive: false
         }
     }
 
@@ -105,6 +107,13 @@ class SpectacleDetail extends React.Component{
         return (this.state.addedToCart) ? removeLikeButton : addLikeButton;
     }
 
+    switchBetweenRx(){
+        if (this.state.progressive == true){
+            this.setState({progresive:false})
+        }else{
+            this.setState({progressive:true})
+        }
+    }
     
     render(){
         // debugger; 
@@ -126,6 +135,8 @@ class SpectacleDetail extends React.Component{
         }
 
 
+
+
         let color = this.state.color_selected || this.props.spectacle.color[0]
 
         return(
@@ -140,7 +151,24 @@ class SpectacleDetail extends React.Component{
                     </div> 
                     <div className="button-holders">
                         {this.handleCartButton()}
-                        <button className="detail-a"> Buy from 95$ </button>
+                        <button className="detail-a"> Buy from ${price} </button>
+                    </div>
+
+                    <div className="detail-detail-container">
+                        
+                        <img src="https://storage.googleapis.com/spec-tacular/detail-page/about-the-frames.png" />
+                        
+                        <div onClick={() => this.switchBetweenRx()}> 
+                            {this.state.progressive ? <img src="https://storage.googleapis.com/spec-tacular/detail-page/Rx-options-1b.png"/> :
+                        <img src="https://storage.googleapis.com/spec-tacular/detail-page/rx-options-2.png"/>}
+                        {console.log(this.state.progressive)}
+                        
+                        </div>
+                        
+                        <Link to={'/'} className="detail-link">
+                            <img src="https://storage.googleapis.com/spec-tacular/detail-page/Recommended.png"/>
+                        </Link>
+                    
                     </div> 
                 </div> 
             </section>
@@ -153,3 +181,5 @@ export default connect(mapStateToProps,mapDispatchToProps)(SpectacleDetail);
 
 
 
+
+            
