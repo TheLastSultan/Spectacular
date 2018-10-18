@@ -32,7 +32,7 @@ p "created 10 users"
         color = ["crystal","sandlewood","whiskey"]
         shape = "square"
     elsif hardey.any?{|id| id == i}
-        description = "Hardey"
+        description = "Hardy"
         material = "mixed"
         shape = "rectangle"
         color = ["jetblack","pacific","turqouise"]

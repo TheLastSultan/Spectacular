@@ -14,7 +14,7 @@ class SpectacleIndexItem extends React.Component{
             imageUrl: this.props.spectacle.image_url 
         }
 
-        
+        this.onSelectedColor = this.onSelectedColor.bind(this);
     }
 
     addItemToCart(){
@@ -55,26 +55,27 @@ class SpectacleIndexItem extends React.Component{
             <div className="spectacle-color-options">
                 <input 
                     type="radio"
-                    name={"radio-color" + index.toString() }
-                    id={"r" + color + index.toString()}
+                    name={"radio-color" + index.toString()}
+                    id={"r" + color + index.toString() + "-" + this.props.spectacle.id.toString() }
                     value={ url + type + "/" + color + "/1.jpg" }
-                    onChange={(e) => this.onSelectedColor(e)}
+                    onChange={this.onSelectedColor}
                     checked={this.state.image_url === url + type + "/" + color + "/1.jpg" }
                 /> 
-                <label for={"r"+ color + index.toString()} > <span id={color}></span> </label>
+                <label for={"r"+ color + index.toString() + "-" + this.props.spectacle.id.toString() } > <span ></span> </label>
             </div>
         
         ))
     }
 
     onSelectedColor(e){
-        debugger; 
-        this.setState({ imageUrl: e.currentTarget.value});
+        console.log(this.props.spectacle.id);   
+        this.setState({ imageUrl: e.target.value});
     }
 
 
     render(){
         const {spectacle} = this.props
+        console.log(spectacle.id);
         return(
         <li className="spectacle-thumbnail col-md-3">
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
@@ -85,8 +86,9 @@ class SpectacleIndexItem extends React.Component{
                 <div className="heart-icon">
                     {this.handleCartButton()}
                 </div> 
-               
-                {this.handleRadioButton()}
+                <form className="radio-form">
+                    {this.handleRadioButton()}
+                </form>
                
             </div>  
         </li>) 
