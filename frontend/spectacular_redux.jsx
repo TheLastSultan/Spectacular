@@ -4,7 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 // TESTING IMPORTS
-import {fetchSpectacle, fetchSpectacles} from './actions/spectacle_action';
+import {fetchSpectacle, fetchSpectacles, fetchPickedSpectacle} from './actions/spectacle_action';
 import {fetchCart} from './util/cart_api_util'
 import {recieveSpectacle, recieveSpectacles} from './actions/spectacle_action';
 import {login, logout, signUp} from './actions/session_actions'; 
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.logout = logout;
     // window.meezo = {user: {email: 'meezomeezo', password: 'password', username:'meezomeezo' }};
     // window.cartitem = {cartitem: {spectacle_id: 4 , user_id: 1}}
-    // @cartitem = Cartitem.where(spectacle_id: params[:cartitem][:spectacle_id]).find_by(user_id: params[:cartitem][:user_id])
+    // window.fetchPickedSpectacle = fetchPickedSpectacle
 
-    // Cart Testing
+    // // Cart Testing
     // window.fetchCartItems = fetchCartItems
     // window.deleteCartItem = deleteCartItem
     // window.fetchCart = fetchCart

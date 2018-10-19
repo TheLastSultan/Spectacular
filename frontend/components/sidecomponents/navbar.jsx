@@ -64,15 +64,15 @@ class Navbar extends React.Component{
         <a className="navbar-brand" href="#"> <span className="navbar-brand"> Spectacular </span></a>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav mr-auto">
-                <Link className="link-navbar" to='/'>
+                <Link className="link-navbar" to='/browse'>
                     <span className="nav-item">Eyeglasses</span>
-                </Link>
-                <Link className="link-navbar" to='/'>
-                    <span className="nav-item">Sunglasses</span>
-                </Link>  
+                </Link> 
                 <Link className="link-navbar" to='/'>
                     <span className="nav-item">Home Try-On</span>
-                </Link>            
+                </Link>   
+                <Link className="link-navbar" to='https://github.com/TheLastSultan/Spectacular'>
+                    <span className="nav-item">GithubRepo</span>
+                </Link>          
             </ul>
 
         

@@ -16,7 +16,7 @@ export default class SplashPage extends React.Component {
             this.setState({
             count: this.state.count + 1 
             })
-        },5005)
+        },5003)
     }
     render() {
         const message= <h1 className="animation fadeInLeft slow "> {this.state.messages[this.state.count % 5]}</h1> 
@@ -29,7 +29,7 @@ export default class SplashPage extends React.Component {
                         {message}
                     </div>
                     <div className="spash-button-holders">
-                        <Link to="/quiz" className="button-link">
+                        <Link to="/quiztime" className="button-link">
                             <button className="splash-pri btn btn-primary btn-lg"> Take a quiz </button>
                         </Link>
                         <Link to="/browse" className="button-link">

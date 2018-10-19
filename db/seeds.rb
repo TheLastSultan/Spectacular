@@ -49,7 +49,7 @@ p "created 10 users"
     possible_fit = ["Narrow", "Medium", "Wide"].sample
     possible_price = (100..200).to_a.sample
     possible_sex = [true, false ].sample
-    possible_staffpick = [true, false].sample
+    possible_staffpick = [true, false, true, false].sample
 
     Spectacle.create!(
         color: color,

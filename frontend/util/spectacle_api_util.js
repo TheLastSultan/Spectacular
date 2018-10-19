@@ -12,14 +12,22 @@ export const fetchSpectacles = () => (
     })
   );
 
-export const fetchSelectedSpectacles = () => {
-    const obj = {shape: "Oval", material:"Polycarbonate" }
-    const param = $.param(obj)
-    return ($.ajax({
-        method: 'POST',
-        url: ``
-    }))
-}
+  export const fetchpickedSpectacles = searchobj => (
+    $.ajax({
+      method: 'POST',
+      url: "/api/pick",
+      data: {spectacles: {searchobj}}
+    })
+  )
+
+// export const fetchSelectedSpectacles = () => {
+//     const obj = {shape: "Oval", material:"Polycarbonate" }
+//     const param = $.param(obj)
+//     return ($.ajax({
+//         method: 'POST',
+//         url: ``
+//     }))
+// }
 
 
 // possible_shapes = ["Round", "Oval", "Square"].sample

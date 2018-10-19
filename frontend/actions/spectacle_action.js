@@ -35,3 +35,7 @@ export const fetchSpectacle = id => dispatch => {
     return SpectacleAPIUtil.fetchSpectacle(id).then(spectacle => dispatch(receiveSpectacle(spectacle)))
 };
 
+export const fetchPickedSpectacle = searchobj => dispatch => {
+    return SpectacleAPIUtil.fetchpickedSpectacles(searchobj).then(spectacles => {dispatch(receiveSpectacles(spectacles))});
+};
+

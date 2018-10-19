@@ -236,7 +236,7 @@ var signUp = function signUp(user) {
 /*!**********************************************!*\
   !*** ./frontend/actions/spectacle_action.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_SPECTACLES, RECEIVE_SPECTACLE, START_LOADING_ALL_SPECTACLES, START_LOADING_SINGLE_SPECTACLE, loadingAllSpectacles, loadingOneSpectacle, receiveSpectacle, receiveSpectacles, fetchSpectacles, fetchSpectacle */
+/*! exports provided: RECEIVE_SPECTACLES, RECEIVE_SPECTACLE, START_LOADING_ALL_SPECTACLES, START_LOADING_SINGLE_SPECTACLE, loadingAllSpectacles, loadingOneSpectacle, receiveSpectacle, receiveSpectacles, fetchSpectacles, fetchSpectacle, fetchPickedSpectacle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -251,6 +251,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSpectacles", function() { return receiveSpectacles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpectacles", function() { return fetchSpectacles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpectacle", function() { return fetchSpectacle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPickedSpectacle", function() { return fetchPickedSpectacle; });
 /* harmony import */ var _util_spectacle_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/spectacle_api_util */ "./frontend/util/spectacle_api_util.js");
 
 var RECEIVE_SPECTACLES = "RECEIVE_SPECTACLES";
@@ -293,6 +294,13 @@ var fetchSpectacle = function fetchSpectacle(id) {
     dispatch(loadingOneSpectacle());
     return _util_spectacle_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSpectacle"](id).then(function (spectacle) {
       return dispatch(receiveSpectacle(spectacle));
+    });
+  };
+};
+var fetchPickedSpectacle = function fetchPickedSpectacle(searchobj) {
+  return function (dispatch) {
+    return _util_spectacle_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchpickedSpectacles"](searchobj).then(function (spectacles) {
+      dispatch(receiveSpectacles(spectacles));
     });
   };
 };
@@ -345,6 +353,7 @@ var App = function App() {
     path: "/",
     component: _sidecomponents_navbar__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    exact: true,
     path: "/",
     component: _splash_homepage__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
@@ -417,8 +426,16 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var specs = [];
+
+  for (var key in state.cart) {
+    if (key != "cart_count" && key != "price_total") {
+      specs.push(state.cart[key]);
+    }
+  }
+
   return {
-    spectacles: Object.values(state.cart.items),
+    spectacles: specs,
     loading: state.ui.loading.indexLoading,
     price: state.cart.price_total,
     totalItems: state.cart.cart_count
@@ -1005,6 +1022,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1024,6 +1042,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -1060,6 +1079,7 @@ function (_React$Component) {
     };
     _this.openModal = _this.openModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -1080,7 +1100,6 @@ function (_React$Component) {
   }, {
     key: "handleInput",
     value: function handleInput(property, value) {
-      debugger;
       this.setState(_defineProperty({}, property, value));
       this.setState({
         slide: this.state.slide + 1
@@ -1088,8 +1107,13 @@ function (_React$Component) {
     }
   }, {
     key: "render",
+    //   componentWillUpdate(){
+    //       if (this.state.slide > 3){this.props.history.push('/browse')}
+    //   }
     value: function render() {
-      var question1 = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      var _this2 = this;
+
+      var QuestionOne = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "quiz-form-content"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-group"
@@ -1100,71 +1124,124 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-answer"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/hat_guy.png",
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/wide.png",
         alt: "Smiley face"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        onClick: this.handleInput.bind(this, "faceShape", "Narrow"),
+        onClick: function onClick() {
+          return _this2.handleInput("faceShape", "narrow");
+        },
         className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " narrow "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "answer-description"
-      }, " Id say hats fit small. ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, " narrow ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-answer"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/hat-guy-narrow",
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/narrow.png",
         alt: "Smiley face"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        onClick: this.handleInput.bind(this, "faceShape", "Average"),
+        onClick: function onClick() {
+          return _this2.handleInput("faceShape", "average");
+        },
         className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " medium "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "answer-description"
-      }, " Pretty average ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, " medium ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "form-answer"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-        src: "https://storage.googleapis.com/spec-tacular/hat-guy-wide",
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/wide.png",
         alt: "Smiley face"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        onClick: this.handleInput.bind(this, "faceShape", "Wide"),
+        onClick: function onClick() {
+          return _this2.handleInput("faceShape", "wide");
+        },
         className: "quiz-btn btn btn-outline-secondary btn-sm"
-      }, " wide "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        className: "answer-description"
-      }, " I have a full round face! ")))); // const question2 = <div className="quiz-form-content">
-      //     <div className="form-group" > 
-      //         <span className="quiz-question"> What shape do your prefer your glasses in  </span>
-      //     </div>
-      //     <div className= "form-answer-container">
-      //         <div className="form-answer">
-      //             <img src="https://storage.googleapis.com/spec-tacular/hat_guy.png" alt="Smiley face"/>
-      //             <button onClick={this.handleInput("frameShape","round")} className="quiz-btn btn btn-outline-secondary btn-sm"> round </button> 
-      //         </div> 
-      //         <div className="form-answer">
-      //             <img src="https://storage.googleapis.com/spec-tacular/hat-guy-narrow" alt="Smiley face"/>
-      //             <button onClick={this.handleInput("frameShape","square")} className="quiz-btn btn btn-outline-secondary btn-sm"> square </button> 
-      //         </div> 
-      //         <div className="form-answer">
-      //             <img src="https://storage.googleapis.com/spec-tacular/hat-guy-wide" alt="Smiley face"/>
-      //             <button onClick={this.handleInput("frameShape","oval")} className="quiz-btn btn btn-outline-secondary btn-sm"> oval </button> 
-      //         </div>  
-      //     </div>
-      // </div>
-      // const question3 = <div className="quiz-form-content">
-      //     <div className="form-group" > 
-      //         <span className="quiz-question"> What is your preference for frame material </span>
-      //     </div>
-      //     <div className= "form-answer-container">
-      //         <div className="form-answer">
-      //             <img src="https://storage.googleapis.com/spec-tacular/hat_guy.png" alt="Smiley face"/>
-      //             <button onClick={ this.handleInput("materialType","plastic")} className="quiz-btn btn btn-outline-secondary btn-sm"> plastic </button> 
-      //         </div> 
-      //         <div className="form-answer">
-      //             <img src="https://storage.googleapis.com/spec-tacular/hat-guy-narrow" alt="Smiley face"/>
-      //             <button onClick={() => this.handleInput("materialType","acetate")} className="quiz-btn btn btn-outline-secondary btn-sm"> acetate </button> 
-      //         </div> 
-      //         <div className="form-answer">
-      //             <img src="https://storage.googleapis.com/spec-tacular/hat-guy-wide" alt="Smiley face"/>
-      //             <button onClick={() => this.handleInput("materialType","metal")} className="quiz-btn btn btn-outline-secondary btn-sm"> metal </button> 
-      //         </div>  
-      //     </div>
-      // </div>
+      }, " wide "))));
+      var QuestionTwo = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "quiz-form-content"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "quiz-question"
+      }, " What shape do your prefer your glasses in  ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/round.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleInput("frameShape", "round");
+        },
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " round ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/square.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleInput("frameShape", "square");
+        },
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " square ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/rectangular.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleInput("frameShape", "rectangle");
+        },
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " rectangle "))));
+      var QuestionThree = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "quiz-form-content"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "quiz-question"
+      }, " What is your preference for frame material ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/mixed_material.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleInput("materialType", "mixed");
+        },
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " mixed ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/acetate.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleInput("materialType", "acetate");
+        },
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " acetate ")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "form-answer"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/quiz2/metal.png",
+        alt: "Smiley face"
+      }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleInput("materialType", "metal");
+        },
+        className: "quiz-btn btn btn-outline-secondary btn-sm"
+      }, " metal "))));
+      var display = undefined;
+      var slide = this.state.slide;
+
+      if (slide == 1) {
+        display = QuestionOne;
+      } else if (slide == 2) {
+        display = QuestionTwo;
+      } else if (slide == 3) {
+        display = QuestionThree;
+      } else {
+        this.props.history.push('/browse');
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "modal-container"
@@ -1186,7 +1263,7 @@ function (_React$Component) {
         className: "quiz-content"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "subtitle"
-      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " This is question ", this.state.slide, " out of 3")), question1)));
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " This is question ", this.state.slide, " out of 3"))), display));
     }
   }]);
 
@@ -1323,7 +1400,7 @@ function (_React$Component) {
         className: "navbar-nav mr-auto"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link-navbar",
-        to: "/"
+        to: "/browse"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "nav-item"
       }, "Eyeglasses")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1331,12 +1408,12 @@ function (_React$Component) {
         to: "/"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "nav-item"
-      }, "Sunglasses")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, "Home Try-On")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link-navbar",
-        to: "/"
+        to: "https://github.com/TheLastSultan/Spectacular"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "nav-item"
-      }, "Home Try-On"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, "GithubRepo"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "navbar-nav custom-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "link-navbar",
@@ -2246,16 +2323,25 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var staffpick = undefined;
       var spectacle = this.props.spectacle;
+      spectacle.staffpick ? staffpick = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        ClassName: "staff-pick",
+        src: "https://storage.googleapis.com/spec-tacular/staff-pick2.png"
+      }) : staffpick = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "staff-pick",
+        src: "https://storage.googleapis.com/spec-tacular/placeholder.png"
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "spectacle-thumbnail col-md-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/spectacles/".concat(spectacle.id),
         className: "spectacle-link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, staffpick, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.imageUrl,
         className: "spectacle-image",
-        alt: spectacle.title
+        alt: spectacle.title,
+        id: "spectacle-" + this.props.spectacle.id.toString()
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "spectacle-title"
       }, spectacle.title, spectacle.id)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2337,7 +2423,7 @@ function (_React$Component) {
         _this2.setState({
           count: _this2.state.count + 1
         });
-      }, 5005);
+      }, 5003);
     }
   }, {
     key: "render",
@@ -2357,7 +2443,7 @@ function (_React$Component) {
       }, " Try 5 pairs for free "), message), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spash-button-holders"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/quiz",
+        to: "/quiztime",
         className: "button-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "splash-pri btn btn-primary btn-lg"
@@ -2769,8 +2855,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // window.logout = logout;
   // window.meezo = {user: {email: 'meezomeezo', password: 'password', username:'meezomeezo' }};
   // window.cartitem = {cartitem: {spectacle_id: 4 , user_id: 1}}
-  // @cartitem = Cartitem.where(spectacle_id: params[:cartitem][:spectacle_id]).find_by(user_id: params[:cartitem][:user_id])
-  // Cart Testing
+  // window.fetchPickedSpectacle = fetchPickedSpectacle
+  // // Cart Testing
   // window.fetchCartItems = fetchCartItems
   // window.deleteCartItem = deleteCartItem
   // window.fetchCart = fetchCart
@@ -2894,14 +2980,14 @@ var logout = function logout() {
 /*!*********************************************!*\
   !*** ./frontend/util/spectacle_api_util.js ***!
   \*********************************************/
-/*! exports provided: fetchSpectacles, fetchSpectacle, fetchSelectedSpectacles */
+/*! exports provided: fetchSpectacles, fetchSpectacle, fetchpickedSpectacles */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpectacles", function() { return fetchSpectacles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSpectacle", function() { return fetchSpectacle; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSelectedSpectacles", function() { return fetchSelectedSpectacles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchpickedSpectacles", function() { return fetchpickedSpectacles; });
 var fetchSpectacles = function fetchSpectacles() {
   return $.ajax({
     method: 'GET',
@@ -2914,17 +3000,25 @@ var fetchSpectacle = function fetchSpectacle(id) {
     url: "/api/spectacles/".concat(id)
   });
 };
-var fetchSelectedSpectacles = function fetchSelectedSpectacles() {
-  var obj = {
-    shape: "Oval",
-    material: "Polycarbonate"
-  };
-  var param = $.param(obj);
+var fetchpickedSpectacles = function fetchpickedSpectacles(searchobj) {
   return $.ajax({
     method: 'POST',
-    url: ""
+    url: "/api/pick",
+    data: {
+      spectacles: {
+        searchobj: searchobj
+      }
+    }
   });
-}; // possible_shapes = ["Round", "Oval", "Square"].sample
+}; // export const fetchSelectedSpectacles = () => {
+//     const obj = {shape: "Oval", material:"Polycarbonate" }
+//     const param = $.param(obj)
+//     return ($.ajax({
+//         method: 'POST',
+//         url: ``
+//     }))
+// }
+// possible_shapes = ["Round", "Oval", "Square"].sample
 //     possible_material = ["Polycarbonate", "Mixed", "Metal"].sample
 //     possible_sex = [true, false ].sample
 //     possible_staffpick = [true, false].sample

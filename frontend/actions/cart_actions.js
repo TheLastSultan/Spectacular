@@ -20,7 +20,6 @@ export const receiveCartItem = item => ({
   });
 
 
-
 export const fetchCartItems = () => dispatch=> (
     CartItemUtil.fetchCart().then(items => (dispatch (receiveCartItems(items))))
 ); 

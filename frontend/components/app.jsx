@@ -20,8 +20,8 @@ const App = () => (
   <div className="app">
     <HashRouter> 
       <div> 
-        <Route  path="/" component={Navbar}/>
-        <Route path="/" component={SplashHome} />
+        <Route path="/" component={Navbar}/>
+        <Route exact path="/" component={SplashHome} />
         <Route exact path="/quiztime" component={BasicModal} /> 
         <Route exact path="/cart" component={Cart} /> 
         <Route exact path="/login" component={LogInContainer} />

@@ -5,8 +5,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
+    let specs = []
+    for(let key in state.cart) {
+        if (key != "cart_count" && key != "price_total") {
+            specs.push(state.cart[key])
+        }
+    }
     return {
-        spectacles: Object.values(state.cart.items),
+        spectacles: specs,
         loading: state.ui.loading.indexLoading,
         price: state.cart.price_total,
         totalItems: state.cart.cart_count
