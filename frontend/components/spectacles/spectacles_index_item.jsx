@@ -83,7 +83,7 @@ class SpectacleIndexItem extends React.Component{
     render(){
         let staffpick= undefined
         const {spectacle} = this.props
-        spectacle.staffpick ? staffpick = <img ClassName="staff-pick" src="https://storage.googleapis.com/spec-tacular/staff-pick2.png" /> : staffpick = <img className= "staff-pick" src="https://storage.googleapis.com/spec-tacular/placeholder.png"/>
+        spectacle.staffpick ? staffpick = <img className="staff-pick" src="https://storage.googleapis.com/spec-tacular/staff-pick2.png" /> : staffpick = <img className= "staff-pick" src="https://storage.googleapis.com/spec-tacular/placeholder.png"/>
         return(
         <li className="spectacle-thumbnail col-md-3">
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
