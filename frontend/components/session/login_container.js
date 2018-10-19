@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/session_actions';
 import {Link} from 'react-router-dom';
 
+import avatarEntryPoint from './avatar';
 
 const mapDispatchToProps = dispatch => {
     return({
@@ -24,6 +25,10 @@ class Login extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    avatarEntryPoint(this.threeRootElement);
   }
 
   handleInput(type) {
@@ -71,6 +76,8 @@ class Login extends React.Component {
           <div className="form-group form-title" >
               <h2>Sign in </h2>
           </div>
+
+          <div className="avatar-div" ref={element => this.threeRootElement = element}></div>
 
           <div className="form-group form-errors-container">
               {this.renderErrors()}
