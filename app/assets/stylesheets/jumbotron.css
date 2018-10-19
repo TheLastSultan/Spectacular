@@ -6,3 +6,24 @@
     min-height: 300px; 
     max-width: none; 
 }
+
+.spectacle-app{
+    padding-left: 0px; 
+}
+
+.mauto{
+    margin:auto;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+.hrBorder{
+    border:none;
+    height: 20px;
+        width: 90%;
+        height: 50px;
+        margin-top: 0;
+        border-bottom: 3px solid #d0d5d8;
+        box-shadow: 0 1px 1px -20px #333;
+    margin: -50px auto 10px; 
+}

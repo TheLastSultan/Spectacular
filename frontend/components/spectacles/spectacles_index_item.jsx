@@ -89,7 +89,7 @@ class SpectacleIndexItem extends React.Component{
             <Link to={`/spectacles/${spectacle.id}`} className="spectacle-link">
                 {staffpick}
                 <img src={this.state.imageUrl} className="spectacle-image" alt={spectacle.title} id={"spectacle-" + this.props.spectacle.id.toString()} /> 
-                <span className="spectacle-title">{spectacle.title}{spectacle.id}</span> 
+                <span className="spectacle-title">{spectacle.title}</span> 
             </Link>
             <div className="spectacle-index-options-container">
                 <div className="heart-icon">

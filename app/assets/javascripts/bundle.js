@@ -2113,6 +2113,10 @@ function (_React$Component) {
       }
 
       ;
+      var firstsix = spectacles.splice(0, 6);
+      var nextnine = spectacles.splice(0, 9);
+      var firstfifteen = spectacles.splice(0, 15);
+      var rest = spectacles;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "col-md-12 spectacle-app"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2121,7 +2125,59 @@ function (_React$Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "spectacle-list-group"
-      }, spectacles.map(function (spectacle) {
+      }, firstsix.map(function (spectacle) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: spectacle.id,
+          spectacle: spectacle,
+          removeCartItem: removeCartItem,
+          sendCartItem: sendCartItem
+        });
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hrBorder"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "feel-good-ad mauto"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/splash/Feel-good.png"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hrBorder"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "spectacle-list-group"
+      }, nextnine.map(function (spectacle) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: spectacle.id,
+          spectacle: spectacle,
+          removeCartItem: removeCartItem,
+          sendCartItem: sendCartItem
+        });
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hrBorder"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pupil-project-ad mauto"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/splash/pupils-project.png"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hrBorder"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "spectacle-list-group"
+      }, firstfifteen.map(function (spectacle) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: spectacle.id,
+          spectacle: spectacle,
+          removeCartItem: removeCartItem,
+          sendCartItem: sendCartItem
+        });
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hrBorder"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "metal-on-metal-ad mauto",
+        mauto: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://storage.googleapis.com/spec-tacular/splash/metals-on-metals.png"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "hrBorder"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "spectacle-list-group"
+      }, rest.map(function (spectacle) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_spectacles_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: spectacle.id,
           spectacle: spectacle,
@@ -2353,7 +2409,7 @@ function (_React$Component) {
         id: "spectacle-" + this.props.spectacle.id.toString()
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "spectacle-title"
-      }, spectacle.title, spectacle.id)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, spectacle.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spectacle-index-options-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "heart-icon"
@@ -54365,7 +54421,7 @@ if (false) {} else {
 /*!******************************************************!*\
   !*** ./node_modules/react-emotion/dist/index.esm.js ***!
   \******************************************************/
-/*! exports provided: default, flush, hydrate, cx, merge, getRegisteredStyles, injectGlobal, keyframes, css, sheet, caches */
+/*! exports provided: flush, hydrate, cx, merge, getRegisteredStyles, injectGlobal, keyframes, css, sheet, caches, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
