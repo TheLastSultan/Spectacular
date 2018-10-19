@@ -2,13 +2,24 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { currentUser, logout, signUp } from '../../actions/session_actions';
+import { fetchCartItems} from '../../actions/cart_actions';
 import { connect } from 'react-redux';
 import {isEmpty} from 'lodash';
 
 
-const mapStateToProps = (state, ownProps) => ({
-    currentUser: state.session.currentUser
-});
+const mapStateToProps = (state, ownProps) => {
+    let specs = []
+    for(let key in state.cart) {
+        if (key != "cart_count" && key != "price_total") {
+            specs.push(state.cart[key])
+        }
+    }
+    return{
+        currentUser: state.session.currentUser,
+        cartNumber: specs
+    }
+};
+
 
 const mapDispatchToProps = dispatch => {
    return{ 
@@ -17,7 +28,7 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-
+ 
 class Navbar extends React.Component{
     constructor(props){
         super(props);  
@@ -52,7 +63,7 @@ class Navbar extends React.Component{
         this.props.signUp();
         display = guestUser;
     }else if(this.props.currentUser.guest_user == false){
-        display = logout; 
+        display = logOut; 
     }else{
         display = guestUser; 
     }
@@ -85,6 +96,7 @@ class Navbar extends React.Component{
                 <Link className="link-navbar" to='/cart'>
                     <span className="nav-item">cart</span>
                     <FontAwesomeIcon icon="shopping-cart" className="faShoppingCart" />
+                    <span className="cnumber">{this.props.cartNumber.length}</span>
                 </Link>   
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                      <span className="navbar-toggler-icon"></span>

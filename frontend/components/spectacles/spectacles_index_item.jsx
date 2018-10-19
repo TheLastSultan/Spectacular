@@ -15,6 +15,8 @@ class SpectacleIndexItem extends React.Component{
         }
 
         this.onSelectedColor = this.onSelectedColor.bind(this);
+        this.addItemToCart = this.addItemToCart.bind(this)
+        this.removeItemFromCart = this.removeItemFromCart.bind(this);
     }
 
     addItemToCart(){
@@ -37,14 +39,14 @@ class SpectacleIndexItem extends React.Component{
         const addLikeButton = (
             <button
                 className={`icon icon-likes ${likeClass}`}
-                onClick={() => this.addItemToCart()}>
+                onClick={this.addItemToCart}>
                 <i class={`fa ${heartLogo} fa1`} aria-hidden="true"></i>
             </button>
         );
         const removeLikeButton = (
           <button
             className={`icon icon-likes ${likeClass}`}
-            onClick={() => this.removeItemFromCart()}>
+            onClick={this.removeItemFromCart}>
             <i class={`fa ${heartLogo} fa1`} aria-hidden="true"></i>
             </button>
         );

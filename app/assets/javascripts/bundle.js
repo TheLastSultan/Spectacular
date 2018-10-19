@@ -1288,9 +1288,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _actions_cart_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/cart_actions */ "./frontend/actions/cart_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1316,9 +1317,19 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var specs = [];
+
+  for (var key in state.cart) {
+    if (key != "cart_count" && key != "price_total") {
+      specs.push(state.cart[key]);
+    }
+  }
+
   return {
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    cartNumber: specs
   };
 };
 
@@ -1375,11 +1386,11 @@ function (_React$Component) {
       }, "Sign in")));
       var display = undefined;
 
-      if (Object(lodash__WEBPACK_IMPORTED_MODULE_5__["isEmpty"])(this.props.currentUser)) {
+      if (Object(lodash__WEBPACK_IMPORTED_MODULE_6__["isEmpty"])(this.props.currentUser)) {
         this.props.signUp();
         display = guestUser;
       } else if (this.props.currentUser.guest_user == false) {
-        display = _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"];
+        display = logOut;
       } else {
         display = guestUser;
       }
@@ -1431,7 +1442,9 @@ function (_React$Component) {
       }, "cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
         icon: "shopping-cart",
         className: "faShoppingCart"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "cnumber"
+      }, this.props.cartNumber.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "navbar-toggler",
         type: "button",
         "data-toggle": "collapse",
@@ -1448,7 +1461,7 @@ function (_React$Component) {
   return Navbar;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(Navbar)); // EYEGLASSES /browse_mens_glasses
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps, mapDispatchToProps)(Navbar)); // EYEGLASSES /browse_mens_glasses
 // SUNGLASSES /browse_womens_glasses
 // HOME TRY-ON /about_home_try_on
 // LOCATIONS /locations
@@ -2233,6 +2246,8 @@ function (_React$Component) {
       imageUrl: _this.props.spectacle.image_url
     };
     _this.onSelectedColor = _this.onSelectedColor.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.addItemToCart = _this.addItemToCart.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.removeItemFromCart = _this.removeItemFromCart.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -2262,24 +2277,18 @@ function (_React$Component) {
   }, {
     key: "handleCartButton",
     value: function handleCartButton() {
-      var _this3 = this;
-
       var likeClass = this.state.addedToCart ? 'no-like' : 'like';
       var heartLogo = this.state.addedToCart ? 'fa-heart' : 'fa-heart-o';
       var addLikeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "icon icon-likes ".concat(likeClass),
-        onClick: function onClick() {
-          return _this3.addItemToCart();
-        }
+        onClick: this.addItemToCart
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         class: "fa ".concat(heartLogo, " fa1"),
         "aria-hidden": "true"
       }));
       var removeLikeButton = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "icon icon-likes ".concat(likeClass),
-        onClick: function onClick() {
-          return _this3.removeItemFromCart();
-        }
+        onClick: this.removeItemFromCart
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         class: "fa ".concat(heartLogo, " fa1"),
         "aria-hidden": "true"
@@ -2289,7 +2298,7 @@ function (_React$Component) {
   }, {
     key: "handleRadioButton",
     value: function handleRadioButton() {
-      var _this4 = this;
+      var _this3 = this;
 
       var url = "https://storage.googleapis.com/spec-tacular/";
       var type = this.props.spectacle.description;
@@ -2299,12 +2308,12 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "radio",
           name: "radio-color" + index.toString(),
-          id: "r" + color + index.toString() + "-" + _this4.props.spectacle.id.toString(),
+          id: "r" + color + index.toString() + "-" + _this3.props.spectacle.id.toString(),
           value: url + type + "/" + color + "/1.jpg",
-          onChange: _this4.onSelectedColor,
-          checked: _this4.state.image_url === url + type + "/" + color + "/1.jpg"
+          onChange: _this3.onSelectedColor,
+          checked: _this3.state.image_url === url + type + "/" + color + "/1.jpg"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          for: "r" + color + index.toString() + "-" + _this4.props.spectacle.id.toString()
+          for: "r" + color + index.toString() + "-" + _this3.props.spectacle.id.toString()
         }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           id: color
         }), " "));
