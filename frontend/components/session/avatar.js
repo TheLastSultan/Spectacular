@@ -23,6 +23,9 @@ const avatarEntryPoint = function(viewport) {
 
     var controls = new OrbitControls(camera, renderer.domElement);
 
+    const phongMaterialEyes = new THREE.MeshPhongMaterial(
+        { ambient: 0x555555, color: "white", specular: 0xffffff, shininess: 50, shading: THREE.SmoothShading }
+    );
     new MTLLoader()
         .load('./panda.mtl', (materials) => {
             materials.preload();
@@ -32,6 +35,12 @@ const avatarEntryPoint = function(viewport) {
                 .load('./panda.obj', (object) => {
                     object.rotateY(3.14/180*-145);
                     object.position.z += 0.2;
+                    for(let idx in object.children) {
+                        let obj = object.children[idx];
+                        if (obj.name === "mesh237222022" || obj.name === "mesh1424064081") {
+                            obj.material = phongMaterialEyes;
+                        }
+                    }
                     scene.add(object);
                 }, (e) => {console.log(e);}, () => {console.error(e);}); //, onProgress, onError 
         });
