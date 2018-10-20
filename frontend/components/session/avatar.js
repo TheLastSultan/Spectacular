@@ -10,7 +10,9 @@ const STATE_IDLE = "idle";
 const STATE_PEEKING = "peek";
 const STATE_DISCREET = "discrete";
 // radians per frame of rotational velocity
-const ROT_VELO = 8 * Math.PI / 180 / 60; // one degree per second assuming 60fps
+const ROT_VELO = 6 * Math.PI / 180 / 60; // degree per second assuming 60fps
+const GLASSES_VELO = 4 / 60; // pixel per second assuming 60fps
+const GLASSES_ROT_VELO = 4 * Math.PI / 180 / 60; // degree per second assuming 60fps
 const DEBUG_MODE = true;
 
 // equation to find the distance between vector A & vector B
@@ -20,6 +22,25 @@ Math.arcLength = function(vectorA, vectorB) {
     return ((temp.cross(vectorB)).length()) / (vectorA.dot(vectorB));
 }
 
+
+// Breakdown a vector to two angles
+Math.cartisianToSphericalCoord = function(vector) {
+    // see: https://en.wikipedia.org/wiki/List_of_common_coordinate_transformations
+    const vLen = vector.length();
+    return new THREE.Vector2(
+        Math.acos(vector.z / vLen),
+        Math.atan2(vector.y, vector.x)
+    );
+}
+
+Math.sphericalToCartisianCoord = function(angles, radius) {
+    // see: https://en.wikipedia.org/wiki/Spherical_coordinate_system
+    return new THREE.Vector3(
+      Math.sin(angles.x) * Math.cos(angles.y) * radius,
+      Math.sin(angles.x) * Math.sin(angles.y) * radius,
+      Math.cos(angles.x) * radius,
+    );
+}
 
 // Breakdown a vector to three angles
 Math.vectorToAngles = function(vector) {
@@ -64,6 +85,7 @@ Math.rotateY = function(vector, theta) {
 }
 
 Math.rotateX = function(vector, theta) {
+    // see: https://stackoverflow.com/questions/14607640
     return new THREE.Vector3(
         vector.x,
         vector.y * cos(theta) - vector.z * sin(theta),
@@ -137,7 +159,6 @@ class AnimatedAvatar {
         let deltaAngle =  Math.atan2(delta.x, delta.y);
         let camPos = Math.rotateY(this._lookDown, -deltaAngle);
         this._interpolateCamera(camPos);
-        this.camera.lookAt(0, 0, 0);
         if(this.state === STATE_DISCREET)
             this._resetGlasses();
         this.state = STATE_PEEKING;
@@ -147,7 +168,6 @@ class AnimatedAvatar {
         if(DEBUG_MODE)
             console.log(this.state, "->", 'idling');
         this._interpolateCamera(this._homePosition);
-        this.camera.lookAt(0, 0, 0);
         if(this.state === STATE_DISCREET)
             this._resetGlasses();
         this.state = STATE_IDLE;
@@ -157,43 +177,73 @@ class AnimatedAvatar {
         if(DEBUG_MODE)
             console.log(this.state, "->", 'bein discreet');
         this._interpolateCamera(this._lookAway);
-        this.camera.lookAt(0, 0, 0);
         this.state = STATE_DISCREET;
-        this._glasses.position.set(this._glassesUpPosition.x, this._glassesUpPosition.y, this._glassesUpPosition.z);
-        this._glasses.rotation.set(this._glassesUpRotation.x, this._glassesUpRotation.y, this._glassesUpRotation.z);
+        this._interpolateGlasses(this._glassesUpPosition, this._glassesUpRotation);
+    }
+
+    _interpolateGlasses(toGlassesPos, toGlassesRot) {
+        // Stop all tweens in case some are in-progress
+        if(this._tweenGlasses && this._tweenGlasses.length !== 0)
+            for(let i in this._tweenGlasses){
+                this._tweenGlasses[i].stop();
+            }
+
+        const fromGlassesPos = new THREE.Vector3(this._glasses.position.x, this._glasses.position.y, this._glasses.position.z)
+        const distance = new THREE.Vector3().subVectors(toGlassesPos, fromGlassesPos).length();
+        const posTime = distance / GLASSES_VELO;
+
+        const fromGlassesRot = new THREE.Vector3(this._glasses.rotation.x, this._glasses.rotation.y, this._glasses.rotation.z);
+        const arcLength =  new THREE.Vector3().subVectors(
+            toGlassesRot, fromGlassesRot
+        ).length();
+        const rotTime = arcLength / GLASSES_ROT_VELO;
+
+        console.log(posTime, rotTime);
+
+        this._tweenGlasses = [
+            new TWEEN.Tween(fromGlassesPos)
+                .to(toGlassesPos, posTime)
+                .easing(TWEEN.Easing.Cubic.InOut)
+                .onUpdate((coord) => {
+                    this._glasses.position.set(coord.x, coord.y, coord.z)
+                })
+                .start(),
+            
+            new TWEEN.Tween(fromGlassesRot)
+                .to(toGlassesRot, rotTime)
+                .easing(TWEEN.Easing.Cubic.InOut)
+                .onUpdate((rot) => {
+                    this._glasses.rotation.set(rot.x, rot.y, rot.z);
+                })
+                .start(),
+        ];
     }
     
     _interpolateCamera(toCameraPos) {
-        const fromCameraPos = this.camera.position;
+        const fromCameraPos = new THREE.Vector3(this.camera.position.x, this.camera.position.y, this.camera.position.z);
+
         // Find radial length between two points
         const arcLength = Math.arcLength(fromCameraPos, toCameraPos);
         const time = arcLength/ROT_VELO; // time = distance / velocity
 
         // If a tween is in-progress, stop that one first
-        if(this._interpolateTween)
-            this._interpolateTween.stop();
+        if(this._tweenCamera)
+            this._tweenCamera.stop();
 
-        const fromRot = Math.vectorToAngles(fromCameraPos);
-        const toRot = Math.vectorToAngles(toCameraPos);
-
-        this._interpolateTween = new TWEEN.Tween(fromRot)
-            .to(toRot, time)
+        this._tweenCamera = new TWEEN.Tween(fromCameraPos)
+            .to(toCameraPos, time)
             .easing(TWEEN.Easing.Cubic.InOut)
             .onUpdate((coord) => {
-                const currPos = Math.anglesToVector(coord, this._radius);
+                coord.normalize();
+                const currPos = coord.multiplyScalar(this._radius);
                 this.camera.position.set(currPos.x, currPos.y, currPos.z);
             })
             .start();
-
-        console.log(arcLength);
     }
-    
     
     _resetGlasses() {
-        this._glasses.position.set(this._glassesHomePosition.x, this._glassesHomePosition.y, this._glassesHomePosition.z);
-        this._glasses.rotation.set(this._glassesHomeRotation.x, this._glassesHomeRotation.y, this._glassesHomeRotation.z);
+        this._interpolateGlasses(this._glassesHomePosition, this._glassesHomeRotation);
     }
-
 
     _memorizeAngles() {
         // Store variables that will be used for interpolation later

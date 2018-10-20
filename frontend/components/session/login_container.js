@@ -21,7 +21,8 @@ class Login extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      blurry: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,7 +37,7 @@ class Login extends React.Component {
     const usernamePeek =  (() => {
       this.usernameHelper.innerHTML = this.usernameField.value;
       let width = this.usernameHelper.offsetWidth;
-
+      this.setState({"blurry": false});
       avatar.peekAt(this.usernameField, width);
     }).bind(this);
     this.usernameField.addEventListener("focus", usernamePeek);
@@ -45,6 +46,7 @@ class Login extends React.Component {
     // If password gets focus, look away
     this.passwordField.addEventListener("focus", () => {
       avatar.lookAway();
+      this.setState({"blurry": true});
     });
 
     // If username & password doesn't have focus, then reset to idle stance
@@ -52,8 +54,10 @@ class Login extends React.Component {
       // Wait for 500ms to allow focus to be reassigned
       setTimeout(() => {
         let focused = document.activeElement;
-        if(this.usernameField !== focused && this.passwordField !== focused)
+        if(this.usernameField !== focused && this.passwordField !== focused) {
           avatar.idle();
+          this.setState({"blurry": false});
+        }
       }, 500);
     };
     this.usernameField.addEventListener("focusout", lostFocus);
@@ -97,7 +101,7 @@ class Login extends React.Component {
 
   render() {
     // console.log(this.props);
-    
+    const blurryClass = this.state.blurry ? 'blurry blurry-active': 'blurry';
     return (
       
       <div className="session-form-container">
@@ -112,7 +116,7 @@ class Login extends React.Component {
               {this.renderErrors()}
           </div> 
           
-          <div className="form-group" >
+          <div className={`form-group ${blurryClass}`} >
               <div className="form-group">
                   <input
                       type="text"
