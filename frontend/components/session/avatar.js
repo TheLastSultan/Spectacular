@@ -38,21 +38,29 @@ const avatarEntryPoint = function(viewport) {
 
     
     const phongMaterial = new THREE.MeshPhongMaterial(
-        { ambient: 0x555555, color: "skyblue", specular: 0xffffff, shininess: 50, shading: THREE.SmoothShading }
+        { ambient: 0x555555, color: "#9b59b6", specular: 0xffffff, shininess: 50, shading: THREE.SmoothShading }
     );
-
-    new OBJLoader()
-        .load('./glasses.obj', (object) => {
-            var box = new THREE.Box3().setFromObject( object );
-            object.position.y -= 0.09;
-            object.position.z += 0.35;
-            object.scale.set(.018, .014, .018);
-            for(let idx in object.children) {
-                let obj = object.children[idx]
-                obj.material = phongMaterial;
-            }
-            scene.add(object);
-        }, (e) => {console.log(e);}, () => {console.error(e);}); //, onProgress, onError 
+    new MTLLoader()
+        .load('./Sunglasses.mtl', (materials) => {
+            materials.preload();
+            // console.log(materials);
+            new OBJLoader()
+                .setMaterials(materials)
+                .load('./Sunglasses.obj', (object) => {
+                    var box = new THREE.Box3().setFromObject( object );
+                    object.position.y -= 0.06;
+                    object.position.z += 0.35;
+                    object.scale.set(.002, .002, .002);
+                    console.log(object);
+                    for(let key in object.children) {
+                        let child = object.children[key];
+                        if (child.name === "Plane")
+                            continue;
+                        child.material = phongMaterial;
+                    }
+                    scene.add(object);
+                }, (e) => {console.log(e);}, () => {console.error(e);}); //, onProgress, onError 
+        });
 
     var ambientLight = new THREE.AmbientLight("aliceblue", 1);
     scene.add(ambientLight);
