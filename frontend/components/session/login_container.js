@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/session_actions';
 import {Link} from 'react-router-dom';
 
-import avatarEntryPoint from './avatar';
+import AnimatedAvatar from './avatar';
 
 const mapDispatchToProps = dispatch => {
     return({
@@ -28,7 +28,27 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    avatarEntryPoint(this.threeRootElement);
+    // Create Avatar & Animate the bloke
+    let avatar = new AnimatedAvatar(this.threeRootElement, 200, 200);
+    avatar.animate();
+
+    // If username gets focus, peek at the textbox
+    this.usernameField.addEventListener("focus", () => {
+      avatar.peekAt(this.usernameField);
+    });
+
+    // If password gets focus, look away
+    this.passwordField.addEventListener("focus", () => {
+      avatar.lookAway();
+    });
+
+    // If username & password doesn't have focus, then reset to idle stance
+    const lostFocus = () => {
+      if(!this.usernameField.hasFocus() && !this.passwordField.hasFocus())
+        avatar.idle();
+    };
+    this.usernameField.addEventListener("focusout", lostFocus);
+    this.passwordField.addEventListener("focusout", lostFocus);
   }
 
   handleInput(type) {
@@ -91,6 +111,7 @@ class Login extends React.Component {
                       onChange={this.handleInput('username')}
                       className="form-control"
                       placeholder="Enter Username"
+                      ref={element => this.usernameField = element}
                   />
               </div> 
 
@@ -101,6 +122,7 @@ class Login extends React.Component {
                   onChange={this.handleInput('password')}
                   className="form-control"
                   placeholder="Enter Password"
+                  ref={element => this.passwordField = element}
               />
           </div> 
               
