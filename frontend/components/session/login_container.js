@@ -26,6 +26,7 @@ class Login extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.guestLogin = this.guestLogin.bind(this);
   }
 
   componentDidMount() {
@@ -62,6 +63,37 @@ class Login extends React.Component {
     };
     this.usernameField.addEventListener("focusout", lostFocus);
     this.passwordField.addEventListener("focusout", lostFocus);
+    this.avatar = avatar;
+  }
+
+  guestLogin() {
+    this.avatar.addMustache().then(() => {
+      const guestUsername = "someusername@gmail.com";
+      const guestPassword = "somepassword";
+      let uIdx = 0, pIdx = 0;
+      const typeLogin = () => {
+        if(uIdx < guestUsername.length) {
+          this.usernameField.focus();
+          this.setState({"username": this.state.username + guestUsername[uIdx]}, () => {
+            this.usernameField.dispatchEvent(new Event('keyup'))
+          });
+          uIdx ++;
+        }
+        else if(pIdx < guestPassword.length) {
+          this.passwordField.focus();
+          this.setState({"password": this.state.password + guestPassword[pIdx]}, () => {
+            this.passwordField.dispatchEvent(new Event('keyup'))
+          });
+          pIdx ++;
+        }
+        else {
+          this.handleSubmit();
+          return;
+        }
+        setTimeout(typeLogin, 100);
+      };
+      this.setState({"username": "", "password": ""}, typeLogin);
+    });
   }
 
   handleInput(type) {
@@ -93,64 +125,63 @@ class Login extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    if (e)
+      e.preventDefault();
     
     const user = Object.assign({}, {user:this.state})
     this.props.login(user).then(() => this.conditionalRender())
   }
 
   render() {
-    // console.log(this.props);
     const blurryClass = this.state.blurry ? 'blurry blurry-active': 'blurry';
     return (
-      
       <div className="session-form-container">
-      <form className="form-group col-md-2">
-          <div className="form-group form-title" >
-              <h2>Sign in </h2>
-          </div>
+        <form className="form-group col-md-2">
+            <div className="form-group form-title" >
+                <h2>Sign in </h2>
+            </div>
 
-          <div className="avatar-div" ref={element => this.threeRootElement = element}></div>
+            <div className="avatar-div" ref={element => this.threeRootElement = element}></div>
 
-          <div className="form-group form-errors-container">
-              {this.renderErrors()}
-          </div> 
-          
-          <div className={`form-group ${blurryClass}`} >
-              <div className="form-group">
-                  <input
-                      type="text"
-                      value={this.state.username}
-                      onChange={this.handleInput('username')}
-                      className="form-control"
-                      placeholder="Enter Username"
-                      ref={element => this.usernameField = element}
-                  />
-                  <p className="form-control hidden" ref={element=> this.usernameHelper = element}></p>
-              </div> 
+            <div className="form-group form-errors-container">
+                {this.renderErrors()}
+            </div> 
+            
+            <div className={`form-group ${blurryClass}`} >
+                <div className="form-group">
+                    <input
+                        type="text"
+                        value={this.state.username}
+                        onChange={this.handleInput('username')}
+                        className="form-control"
+                        placeholder="Enter Username"
+                        ref={element => this.usernameField = element}
+                    />
+                    <p className="form-control hidden" ref={element => this.usernameHelper = element}></p>
+                </div> 
 
-          <div className="form-group"> 
-              <input
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.handleInput('password')}
-                  className="form-control"
-                  placeholder="Enter Password"
-                  ref={element => this.passwordField = element}
-              />
-          </div> 
-              
-          
-              <button className="session-button" onClick={this.handleSubmit}> Sign in </button>
-          </div> 
-          
-          
-          <div className="form-title border-top">
-              <h2> I'm new here</h2> 
-              <Link className="center-link" to="/signup">Register</Link>
-          </div>
-      </form>
-  </div> 
+            <div className="form-group"> 
+                <input
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.handleInput('password')}
+                    className="form-control"
+                    placeholder="Enter Password"
+                    ref={element => this.passwordField = element}
+                />
+            </div> 
+                
+            
+                <button className="session-button" onClick={this.handleSubmit}> Sign in </button>
+                <button className="session-button guest" onClick={this.guestLogin}>Login as guest</button>
+            </div> 
+            
+            
+            <div className="form-title border-top">
+                <Link className="center-link" to="/signup">I'm new here</Link>
+            </div>
+        </form>
+    </div> 
     );
   }
 }

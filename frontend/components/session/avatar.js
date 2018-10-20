@@ -13,7 +13,7 @@ const STATE_DISCREET = "discrete";
 const ROT_VELO = 6 * Math.PI / 180 / 60; // degree per second assuming 60fps
 const GLASSES_VELO = 4 / 60; // pixel per second assuming 60fps
 const GLASSES_ROT_VELO = 4 * Math.PI / 180 / 60; // degree per second assuming 60fps
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 // equation to find the distance between vector A & vector B
 Math.arcLength = function(vectorA, vectorB) {
@@ -138,7 +138,6 @@ class AnimatedAvatar {
         if (DEBUG_MODE)
             this.controls.update();
         this.renderer.render(this.scene, this.camera);
-        // console.log(this.camera.position);
     }
 
     // Have Panda Peek At textbox
@@ -198,8 +197,6 @@ class AnimatedAvatar {
         ).length();
         const rotTime = arcLength / GLASSES_ROT_VELO;
 
-        console.log(posTime, rotTime);
-
         this._tweenGlasses = [
             new TWEEN.Tween(fromGlassesPos)
                 .to(toGlassesPos, posTime)
@@ -237,6 +234,7 @@ class AnimatedAvatar {
                 coord.normalize();
                 const currPos = coord.multiplyScalar(this._radius);
                 this.camera.position.set(currPos.x, currPos.y, currPos.z);
+                this.camera.lookAt(0,0,0);
             })
             .start();
     }
@@ -331,7 +329,7 @@ class AnimatedAvatar {
 
 
     addMustache() {
-        this._addMustache(this.scene);
+        return this._addMustache(this.scene);
     }
 }
 
