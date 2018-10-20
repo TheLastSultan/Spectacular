@@ -86,7 +86,7 @@ class AnimatedAvatar {
         scene.add(ambientLight);
 
         this._addPanda(scene);
-        this._addGlasses(scene);
+        this._addGlasses(scene).then(() => this._memorizeAngles());
         renderer.setClearColor("#03a9f4", 1);
 
         if (DEBUG_MODE) {
@@ -97,8 +97,6 @@ class AnimatedAvatar {
             const axes = new THREE.AxesHelper( 100 );
             scene.add(axes);
         }
-
-        this._memorizeAngles(camera);
 
         this.renderer = renderer;
         this.scene = scene;
@@ -114,7 +112,7 @@ class AnimatedAvatar {
         if (DEBUG_MODE)
             this.controls.update();
         this.renderer.render(this.scene, this.camera);
-        console.log(this.camera.position);
+        // console.log(this.camera.position);
     }
 
     // Have Panda Peek At textbox
@@ -157,59 +155,73 @@ class AnimatedAvatar {
         this.state = STATE_DISCREET;
     }
 
-    _memorizeAngles(camera) {
-        this._radius = camera.position.length();
+    _memorizeAngles() {
+        // Store variables that will be used for interpolation later
+        this._radius = this.camera.position.length();
         // We don't want the panda looking straight-down,
         // this is the comfortable viewing X angle.
         this._lookDown = new THREE.Vector3(0, 50.81068803679385, 142.658477444273);
-        this._homePosition = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z);
+        this._homePosition = new THREE.Vector3(this.camera.position.x, this.camera.position.y, this.camera.position.z);
+        this._glassesHomePosition = new THREE.Vector3(this._glasses.position.x, this._glasses.position.y, this._glasses.position.z);
+        this._glassesHomeRotation = new THREE.Euler(this._glasses.rotation.x, this._glasses.rotation.y, this._glasses.rotation.z);
+        // Home position coordinates
         this._lookAway = new THREE.Vector3(-44.89629858812347, -37.30348307472845, 138.17659904477216);
+        this._glassesUpPosition = new THREE.Vector3(0, 17, 30);
+        this._glassesUpRotation = new THREE.Euler(-1.0471975511965976, 0, 0);
     }
 
     _addPanda(scene) {
         const eyesMaterial = new THREE.MeshPhongMaterial({ color: "white"});
-        new MTLLoader()
-            .load('./panda.mtl', (materials) => {
-                materials.preload();
-                console.log(materials);
-                new OBJLoader()
-                    .setMaterials(materials)
-                    .load('./panda.obj', (object) => {
-                        object.rotateY(3.14/180*-145);
-                        object.position.z += 20;
-                        object.scale.set(100, 100, 100);
-                        for(let idx in object.children) {
-                            let obj = object.children[idx];
-                            if (obj.name === "mesh237222022" || obj.name === "mesh1424064081") {
-                                obj.material = eyesMaterial;
+
+        return new Promise((resolve, reject) => {
+            new MTLLoader()
+                .load('./panda.mtl', (materials) => {
+                    materials.preload();
+                    console.log(materials);
+                    new OBJLoader()
+                        .setMaterials(materials)
+                        .load('./panda.obj', (object) => {
+                            object.rotateY(3.14/180*-145);
+                            object.position.z += 20;
+                            object.scale.set(100, 100, 100);
+                            for(let idx in object.children) {
+                                let obj = object.children[idx];
+                                if (obj.name === "mesh237222022" || obj.name === "mesh1424064081") {
+                                    obj.material = eyesMaterial;
+                                }
                             }
-                        }
-                        scene.add(object);
-                    }, (e) => {console.log(e);}, () => {console.error(e);}); //, onProgress, onError 
-            });
+                            scene.add(object);
+                            resolve(object);
+                        }, () => {}, () => reject(e)); //, onProgress, onError 
+                });
+        });
     }
 
     _addGlasses(scene) {
         const glassesMaterial = new THREE.MeshPhongMaterial({color: "#9b59b6"});
-        new MTLLoader()
-            .load('./Sunglasses.mtl', (materials) => {
-                materials.preload();
-                new OBJLoader()
-                    .setMaterials(materials)
-                    .load('./Sunglasses.obj', (object) => {
-                        object.position.y -= 6;
-                        object.position.z += 35;
-                        object.scale.set(.2, .2, .2);
-                        for(let key in object.children) {
-                            let child = object.children[key];
-                            if (child.name !== "Plane")
-                                child.material = glassesMaterial;
-                        }
-                        this.glasses = object;
-                        scene.add(object);
-                    }, (e) => {console.log(e);}, () => {console.error(e);}); //, onProgress, onError 
-            });
+        return new Promise((resolve, reject) => {
+            new MTLLoader()
+                .load('./Sunglasses.mtl', (materials) => {
+                    materials.preload();
+                    new OBJLoader()
+                        .setMaterials(materials)
+                        .load('./Sunglasses.obj', (object) => {
+                            object.position.y -= 6;
+                            object.position.z += 35;
+                            object.scale.set(.2, .2, .2);
+                            for(let key in object.children) {
+                                let child = object.children[key];
+                                if (child.name !== "Plane")
+                                    child.material = glassesMaterial;
+                            }
+                            this._glasses = object;
+                            scene.add(object);
+                            resolve(object);
+                        }, () => {}, () => reject(e)); //, onProgress, onError 
+                });
+        });
     }
 }
+
 
  export default AnimatedAvatar;
