@@ -96,6 +96,9 @@ class AnimatedAvatar {
             // Add XYZ axis view
             const axes = new THREE.AxesHelper( 100 );
             scene.add(axes);
+
+            // Add avatar to window
+            window.avatar = this;
         }
 
         this.renderer = renderer;
@@ -145,6 +148,8 @@ class AnimatedAvatar {
         console.log(this.state, "->", 'idling');
         this.camera.position.set(this._homePosition.x, this._homePosition.y, this._homePosition.z);
         this.camera.lookAt(0, 0, 0);
+        this._glasses.position.set(this._glassesHomePosition.x, this._glassesHomePosition.y, this._glassesHomePosition.z);
+        this._glasses.rotation.set(this._glassesHomeRotation.x, this._glassesHomeRotation.y, this._glassesHomeRotation.z);
         this.state = STATE_IDLE;
     }
 
@@ -153,6 +158,8 @@ class AnimatedAvatar {
         this.camera.position.set(this._lookAway.x, this._lookAway.y, this._lookAway.z);
         this.camera.lookAt(0, 0, 0);
         this.state = STATE_DISCREET;
+        this._glasses.position.set(this._glassesUpPosition.x, this._glassesUpPosition.y, this._glassesUpPosition.z);
+        this._glasses.rotation.set(this._glassesUpRotation.x, this._glassesUpRotation.y, this._glassesUpRotation.z);
     }
 
     _memorizeAngles() {
