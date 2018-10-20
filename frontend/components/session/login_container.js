@@ -32,10 +32,15 @@ class Login extends React.Component {
     let avatar = new AnimatedAvatar(this.threeRootElement, 200, 200);
     avatar.animate();
 
-    // If username gets focus, peek at the textbox
-    this.usernameField.addEventListener("focus", () => {
-      avatar.peekAt(this.usernameField);
-    });
+    // If username textbox gets focus or has a key-stroke, peek at the textbox
+    const usernamePeek =  (() => {
+      this.usernameHelper.innerHTML = this.usernameField.value;
+      let width = this.usernameHelper.offsetWidth;
+
+      avatar.peekAt(this.usernameField, width);
+    }).bind(this);
+    this.usernameField.addEventListener("focus", usernamePeek);
+    this.usernameField.addEventListener("keyup", usernamePeek);
 
     // If password gets focus, look away
     this.passwordField.addEventListener("focus", () => {
@@ -117,6 +122,7 @@ class Login extends React.Component {
                       placeholder="Enter Username"
                       ref={element => this.usernameField = element}
                   />
+                  <p className="form-control hidden" ref={element=> this.usernameHelper = element}></p>
               </div> 
 
           <div className="form-group"> 
