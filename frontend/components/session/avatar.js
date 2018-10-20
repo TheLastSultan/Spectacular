@@ -16,9 +16,9 @@ const avatarEntryPoint = function(viewport) {
     viewport.appendChild( renderer.domElement );
 
     // camera.position.x = 1;
-    camera.position.z = 1.7;
+    camera.position.z = 1.5;
 
-    const axes = new THREE.AxisHelper( 100 );
+    const axes = new THREE.AxesHelper( 100 );
     scene.add( axes );
 
     var controls = new OrbitControls(camera, renderer.domElement);
@@ -30,15 +30,29 @@ const avatarEntryPoint = function(viewport) {
             new OBJLoader()
                 .setMaterials(materials)
                 .load('./panda.obj', (object) => {
-                    console.log(object);
                     object.rotateY(3.14/180*-145);
-                    // rotateAroundObjectAxis(object, new Vector3(0, 1, 0), 0);
                     object.position.z += 0.2;
-                    // object.position.x -= 0.2;
-                    // object.position.y += 0.1;
                     scene.add(object);
                 }, (e) => {console.log(e);}, () => {console.error(e);}); //, onProgress, onError 
         });
+
+    
+    const phongMaterial = new THREE.MeshPhongMaterial(
+        { ambient: 0x555555, color: "skyblue", specular: 0xffffff, shininess: 50, shading: THREE.SmoothShading }
+    );
+
+    new OBJLoader()
+        .load('./glasses.obj', (object) => {
+            var box = new THREE.Box3().setFromObject( object );
+            object.position.y -= 0.09;
+            object.position.z += 0.35;
+            object.scale.set(.018, .014, .018);
+            for(let idx in object.children) {
+                let obj = object.children[idx]
+                obj.material = phongMaterial;
+            }
+            scene.add(object);
+        }, (e) => {console.log(e);}, () => {console.error(e);}); //, onProgress, onError 
 
     var ambientLight = new THREE.AmbientLight("aliceblue", 1);
     scene.add(ambientLight);
@@ -53,7 +67,7 @@ const avatarEntryPoint = function(viewport) {
         controls.update();
     //   sceneLight.position.set(-camera.position.x, -camera.position.y, -camera.position.z);
         renderer.render(scene, camera);
-        console.log(camera.position, camera.rotation);
+        // console.log(camera.position, camera.rotation);
     };
 
     animate();
