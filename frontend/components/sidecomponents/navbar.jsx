@@ -14,9 +14,13 @@ const mapStateToProps = (state, ownProps) => {
             specs.push(state.cart[key])
         }
     }
+    
+    let finalCartLength = undefined
+    specs.length > state.cart.cart_count ? finalCartLength = specs.length : finalCartLength = state.cart.cart_count 
+
     return{
         currentUser: state.session.currentUser,
-        cartNumber: specs
+        cartNumber: finalCartLength
     }
 };
 
@@ -24,7 +28,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
    return{ 
         logout: () => dispatch(logout()),
-        signUp: () => dispatch(signUp())
+        signUp: () => dispatch(signUp()),
+        fetchCartItems: () => dispatch(fetchCartItems())
     }
 };
 
@@ -36,6 +41,11 @@ class Navbar extends React.Component{
         this.handleLogOut = this.handleLogOut.bind(this);
     }
 
+
+    componentDidMount(){
+        // debugger;
+        this.props.fetchCartItems()
+    }
 
     handleLogOut(){
         this.props.logout()
@@ -96,7 +106,7 @@ class Navbar extends React.Component{
                 <Link className="link-navbar" to='/cart'>
                     <span className="nav-item">cart</span>
                     <FontAwesomeIcon icon="shopping-cart" className="faShoppingCart" />
-                    <span className="cnumber">{this.props.cartNumber.length}</span>
+                    <span className="cnumber">{this.props.cartNumber}</span>
                 </Link>   
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                      <span className="navbar-toggler-icon"></span>

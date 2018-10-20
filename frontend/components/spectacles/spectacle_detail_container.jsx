@@ -167,7 +167,7 @@ class SpectacleDetail extends React.Component{
                         
                         </div>
                         
-                        <Link to={'/'} className="detail-link">
+                        <Link to={'/browse'} className="detail-link">
                             <img src="https://storage.googleapis.com/spec-tacular/detail-page/Recommended.png"/>
                         </Link>
                     

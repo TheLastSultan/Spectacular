@@ -9,8 +9,10 @@ class Api::SpectaclesController < ApplicationController
     end
 
     def pick
-        @spectacles = Spectacle.where( description: params['spectacles']['description'])
-        # @spectacles = Spectacle.all if @spectacles.length == 0 
+        params['spectacle'].each do |k,v|
+            @spectacles ? @spectacles += Spectacle.where({k => v}) : @spectacles = Spectacle.where({k => v})
+        end
+        render :index
     end
 
     private
@@ -22,7 +24,7 @@ class Api::SpectaclesController < ApplicationController
 end
 
  # @spectacles = nil
-        # params['spectacle'].each do |k,v|
-        #     @spectacles ? @spectacles += Spectacle.where({k => v}) : @spectacles = Spectacle.where({k => v})
-        # end
-        # render :index
+       
+
+        # @spectacles = Spectacle.where( description: params['spectacles']['description'])
+        # @spectacles = Spectacle.all if @spectacles.length == 0 

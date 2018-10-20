@@ -25,6 +25,7 @@ export const fetchCartItems = () => dispatch=> (
 ); 
 
 export const deleteCartItem = (UserIdAndCartId) => dispatch => (
+    // dispatch(removeCartItem(UserIdAndCartId))
     CartItemUtil.deleteCartItem(UserIdAndCartId).then(item => (dispatch(removeCartItem(item))))
 );
 

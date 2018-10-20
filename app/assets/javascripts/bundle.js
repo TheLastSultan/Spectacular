@@ -136,9 +136,11 @@ var fetchCartItems = function fetchCartItems() {
 };
 var deleteCartItem = function deleteCartItem(UserIdAndCartId) {
   return function (dispatch) {
-    return _util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteCartItem"](UserIdAndCartId).then(function (item) {
-      return dispatch(removeCartItem(item));
-    });
+    return (// dispatch(removeCartItem(UserIdAndCartId))
+      _util_cart_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteCartItem"](UserIdAndCartId).then(function (item) {
+        return dispatch(removeCartItem(item));
+      })
+    );
   };
 };
 var sendCartItem = function sendCartItem(item) {
@@ -1327,9 +1329,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     }
   }
 
+  var finalCartLength = undefined;
+  specs.length > state.cart.cart_count ? finalCartLength = specs.length : finalCartLength = state.cart.cart_count;
   return {
     currentUser: state.session.currentUser,
-    cartNumber: specs
+    cartNumber: finalCartLength
   };
 };
 
@@ -1340,6 +1344,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     signUp: function signUp() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["signUp"])());
+    },
+    fetchCartItems: function fetchCartItems() {
+      return dispatch(Object(_actions_cart_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCartItems"])());
     }
   };
 };
@@ -1360,6 +1367,12 @@ function (_React$Component) {
   }
 
   _createClass(Navbar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // debugger;
+      this.props.fetchCartItems();
+    }
+  }, {
     key: "handleLogOut",
     value: function handleLogOut() {
       this.props.logout();
@@ -1444,7 +1457,7 @@ function (_React$Component) {
         className: "faShoppingCart"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "cnumber"
-      }, this.props.cartNumber.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, this.props.cartNumber)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "navbar-toggler",
         type: "button",
         "data-toggle": "collapse",
@@ -2018,7 +2031,7 @@ function (_React$Component) {
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://storage.googleapis.com/spec-tacular/detail-page/rx-options-2.png"
       }), console.log(this.state.progressive)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Link"], {
-        to: '/',
+        to: '/browse',
         className: "detail-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://storage.googleapis.com/spec-tacular/detail-page/Recommended.png"
@@ -2391,7 +2404,7 @@ function (_React$Component) {
       var staffpick = undefined;
       var spectacle = this.props.spectacle;
       spectacle.staffpick ? staffpick = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        ClassName: "staff-pick",
+        className: "staff-pick",
         src: "https://storage.googleapis.com/spec-tacular/staff-pick2.png"
       }) : staffpick = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "staff-pick",
@@ -2856,7 +2869,7 @@ __webpack_require__.r(__webpack_exports__);
       return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, action.payload.user);
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
-      debugger;
+      // debugger; 
       return {
         currentUser: null
       };
