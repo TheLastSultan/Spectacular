@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import * as TWEEN from '@tweenjs/tween.js';
+var TWEEN = require('@tweenjs/tween.js');
 import {MTLLoader, OBJLoader} from 'three-obj-mtl-loader';
 import OrbitControlsThree from 'three-orbit-controls'
 import { debug } from 'util';
@@ -10,13 +10,14 @@ const STATE_IDLE = "idle";
 const STATE_PEEKING = "peek";
 const STATE_DISCREET = "discrete";
 // radians per frame of rotational velocity
-const ROT_VELO = Math.PI / 180 / 60; // one degree per second assuming 60fps
+const ROT_VELO = 8 * Math.PI / 180 / 60; // one degree per second assuming 60fps
 const DEBUG_MODE = true;
 
 // equation to find the distance between vector A & vector B
-Math.arcLength = function(vectorA, vectorB, radius) {
+Math.arcLength = function(vectorA, vectorB) {
+    const temp = new THREE.Vector3(vectorA.x, vectorA.y, vectorA.z);
     // See Vector-Version: https://en.wikipedia.org/wiki/Great-circle_distance
-    return ((vectorA.cross(vectorB)).length()) / (vectorA.dot(vectorB));
+    return ((temp.cross(vectorB)).length()) / (vectorA.dot(vectorB));
 }
 
 
@@ -120,7 +121,8 @@ class AnimatedAvatar {
 
     // Have Panda Peek At textbox
     peekAt(textbox, textWidth) {
-        console.log(this.state, "->", 'peekin');
+        if(DEBUG_MODE)
+            console.log(this.state, "->", 'peekin');
         const PADDING = 12; // ASSUME 12px of padding
         let myRect = this.renderer.domElement.getBoundingClientRect();
         let otherRect = textbox.getBoundingClientRect();
@@ -134,33 +136,64 @@ class AnimatedAvatar {
         let delta = lookTo.sub(myMiddle);
         let deltaAngle =  Math.atan2(delta.x, delta.y);
         let camPos = Math.rotateY(this._lookDown, -deltaAngle);
-        // let straightDownAngles = Math.vectorToAngles(this._lookDown);
-        // straightDownAngles.x += deltaAngle;
-        // let camPos = Math.anglesToVector(straightDownAngles, this._radius);
-        
-        console.log(camPos);
-        this.camera.position.set(camPos.x, camPos.y, camPos.z);
+        this._interpolateCamera(camPos);
         this.camera.lookAt(0, 0, 0);
+        if(this.state === STATE_DISCREET)
+            this._resetGlasses();
         this.state = STATE_PEEKING;
     }
 
     idle() {
-        console.log(this.state, "->", 'idling');
-        this.camera.position.set(this._homePosition.x, this._homePosition.y, this._homePosition.z);
+        if(DEBUG_MODE)
+            console.log(this.state, "->", 'idling');
+        this._interpolateCamera(this._homePosition);
         this.camera.lookAt(0, 0, 0);
-        this._glasses.position.set(this._glassesHomePosition.x, this._glassesHomePosition.y, this._glassesHomePosition.z);
-        this._glasses.rotation.set(this._glassesHomeRotation.x, this._glassesHomeRotation.y, this._glassesHomeRotation.z);
+        if(this.state === STATE_DISCREET)
+            this._resetGlasses();
         this.state = STATE_IDLE;
     }
 
     lookAway() {
-        console.log(this.state, "->", 'bein discreet');
-        this.camera.position.set(this._lookAway.x, this._lookAway.y, this._lookAway.z);
+        if(DEBUG_MODE)
+            console.log(this.state, "->", 'bein discreet');
+        this._interpolateCamera(this._lookAway);
         this.camera.lookAt(0, 0, 0);
         this.state = STATE_DISCREET;
         this._glasses.position.set(this._glassesUpPosition.x, this._glassesUpPosition.y, this._glassesUpPosition.z);
         this._glasses.rotation.set(this._glassesUpRotation.x, this._glassesUpRotation.y, this._glassesUpRotation.z);
     }
+    
+    _interpolateCamera(toCameraPos) {
+        const fromCameraPos = this.camera.position;
+        // Find radial length between two points
+        const arcLength = Math.arcLength(fromCameraPos, toCameraPos);
+        const time = arcLength/ROT_VELO; // time = distance / velocity
+
+        // If a tween is in-progress, stop that one first
+        if(this._interpolateTween)
+            this._interpolateTween.stop();
+
+        const fromRot = Math.vectorToAngles(fromCameraPos);
+        const toRot = Math.vectorToAngles(toCameraPos);
+
+        this._interpolateTween = new TWEEN.Tween(fromRot)
+            .to(toRot, time)
+            .easing(TWEEN.Easing.Cubic.InOut)
+            .onUpdate((coord) => {
+                const currPos = Math.anglesToVector(coord, this._radius);
+                this.camera.position.set(currPos.x, currPos.y, currPos.z);
+            })
+            .start();
+
+        console.log(arcLength);
+    }
+    
+    
+    _resetGlasses() {
+        this._glasses.position.set(this._glassesHomePosition.x, this._glassesHomePosition.y, this._glassesHomePosition.z);
+        this._glasses.rotation.set(this._glassesHomeRotation.x, this._glassesHomeRotation.y, this._glassesHomeRotation.z);
+    }
+
 
     _memorizeAngles() {
         // Store variables that will be used for interpolation later
@@ -184,7 +217,6 @@ class AnimatedAvatar {
             new MTLLoader()
                 .load('./panda.mtl', (materials) => {
                     materials.preload();
-                    console.log(materials);
                     new OBJLoader()
                         .setMaterials(materials)
                         .load('./panda.obj', (object) => {
