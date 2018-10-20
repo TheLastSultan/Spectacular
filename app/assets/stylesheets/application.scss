@@ -45,6 +45,26 @@
     margin: 0;
 }
 
+.blurry {
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    -o-filter: blur(0px);
+    filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='svgBlur' x='-5%' y='-5%' width='110%' height='110%'><feGaussianBlur in='SourceGraphic' stdDeviation='5'/></filter></svg>#svgBlur");
+    filter: "progid: DXImageTransform.Microsoft.Blur(PixelRadius = '0')";
+    filter: blur(0px);
+    transition: filter ease-in 0.7s;
+}
+.blurry.blurry-active {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -ms-filter: blur(2px);
+    -o-filter: blur(2px);
+    filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='svgBlur' x='-5%' y='-5%' width='110%' height='110%'><feGaussianBlur in='SourceGraphic' stdDeviation='5'/></filter></svg>#svgBlur");
+    filter: "progid: DXImageTransform.Microsoft.Blur(PixelRadius = '2')";
+    filter: blur(2px);
+}
+
 .spectacle-list-group{
     display: flex; 
     flex-wrap: wrap;
@@ -53,8 +73,6 @@
     padding-left: 0px;
     margin-left: 10%;
     margin-right: 10%; 
-
-
 }
 
 .spectacle-thumbnail{
