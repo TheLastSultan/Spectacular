@@ -44,8 +44,12 @@ class Login extends React.Component {
 
     // If username & password doesn't have focus, then reset to idle stance
     const lostFocus = () => {
-      if(!this.usernameField.hasFocus() && !this.passwordField.hasFocus())
-        avatar.idle();
+      // Wait for 500ms to allow focus to be reassigned
+      setTimeout(() => {
+        let focused = document.activeElement;
+        if(this.usernameField !== focused && this.passwordField !== focused)
+          avatar.idle();
+      }, 500);
     };
     this.usernameField.addEventListener("focusout", lostFocus);
     this.passwordField.addEventListener("focusout", lostFocus);
