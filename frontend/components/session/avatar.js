@@ -96,7 +96,7 @@ Math.rotateX = function(vector, theta) {
 class AnimatedAvatar {
     constructor(viewport, width, height) {
         let scene = new THREE.Scene();
-        let camera = new THREE.PerspectiveCamera( 50, width/height, 0.1, 1000 );
+        let camera = new THREE.PerspectiveCamera( 50, width/height, 0.1, 100000 );
         let renderer = new THREE.WebGLRenderer({antialias:true});
         renderer.domElement.setAttribute("style", "border-radius: 50%;")
         renderer.setSize(width, height);
@@ -309,6 +309,29 @@ class AnimatedAvatar {
                         }, () => {}, () => reject(e)); //, onProgress, onError 
                 });
         });
+    }
+
+    _addMustache(scene) {
+        const mustacheMaterial = new THREE.MeshPhongMaterial({color: "#6032bb"});
+        return new Promise((resolve, reject) => {
+            new OBJLoader()
+                .load('./Mustache.obj', (object) => {
+                    object.rotateX(Math.PI/2);
+                    object.scale.set(.00001, .00001, .00001);
+                    object.position.x -= 14;
+                    object.position.y -= 75;
+                    object.position.z += 50;
+                    for(let i in object.children)
+                        object.children[i].material = mustacheMaterial;
+                    this.scene.add(object);
+                    resolve(object);
+                }, () => {}, () => reject(e)); //, onProgress, onError 
+        });
+    }
+
+
+    addMustache() {
+        this._addMustache(this.scene);
     }
 }
 
