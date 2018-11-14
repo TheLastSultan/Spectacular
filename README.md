@@ -1,17 +1,9 @@
 # Spectacular
 ##### [View It Live Here!](https://specktacular.herokuapp.com/#/) || [GithubRepo](https://github.com/TheLastSultan/Spectacular) 
 
-
-[heroku]: https://instacraam-production.herokuapp.com
-
 Spectacular is a responsive SPA built with a Ruby on Rails backend and React/Redux frontend. Inspired by Warby Parker, it serves as a platform to buy glasses. This MVP was styled and developed in 10 days so there's still more to come, desired features are listed at the bottom.
 
 ## Features
-### User Authentication
-
-Users are automatically signed in as "guest users". This means that in the backend, Users are automatically signed in a Hex key upon visiting the site. Upon logging in or
-
-![login image](docs/images/demo_login.gif)
 
 ### Spectacles and Webscraping Warby for Seed Data
 Spectacular was made to be a near perfect clone of Warby Parker. As such, Spectacle images were web scrapped using a simple Python script that downloaded all images from the web page. To seed Spectacle Names, random names for spectacles were generated using names for Coffee Blends, US States, Athenian Gods, Book Publishers, Book Genres, and common first names. Seed data was implemented using a Gem called Faker. 
@@ -33,6 +25,13 @@ My website clone
 </br>
 Compared to the final Site. 
 ![Real Warby](https://storage.googleapis.com/spec-tacular/ActualWarbyParker.png)
+### User Authentication
+
+Users are automatically signed in as "guest users". This means that in the backend, Users are automatically signed in a Hex key upon visiting the site. Upon logging in or
+
+![login image](docs/images/demo_login.gif)
+
+
 
 ### Guest User
 
