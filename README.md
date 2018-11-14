@@ -31,23 +31,6 @@ Users are automatically signed in as "guest users". This means that in the backe
 
 ![login image](docs/images/demo_login.gif)
 
-
-
-### Guest User
-
-User profiles are public yet limited to full functionlity. Even in guest-login, profile editing and CRUD options are available. Clicking an image will open a modal which displays the photo, caption & location, and comments and likes. The layout utilizes CSS3 for responsiveness.
-
-### Likes and Comments
-
-Photos on the main feed and modal views have actions allowing the current user to cart and favorite items
-
-![modal image](docs/images/modal.png)
-
-### 5 Question Quiz
-
-User can elect to take a 3 question quiz, which queries the backend and returns the appropraite spectacles:
-![responsive image 1](docs/images/mobile1.png) ![responsive image 2](docs/images/mobile2.png) ![responsive image 3](docs/images/mobile3.png)
-
 ## Technologies used
 ### Backend
 [Ruby on Rails](http://rubyonrails.org/) was used to serve the backend. [PostgreSQL](https://postgresql.org/) database to store data.
