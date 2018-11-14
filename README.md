@@ -8,7 +8,7 @@ Spectacular is a responsive SPA built with a Ruby on Rails backend and React/Red
 ## Features
 ### User Authentication
 
-Users are automatically signed in as "guest users". This means taht in the backend, Users are automatically signed in a Hex key upon visiting the site. Upon logging in or
+Users are automatically signed in as "guest users". This means that in the backend, Users are automatically signed in a Hex key upon visiting the site. Upon logging in or
 
 ![login image](docs/images/demo_login.gif)
 
@@ -17,22 +17,21 @@ Users are automatically signed in as "guest users". This means taht in the backe
 Photos uploaded by users and whom they follow are displayed on the main feed. The feed is sorted by created_at, with the most recent upload displaying first. To upload images, simply navigate to the upload page. Click and drag an image to the input field to see a preview. Then, users can toggle buttons to imitate filters. Plans to implement persistence to come. Images are hosted on an Amazon Web Services (AWS) S3 bucket.
 https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/06/Image-uploaded-from-iOS-3-1.png
 
-![Real Instagram](http://digitalspyuk.cdnds.net/16/48/320x568/gallery-1480338651-instagram-screenshot.png)
+![Real Warby](http://mslk.com/wp-content/uploads/2012/01/WARBY-PARKER-WEBSITE-MAIN-MSLK.jpg)
 
-### User Profiles
+### Guest User
 
-User profiles are public yet limited to functionality. Once logged in, profile editing and CRUD options are available. Clicking an image will open a modal which displays the photo, caption & location, and comments and likes. The layout utilizes CSS3 for responsiveness.
+User profiles are public yet limited to full functionlity. Even in guest-login, profile editing and CRUD options are available. Clicking an image will open a modal which displays the photo, caption & location, and comments and likes. The layout utilizes CSS3 for responsiveness.
 
 ### Likes and Comments
 
-Photos on the main feed and modal views have actions allowing the current user to like/dislike content and add/remove their own comments.
+Photos on the main feed and modal views have actions allowing the current user to cart and favorite items
 
 ![modal image](docs/images/modal.png)
 
-### Mobile Responsive
+### 5 Question Quiz
 
-Media queries and SVGs were used to create a smooth transition between desktop and mobile devices.
-
+User can elect to take a 3 question quiz, which queries the backend and returns the appropraite spectacles:
 ![responsive image 1](docs/images/mobile1.png) ![responsive image 2](docs/images/mobile2.png) ![responsive image 3](docs/images/mobile3.png)
 
 ## Technologies used
@@ -41,21 +40,23 @@ Media queries and SVGs were used to create a smooth transition between desktop a
 `ActiveRecords` used for Object-relational Mapping.
 
 ```Ruby
-belongs_to :poster,
-  primary_key: :id,
-  foreign_key: :user_id,
-  class_name: :User
+has_many :cartitems,
+    foreign_key: :user_id,
+    class_name: "Cartitem"
 
-has_many :comments,
-  primary_key: :id,
-  foreign_key: :post_id,
-  class_name: :Comment
 
-has_many :likes, as: :likable
+    has_many :cart,
+    through: :cartitems,
+    source: :spectacle
 
-has_many :likers,
-  through: :likes,
-  source: :liker
+has_many :cartitems,
+    foreign_key: :spectacle_id,
+    class_name: "Cartitem"
+
+    has_many :users,
+    through: :cartitems,
+    source: :user
+
 ```
 
 - Hosted on Heroku
@@ -111,12 +112,5 @@ body {
 
 ## Future Features
 
-- Persist photo filters
-- Video integration
-- AJAX searches
-- Explore pages with geolocation
-- Infinite scroll
-- Hashtags
-- Pagination and loading
-- Direct messaging
-- Live Streaming
+- Search for Title of Spectacles
+- Imporve Functionality of Cart-Items
