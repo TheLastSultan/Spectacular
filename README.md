@@ -26,7 +26,9 @@ possible_title= [Faker::Book.genre,
 
 
 After images and randomly generated names, the display was modeled to be as close as possible to the site. To compare the result, I have posted both images below. </br>
-Spectacular.com/spectacles
+</br>
+My website clone
+</br>
 ![SpectacleShow](https://storage.googleapis.com/spec-tacular/spectacular-choices.png)
 </br>
 Compared to the final Site. 
