@@ -1,5 +1,6 @@
 # Spectacular
-[Instacram][heroku]
+##### [View It Live Here!](https://specktacular.herokuapp.com/#/) || [GithubRepo](https://github.com/TheLastSultan/Spectacular) 
+
 
 [heroku]: https://instacraam-production.herokuapp.com
 
@@ -12,12 +13,24 @@ Users are automatically signed in as "guest users". This means that in the backe
 
 ![login image](docs/images/demo_login.gif)
 
-### Photos/Feed/Filters
+### Spectacles and Webscraping Warby for Seed Data
+Spectacular was made to be a near perfect clone of Warby Parker. As such, Spectacle images were web scrapped using a simple Python script that downloaded all images from the web page. To seed Spectacle Names, random names for spectacles were generated using names for Coffee Blends, US States, Athenian Gods, Book Publishers, Book Genres, and common first names. Seed data was implemented using a Gem called Faker. 
 
-Photos uploaded by users and whom they follow are displayed on the main feed. The feed is sorted by created_at, with the most recent upload displaying first. To upload images, simply navigate to the upload page. Click and drag an image to the input field to see a preview. Then, users can toggle buttons to imitate filters. Plans to implement persistence to come. Images are hosted on an Amazon Web Services (AWS) S3 bucket.
-https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/06/Image-uploaded-from-iOS-3-1.png
+```Ruby
+possible_title= [Faker::Book.genre,
+                    Faker::Book.publisher, 
+                    Faker::Ancient.god, 
+                    Faker::Address.state,
+                    Faker::Coffee.blend_name].sample
+```
 
-![Real Warby](http://mslk.com/wp-content/uploads/2012/01/WARBY-PARKER-WEBSITE-MAIN-MSLK.jpg)
+
+After images and randomly generated names, the display was modeled to be as close as possible to the site. To compare the result, I have posted both images below. </br>
+Spectacular.com/spectacles
+![SpectacleShow](https://storage.googleapis.com/spec-tacular/spectacular-choices.png)
+</br>
+Compared to the final Site. 
+![Real Warby](https://storage.googleapis.com/spec-tacular/ActualWarbyParker.png)
 
 ### Guest User
 
